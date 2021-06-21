@@ -1,0 +1,306 @@
+<div class="stranka">
+    <div class="vlevo">
+        <h1 align="center">SOUPISKA</h1>
+        <a onclick="myFunction()" style="margin-left: 5%"><img alt="settings" style="width: 50px;height: 50px"
+                                                               src="/images/settings2.png"></a>
+        <div id="myDIV">
+            <br><a style="margin-left: 5%;font-size: 20px" id="myBtn">PŘIDAT HRÁČE</a>
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content" align="center">
+                    <h2 align="center">PŘIDAT HRÁČE</h2>
+                    <form method="POST">
+                        <input type="text" required name="cislodresu" placeholder="#" size="5">  
+                        <input type="text" required name="Jmeno" placeholder="Jméno" size="25">  
+                        <select name="Narod">
+                            <optgroup label="DEFAULT">
+                                <option value="default">Národnost</option>
+                            </optgroup>
+                            <optgroup label="OPTIONS">
+                                <option value="Czech">Česko</option>
+                                <option value="Slovak">Slovensko</option>
+                                <option value="Bahrain">Bahrajn</option>
+                                <option value="Denmark">Dánsko</option>
+                                <option value="IvoryCoast">Pobřeží Slonoviny</option>
+                                <option value="Liberia">Libérie</option>
+                                <option value="Netherlands">Nizozemsko</option>
+                                <option value="Niggeria">Nigérie</option>
+                                <option value="Romania">Rumunsko</option>
+                                <option value="Senegal">Senegal</option>
+                                <option value="Ukraine">Ukrajina</option>
+                            </optgroup>
+                        </select>  
+                        <select name="Pozice">
+                            <optgroup label="DEFAULT">
+                                <option value="default">Pozice</option>
+                            </optgroup>
+                            <optgroup label="OPTIONS">
+                                <option value="BR">Brankář</option>
+                                <option value="OB">Obránce</option>
+                                <option value="ZA">Záložník</option>
+                                <option value="UT">Útočník</option>
+                            </optgroup>
+                        </select>  
+                        <br><br>
+                        <button style="width: 150px" type="submit"><strong>PŘIDAT</strong></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+
+
+        <h1 style="margin-left: 5%">BRANKÁŘI</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th><strong>#</strong></th>
+                <th style="width: 200px"><strong>Jméno</strong></th>
+                <th><strong>Národ</strong></th>
+                <th><strong>Zápasy</strong></th>
+                <th><strong>Góly</strong></th>
+                <th><strong>Asist</strong></th>
+                <th><strong>ŽK</strong></th>
+                <th><strong>ČK</strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            <repeat group="{{@brankari}}" value="{{@hrac}}">
+                <tr>
+                    <td>{{@hrac.cislodresu}}</td>
+                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                    <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
+                    <td>{{@hrac.Zapasy}}</td>
+                    <td>{{@hrac.Goly}}</td>
+                    <td>{{@hrac.Asistence}}</td>
+                    <td>{{@hrac.ZK}}</td>
+                    <td>{{@hrac.CK}}</td>
+                </tr>
+            </repeat>
+            </tbody>
+        </table>
+        <br><br><br>
+
+
+        <h1 style="margin-left: 5%">OBRÁNCI</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th><strong>#</strong></th>
+                <th style="width: 200px"><strong>Jméno</strong></th>
+                <th><strong>Národ</strong></th>
+                <th><strong>Zápasy</strong></th>
+                <th><strong>Góly</strong></th>
+                <th><strong>Asist</strong></th>
+                <th><strong>ŽK</strong></th>
+                <th><strong>ČK</strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            <repeat group="{{@obranci}}" value="{{@hrac}}">
+                <tr>
+                    <td>{{@hrac.cislodresu}}</td>
+                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                    <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
+                    <td>{{@hrac.Zapasy}}</td>
+                    <td>{{@hrac.Goly}}</td>
+                    <td>{{@hrac.Asistence}}</td>
+                    <td>{{@hrac.ZK}}</td>
+                    <td>{{@hrac.CK}}</td>
+                </tr>
+            </repeat>
+            </tbody>
+        </table>
+        <br><br><br>
+
+
+        <h1 style="margin-left: 5%">ZÁLOŽNÍCI</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th><strong>#</strong></th>
+                <th style="width: 200px"><strong>Jméno</strong></th>
+                <th><strong>Národ</strong></th>
+                <th><strong>Zápasy</strong></th>
+                <th><strong>Góly</strong></th>
+                <th><strong>Asist</strong></th>
+                <th><strong>ŽK</strong></th>
+                <th><strong>ČK</strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            <repeat group="{{@zaloznici}}" value="{{@hrac}}">
+                <tr>
+                    <td>{{@hrac.cislodresu}}</td>
+                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                    <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
+                    <td>{{@hrac.Zapasy}}</td>
+                    <td>{{@hrac.Goly}}</td>
+                    <td>{{@hrac.Asistence}}</td>
+                    <td>{{@hrac.ZK}}</td>
+                    <td>{{@hrac.CK}}</td>
+                </tr>
+            </repeat>
+            </tbody>
+        </table>
+        <br><br><br>
+
+
+        <h1 style="margin-left: 5%">ÚTOČNÍCI</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th><strong>#</strong></th>
+                <th style="width: 200px"><strong>Jméno</strong></th>
+                <th><strong>Národ</strong></th>
+                <th><strong>Zápasy</strong></th>
+                <th><strong>Góly</strong></th>
+                <th><strong>Asist</strong></th>
+                <th><strong>ŽK</strong></th>
+                <th><strong>ČK</strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            <repeat group="{{@utocnici}}" value="{{@hrac}}">
+                <tr>
+                    <td>{{@hrac.cislodresu}}</td>
+                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                    <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
+                    <td>{{@hrac.Zapasy}}</td>
+                    <td>{{@hrac.Goly}}</td>
+                    <td>{{@hrac.Asistence}}</td>
+                    <td>{{@hrac.ZK}}</td>
+                    <td>{{@hrac.CK}}</td>
+                </tr>
+            </repeat>
+            </tbody>
+        </table>
+        <br><br><br>
+    </div>
+    <div class="pravo">
+        <h1 align="center">ZÁPASY</h1>
+        <a onclick="Function()" id="Btn" style="margin-left: 2%"><img alt="settings" style="width: 50px;height: 50px"
+                                                                      src="/images/add.png"></a>
+        <div id="DIV">
+            <br>
+            <div id="Modal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content" align="center">
+                    <h2 align="center">PŘIDAT ZÁPAS</h2>
+                    <form method="POST">
+                        <label for="host">HOST</label>
+                        <input id="host" checked type="radio" value="0" name="WIN">
+                        <label for="away">AWAY</label>
+                        <input id="away" type="radio" value="1" name="WIN">
+                        <select name="AWAY">
+                            <optgroup label="DEFAULT">
+                                <option value="default">Klub</option>
+                            </optgroup>
+                            <optgroup label="OPTIONS">
+                                <option value="Bohemians">Bohemians</option>
+                                <option value="Boleslav">Boleslav</option>
+                                <option value="Budějovice">Budějovice</option>
+                                <option value="Hradec">Hradec</option>
+                                <option value="Jablonec">Jablonec</option>
+                                <option value="Karviná">Karviná</option>
+                                <option value="Liberec">Liberec</option>
+                                <option value="Olomouc">Olomouc</option>
+                                <option value="Ostrava">Ostrava</option>
+                                <option value="Pardubice">Pardubice</option>
+                                <option value="Plzeň">Plzeň</option>
+                                <option value="Slovácko">Slovácko</option>
+                                <option value="Sparta">Sparta</option>
+                                <option value="Teplice">Teplice</option>
+                                <option value="Zlín">Zlín</option>
+                            </optgroup>
+                        </select>  
+                        <input type="text" required name="GHOST" placeholder="Host Goals" size="10">  
+                        <input type="text" required name="GAWAY" placeholder="Away Goals" size="10">  
+                        <input type="text" required name="GOLY" placeholder="Akce,Minuta,Střelec+?;..." size="25">  
+                        <input type="date" required name="DATUM" placeholder="Datum" size="10">  
+                        <br><br>
+                        <button style="width: 150px" type="submit"><strong>PŘIDAT</strong></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div style="font-size: 30px">
+            <repeat group="{{@zapasy}}" value="{{@zapas}}">
+                <div class="panel">
+                        <td>{{@zapas.DATUM}}</td>
+                        <br>
+                        <check if="{{@zapas.GHOST}}>{{@zapas.GAWAY}}">
+                            <true>
+                                <td><img alt="settings" style="width: 50px;height: 50px"
+                                         src="/images/clubs/{{@zapas.OHOST}}"><b>{{@zapas.HOST}}</b></td>
+                                -
+                                <td>{{@zapas.AWAY}} <img alt="settings" style="width: 50px;height: 50px"
+                                                         src="/images/clubs/{{@zapas.OAWAY}}"></td>
+                            </true>
+                            <false>
+                                <check if="{{@zapas.GHOST}}<{{@zapas.GAWAY}}">
+                                    <true>
+                                        <td style="vertical-align:middle" ><img alt="settings" style="width: 50px;height: 50px"
+                                                 src="/images/clubs/{{@zapas.OHOST}}">{{@zapas.HOST}}</td>
+                                        -
+                                        <td><b>{{@zapas.AWAY}}</b><img alt="settings" style="width: 50px;height: 50px"
+                                                                       src="/images/clubs/{{@zapas.OAWAY}}"></td>
+                                    </true>
+                                    <false>
+                                        <td>{{@zapas.HOST}}</td>
+                                        -
+                                        <td>{{@zapas.AWAY}}</td>
+                                    </false>
+                                </check>
+                            </false>
+                        </check>
+                        <br>
+                        <td>{{@zapas.GHOST}}</td>
+                        :
+                        <td>{{@zapas.GAWAY}}</td>
+                        <br>
+                        <p style="font-size: 20px" align="left" >{{@zapas.GOLY}}</p>
+                </div>
+                <br>
+            </repeat>
+        </div>
+    </div>
+</div>
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+
+    var modale = document.getElementById("Modal");
+    var btne = document.getElementById("Btn");
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    btne.onclick = function () {
+        modale.style.display = "block";
+    }
+
+    function myFunction() {
+        var y = document.getElementById("myDIV");
+        if (y.style.display === "block") {
+            y.style.display = "none";
+        } else {
+            y.style.display = "block";
+        }
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modale) {
+            modale.style.display = "none";
+        }
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+</script>

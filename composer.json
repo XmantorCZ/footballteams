@@ -1,0 +1,16 @@
+{
+  "name": "vendor_name/footballteams",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "otuna",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree": "3.7.3",
+    "ikkez/f3-cortex": "v1.7.3"
+  }
+}
