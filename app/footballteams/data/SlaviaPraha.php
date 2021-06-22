@@ -18,6 +18,10 @@ class SlaviaPraha extends \DB\Cortex
             'type' => 'TEXT',
             'nullable' => false
         ],
+        'Prijmeni' => [
+            'type' => 'TEXT',
+            'nullable' => false
+        ],
         'Narod' => [
             'type' => 'TEXT',
             'nullable' => false

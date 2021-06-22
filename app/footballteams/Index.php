@@ -16,15 +16,31 @@ class Index
         echo \Template::instance()->render("index.html");
     }
 
-    public function install(\Base $base)
+    public function get_install(\Base $base)
     {
-        // \footballteams\data\SlaviaPraha::setdown();
-        // \footballteams\data\SlaviaPraha::setup();
+        $base->set('content', 'install.html');
+        $base->set("title", "INSTALL");
+        echo \Template::instance()->render("index.html");
+    }
 
-        \footballteams\data\SPZapasy::setdown();
-        \footballteams\data\SPZapasy::setup();
+    public function post_install(\Base $base)
+    {
 
-        $base->reroute("/");
+        if ($base->get('POST.SlaviaPraha') == true) {
+
+            \footballteams\data\SlaviaPraha::setdown();
+            \footballteams\data\SlaviaPraha::setup();
+
+        }
+        if ($base->get('POST.SPZapasy') == true) {
+
+            \footballteams\data\SPZapasy::setdown();
+            \footballteams\data\SPZapasy::setup();
+
+        }
+
+        $base->reroute('/');
+
     }
 
     public function get_slaviapraha(\Base $base)
@@ -40,23 +56,15 @@ class Index
 
         $zapas = $zapasy->find("", ['limit' => 5, 'order' => 'DATUM DESC']);
 
-        /* foreach ($zapas as $goly) {
-            $dan = "";
-            $gol = explode(";", $goly->GOLY);
-            foreach ($gol as $roz) {
-                $ro = explode(",", $roz);
-                if ($ro[0] == 1) {
-                    $ro[0] = "";
-                    $ro[1] .= "'";
-                    $ro[3] = "(" . $ro[3] . ")";
 
-                    $roz = implode(" ", $ro);
-                    $dan .= $roz . "<br>";
-                }
+        if ($zapas != "") {
+            foreach ($zapas as $value) {
+
+                $value->DATUM = date('d/m/Y', strtotime($value->DATUM));
             }
-            $goly->GOLY = $dan;
+
         }
-        */
+
         $base->set("zapasy", $zapas);
 
         $base->set("title", "SLAVIA PRAHA");
@@ -81,29 +89,69 @@ class Index
         if ($base->get('POST["GHOST"]') != "") {
             $zapasy = new data\SPZapasy();
             $slavia = new data\SlaviaPraha();
-            $zapasy->copyfrom($base->get('POST'));
+            $zapasy->copyfrom($base->get('POST'), function ($val) {
+                // the 'POST' array is passed to our callback function
+                return array_intersect_key($val, array_flip(array('OHOST', 'OAWAY', 'HOST', 'AWAY', 'GHOST', 'GAWAY', 'DATUM')));
+            });
 
-            //superkrutopřísný nešahat!!!
             $dan = "";
-            $gol = explode(";", $zapasy->GOLY);
+            $uz = "";
+            $asi = "";
+            $spoj = "";
+
+            $pole = $base->get('POST.GOLY');
+
+            sort($pole);
+
+            for ($i = 0; $i < count($pole) - 1; $i++) {
+
+                $spoj .= $pole[$i] . ";";
+
+            }
+            $spoj .= $pole[count($pole) - 1];
+            $gol = explode(";", $spoj);
+
             foreach ($gol as $roz) {
                 $ro = explode(",", $roz);
                 if ($ro[1] == 1) {
                     $ro[1] = '<img alt="Goal" width="16px" height="16px" src="/images/Goal.png">';
+                    if ($ro[0][0] == '0') {
+                        //01
+                        $ro[0] = substr($ro[0], 1);
+
+                    }
+
                     $ro[0] = "<span style='font-size: 75%; color: gray'>" . $ro[0] . "'</span>";
 
                     $uz = $slavia->findone(array("Prijmeni=? or Jmeno=?", $ro[2], $ro[2]));
-                    $uz->Goly += 1;
-
                     $asi = $slavia->findone(array("Prijmeni=? or Jmeno=?", $ro[3], $ro[3]));
-                    $asi->Asistence += 1;
 
-                    $ro[3] = "<span style='color: gray'>(" . $ro[3] . ")</span>";
+                    if ($uz == "" && $asi == "") {
 
-                    $uz->save();
-                    $asi->save();
+                        $ro[3] = "<span style='color: gray; text-align: right'>(" . $ro[3] . ")</span>";
+
+                    } else {
+
+                        $uz->Goly += 1;
+                        $asi->Asistence += 1;
+                        $ro[3] = "<span style='color: gray; text-align: left'>(" . $ro[3] . ")</span>";
+
+                        $uz->save();
+                        $asi->save();
+
+                    }
                 }
                 $roz = implode(" ", $ro);
+
+                if ($uz == "" && $asi == "") {
+
+                    $roz = "<span style='float: right'>" . $roz . "</span>";
+
+                } else {
+
+                    $roz = "<span style='float: left'>" . $roz . "</span>";
+                }
+
                 $dan .= $roz . "<br>";
 
             }
@@ -132,6 +180,7 @@ class Index
             $zapasy->save();
             $base->reroute('/slaviapraha');
         }
+
 
     }
 

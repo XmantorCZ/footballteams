@@ -1,52 +1,52 @@
 <div class="stranka">
     <div class="vlevo">
         <h1 align="center">SOUPISKA</h1>
-        <a onclick="myFunction()" style="margin-left: 5%"><img alt="settings" style="width: 50px;height: 50px"
-                                                               src="/images/settings2.png"></a>
-        <div id="myDIV">
-            <br><a style="margin-left: 5%;font-size: 20px" id="myBtn">PŘIDAT HRÁČE</a>
-            <div id="myModal" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content" align="center">
-                    <h2 align="center">PŘIDAT HRÁČE</h2>
-                    <form method="POST">
-                        <input type="text" required name="cislodresu" placeholder="#" size="5">  
-                        <input type="text" required name="Jmeno" placeholder="Jméno" size="25">  
-                        <select name="Narod">
-                            <optgroup label="DEFAULT">
-                                <option value="default">Národnost</option>
-                            </optgroup>
-                            <optgroup label="OPTIONS">
-                                <option value="Czech">Česko</option>
-                                <option value="Slovak">Slovensko</option>
-                                <option value="Bahrain">Bahrajn</option>
-                                <option value="Denmark">Dánsko</option>
-                                <option value="IvoryCoast">Pobřeží Slonoviny</option>
-                                <option value="Liberia">Libérie</option>
-                                <option value="Netherlands">Nizozemsko</option>
-                                <option value="Niggeria">Nigérie</option>
-                                <option value="Romania">Rumunsko</option>
-                                <option value="Senegal">Senegal</option>
-                                <option value="Ukraine">Ukrajina</option>
-                            </optgroup>
-                        </select>  
-                        <select name="Pozice">
-                            <optgroup label="DEFAULT">
-                                <option value="default">Pozice</option>
-                            </optgroup>
-                            <optgroup label="OPTIONS">
-                                <option value="BR">Brankář</option>
-                                <option value="OB">Obránce</option>
-                                <option value="ZA">Záložník</option>
-                                <option value="UT">Útočník</option>
-                            </optgroup>
-                        </select>  
-                        <br><br>
-                        <button style="width: 150px" type="submit"><strong>PŘIDAT</strong></button>
-                    </form>
-                </div>
+        <a id="myBtn" style="margin-left: 5%"><img alt="settings" style="width: 50px;height: 50px"
+                                                   src="/images/AddPlayer.png"></a>
+
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content" align="center">
+                <h2 align="center">PŘIDAT HRÁČE</h2>
+                <form method="POST">
+                    <input type="text" required name="cislodresu" placeholder="#" size="5">  
+                    <input type="text" required name="Jmeno" placeholder="Jméno" size="25">  
+                    <input type="text" required name="Prijmeni" placeholder="Přijmení" size="25">  
+                    <select name="Narod">
+                        <optgroup label="DEFAULT">
+                            <option value="default">Národnost</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <option value="Czech">Česko</option>
+                            <option value="Slovak">Slovensko</option>
+                            <option value="Bahrain">Bahrajn</option>
+                            <option value="Denmark">Dánsko</option>
+                            <option value="IvoryCoast">Pobřeží Slonoviny</option>
+                            <option value="Liberia">Libérie</option>
+                            <option value="Netherlands">Nizozemsko</option>
+                            <option value="Niggeria">Nigérie</option>
+                            <option value="Romania">Rumunsko</option>
+                            <option value="Senegal">Senegal</option>
+                            <option value="Ukraine">Ukrajina</option>
+                        </optgroup>
+                    </select>  
+                    <select name="Pozice">
+                        <optgroup label="DEFAULT">
+                            <option value="default">Pozice</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <option value="BR">Brankář</option>
+                            <option value="OB">Obránce</option>
+                            <option value="ZA">Záložník</option>
+                            <option value="UT">Útočník</option>
+                        </optgroup>
+                    </select>  
+                    <br><br>
+                    <button style="width: 150px" type="submit"><strong>PŘIDAT</strong></button>
+                </form>
             </div>
         </div>
+
         <br><br><br>
 
 
@@ -183,8 +183,8 @@
     </div>
     <div class="pravo">
         <h1 align="center">ZÁPASY</h1>
-        <a onclick="Function()" id="Btn" style="margin-left: 2%"><img alt="settings" style="width: 50px;height: 50px"
-                                                                      src="/images/add.png"></a>
+        <a id="Btn" style="margin-left: 2%"><img alt="settings" style="width: 50px;height: 50px"
+                                                 src="/images/add.png"></a>
         <div id="DIV">
             <br>
             <div id="Modal" class="modal">
@@ -220,8 +220,17 @@
                         </select>  
                         <input type="text" required name="GHOST" placeholder="Host Goals" size="10">  
                         <input type="text" required name="GAWAY" placeholder="Away Goals" size="10">  
-                        <input type="text" required name="GOLY" placeholder="Akce,Minuta,Střelec+?;..." size="25">  
                         <input type="date" required name="DATUM" placeholder="Datum" size="10">  
+                        <br>
+                        <h2>Situace</h2>
+                        <div class="container1 block">
+                            <div class="vertical-center"><input type="text" style="font-size: 16px" required
+                                                                name="GOLY[]" size="25"> 
+                                <a href="#" style="user-select: none;" class="add_form_field"><img alt="add"
+                                                                    src="/images/plus.png"
+                                                                    style="width: 20px; height: 20px"></a>
+                            </div>
+                        </div>
                         <br><br>
                         <button style="width: 150px" type="submit"><strong>PŘIDAT</strong></button>
                     </form>
@@ -231,46 +240,62 @@
         <div style="font-size: 30px">
             <repeat group="{{@zapasy}}" value="{{@zapas}}">
                 <div class="panel">
-                        <td>{{@zapas.DATUM}}</td>
-                        <br>
-                        <check if="{{@zapas.GHOST}}>{{@zapas.GAWAY}}">
-                            <true>
-                                <td><img alt="settings" style="width: 50px;height: 50px"
-                                         src="/images/clubs/{{@zapas.OHOST}}"><b>{{@zapas.HOST}}</b></td>
-                                -
-                                <td>{{@zapas.AWAY}} <img alt="settings" style="width: 50px;height: 50px"
-                                                         src="/images/clubs/{{@zapas.OAWAY}}"></td>
-                            </true>
-                            <false>
-                                <check if="{{@zapas.GHOST}}<{{@zapas.GAWAY}}">
-                                    <true>
-                                        <td style="vertical-align:middle" ><img alt="settings" style="width: 50px;height: 50px"
-                                                 src="/images/clubs/{{@zapas.OHOST}}">{{@zapas.HOST}}</td>
-                                        -
-                                        <td><b>{{@zapas.AWAY}}</b><img alt="settings" style="width: 50px;height: 50px"
-                                                                       src="/images/clubs/{{@zapas.OAWAY}}"></td>
-                                    </true>
-                                    <false>
-                                        <td>{{@zapas.HOST}}</td>
-                                        -
-                                        <td>{{@zapas.AWAY}}</td>
-                                    </false>
-                                </check>
-                            </false>
-                        </check>
-                        <br>
-                        <td>{{@zapas.GHOST}}</td>
-                        :
-                        <td>{{@zapas.GAWAY}}</td>
-                        <br>
-                        <p style="font-size: 20px" align="left" >{{@zapas.GOLY}}</p>
+                    <td>{{@zapas.DATUM}}</td>
+                    <br>
+                    <check if="{{@zapas.GHOST}}>{{@zapas.GAWAY}}">
+                        <true>
+                            <td><img alt="settings" style="width: 50px;height: 50px"
+                                     src="/images/clubs/{{@zapas.OHOST}}"><b> {{@zapas.HOST}}</b></td>
+                            -
+                            <td>{{@zapas.AWAY}} <img alt="settings" style="width: 50px;height: 50px"
+                                                     src="/images/clubs/{{@zapas.OAWAY}}"></td>
+                        </true>
+                        <false>
+                            <check if="{{@zapas.GHOST}}<{{@zapas.GAWAY}}">
+                                <true>
+                                    <td style="vertical-align:middle"><img alt="settings"
+                                                                           style="width: 50px;height: 50px"
+                                                                           src="/images/clubs/{{@zapas.OHOST}}">{{@zapas.HOST}}
+                                    </td>
+                                    -
+                                    <td><b>{{@zapas.AWAY}}</b><img alt="settings" style="width: 50px;height: 50px"
+                                                                   src="/images/clubs/{{@zapas.OAWAY}}"></td>
+                                </true>
+                                <false>
+                                    <td>{{@zapas.HOST}}</td>
+                                    -
+                                    <td>{{@zapas.AWAY}}</td>
+                                </false>
+                            </check>
+                        </false>
+                    </check>
+                    <br>
+                    <td>{{@zapas.GHOST}}</td>
+                    :
+                    <td>{{@zapas.GAWAY}}</td>
+                    <br>
+                    <a style="user-select:none" id="flip" onclick="zobrazakci('{{@zapas.id}}')"><img
+                            id="image{{@zapas.id}}" alt="ArDown" src="/images/ArDown.png"></a>
+                    <div id="{{@zapas.id}}" class="ahoj{{@zapas.id}}" style="display: none">
+                        <span style="font-size: 20px">{{@zapas.GOLY}}</span>
+                    </div>
                 </div>
                 <br>
             </repeat>
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    var dan = true;
+
     var modal = document.getElementById("myModal");
     var btn = document.getElementById("myBtn");
 
@@ -285,20 +310,64 @@
         modale.style.display = "block";
     }
 
-    function myFunction() {
-        var y = document.getElementById("myDIV");
-        if (y.style.display === "block") {
-            y.style.display = "none";
-        } else {
-            y.style.display = "block";
-        }
+    async function wait() {
+
+        await sleep(300);
+
+        dan = true;
+
     }
 
+    async function zobrazakci(id) {
+
+        if (dan === true) {
+            dan = false;
+
+            await sleep(500);
+            dan = true;
+            var x = document.getElementById(id);
+            if (x.style.display === "none") {
+                document.getElementById("image" + id).src = "/images/ArUp.png";
+                $(".ahoj" + id).slideToggle()("fast");
+            } else {
+                document.getElementById("image" + id).src = "/images/ArDown.png";
+                $(".ahoj" + id).slideToggle()("fast");
+            }
+
+        }
+
+    }
+
+    $(document).ready(function () {
+        var i = 0;
+        var max_fields = 10;
+        var wrapper = $(".container1");
+        var add_button = $(".add_form_field");
+
+        var x = 1;
+        $(add_button).click(function (e) {
+            e.preventDefault();
+            i++;
+            if (x < max_fields) {
+                x++;
+                $(wrapper).append('<div class="vertical-center" ><input type="text" style="font-size: 16px" size="25" name="GOLY[]"/> <a href="#" style="user-select: none;" class="delete ikona"><img alt="add" class="ikona" style="width: 20px; height: 20px" src="/images/minus.png"></a></div>'); //add input box
+            }
+        });
+
+        $(wrapper).on("click", ".delete", function (e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            i--;
+            x--;
+        })
+    });
+
+
     window.onclick = function (event) {
-        if (event.target == modale) {
+        if (event.target === modale) {
             modale.style.display = "none";
         }
-        if (event.target == modal) {
+        if (event.target === modal) {
             modal.style.display = "none";
         }
     }
