@@ -30,6 +30,10 @@ class SlaviaPraha extends \DB\Cortex
             'type' => 'VARCHAR256',
             'nullable' => false
         ],
+        'Stav' => [
+            'type' => 'VARCHAR256',
+            'nullable' => false
+        ],
         'Zapasy' => [
             'type' => 'VARCHAR256',
             'nullable' => false

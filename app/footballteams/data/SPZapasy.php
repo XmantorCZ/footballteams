@@ -12,6 +12,10 @@ class SPZapasy extends \DB\Cortex
 
     protected $fieldConf = [
 
+        'SOUTEZ' => [
+            'type' => 'TEXT',
+            'nullable' => false
+        ],
         'OHOST' => [
             'type' => 'TEXT',
             'nullable' => false
@@ -43,6 +47,14 @@ class SPZapasy extends \DB\Cortex
         'DATUM' => [
             'type' => 'DATE',
             'nullable' => false
+        ],
+        'DIVACI' => [
+            'type' => 'VARCHAR256',
+            'nullable' => false,
+        ],
+        'STADION' => [
+            'type' => 'TEXT',
+            'nullable' => false,
         ]
 
     ];

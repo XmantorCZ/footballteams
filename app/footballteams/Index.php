@@ -91,12 +91,12 @@ class Index
             $slavia = new data\SlaviaPraha();
             $zapasy->copyfrom($base->get('POST'), function ($val) {
                 // the 'POST' array is passed to our callback function
-                return array_intersect_key($val, array_flip(array('OHOST', 'OAWAY', 'HOST', 'AWAY', 'GHOST', 'GAWAY', 'DATUM')));
+                return array_intersect_key($val, array_flip(array('OHOST', 'OAWAY', 'HOST', 'AWAY', 'GHOST', 'GAWAY', 'DATUM', 'DIVACI', 'STADION')));
             });
 
             $dan = "";
             $uz = "";
-            $asi = "";
+            //$asi = "";
             $spoj = "";
 
             $pole = $base->get('POST.GOLY');
@@ -109,41 +109,69 @@ class Index
 
             }
             $spoj .= $pole[count($pole) - 1];
+
             $gol = explode(";", $spoj);
 
             foreach ($gol as $roz) {
                 $ro = explode(",", $roz);
+
                 if ($ro[1] == 1) {
                     $ro[1] = '<img alt="Goal" width="16px" height="16px" src="/images/Goal.png">';
-                    if ($ro[0][0] == '0') {
-                        //01
-                        $ro[0] = substr($ro[0], 1);
+
+
+                }
+                if ($ro[1] == 2) {
+                    $ro[1] = '<img alt="YellowCard" width="16px" height="16px" src="/images/yellow-card.png">';
+
+                }
+                if ($ro[1] == 3) {
+                    $ro[1] = '<img alt="RedCard" width="16px" height="16px" src="/images/red-card.png">';
+
+                }
+
+                if ($ro[0][0] == '0') {
+                    //01
+                    $ro[0] = substr($ro[0], 1);
+
+                }
+
+                $ro[0] = "<span style='font-size: 75%; color: gray'>" . $ro[0] . "'</span>";
+
+                $uz = $slavia->findone(array("Prijmeni=? or Jmeno=?", $ro[2], $ro[2]));
+                //$asi = $slavia->findone(array("Prijmeni=? or Jmeno=?", $ro[3], $ro[3]));
+                if ($uz == "") {
+
+                    if($ro[3] != "None"){
+
+                        $ro[3] = "<span style='color: gray'>(" . $ro[3] . ")</span>";
+                    }else{
+
+                        $ro[3] = "";
 
                     }
 
-                    $ro[0] = "<span style='font-size: 75%; color: gray'>" . $ro[0] . "'</span>";
+                } else {
 
-                    $uz = $slavia->findone(array("Prijmeni=? or Jmeno=?", $ro[2], $ro[2]));
-                    $asi = $slavia->findone(array("Prijmeni=? or Jmeno=?", $ro[3], $ro[3]));
+                    $uz->Goly += 1;
+                    //$asi->Asistence += 1;
 
-                    if ($uz == "" && $asi == "") {
+                    if($ro[3] != "None"){
 
-                        $ro[3] = "<span style='color: gray; text-align: right'>(" . $ro[3] . ")</span>";
+                        $ro[3] = "<span style='color: gray'>(" . $ro[3] . ")</span>";
 
-                    } else {
+                    }else{
 
-                        $uz->Goly += 1;
-                        $asi->Asistence += 1;
-                        $ro[3] = "<span style='color: gray; text-align: left'>(" . $ro[3] . ")</span>";
-
-                        $uz->save();
-                        $asi->save();
+                        $ro[3] = "";
 
                     }
+
+                    $uz->save();
+                    //$asi->save();
+
                 }
                 $roz = implode(" ", $ro);
 
-                if ($uz == "" && $asi == "") {
+                if ($uz == "") {
 
                     $roz = "<span style='float: right'>" . $roz . "</span>";
 

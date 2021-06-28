@@ -1,7 +1,7 @@
 <div class="stranka">
     <div class="vlevo">
         <h1 align="center">SOUPISKA</h1>
-        <a id="myBtn" style="margin-left: 5%"><img alt="settings" style="width: 50px;height: 50px"
+        <a id="myBtn" style="margin-left: 5%"><img alt="settings" class="img"
                                                    src="/images/AddPlayer.png"></a>
 
         <div id="myModal" class="modal">
@@ -41,6 +41,17 @@
                             <option value="UT">Útočník</option>
                         </optgroup>
                     </select>  
+                    <select name="Stav">
+                        <optgroup label="DEFAULT">
+                            <option value="default">Stav</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <option value="host">Hostování</option>
+                            <option value="new">Nový</option>
+                            <option value="transfer">Přestup</option>
+                            <option value="existing">Stávající</option>
+                        </optgroup>
+                    </select>  
                     <br><br>
                     <button style="width: 150px" type="submit"><strong>PŘIDAT</strong></button>
                 </form>
@@ -56,7 +67,7 @@
             <thead>
             <tr>
                 <th><strong>#</strong></th>
-                <th style="width: 200px"><strong>Jméno</strong></th>
+                <th style="width: 230px"><strong>Jméno</strong></th>
                 <th><strong>Národ</strong></th>
                 <th><strong>Zápasy</strong></th>
                 <th><strong>Góly</strong></th>
@@ -67,9 +78,21 @@
             </thead>
             <tbody>
             <repeat group="{{@brankari}}" value="{{@hrac}}">
-                <tr>
+                <tr class="radek">
                     <td>{{@hrac.cislodresu}}</td>
-                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                    <check if="{{@hrac.Stav}}=='new'">
+                        <true>
+                            <td style="vertical-align: middle">
+                                <div class="vertical-center">{{@hrac.Jmeno}} {{@hrac.Prijmeni}} <img alt="new"
+                                                                                                     style="width: 32px; height: 32px"
+                                                                                                     src="/images/new.png">
+                                </div>
+                            </td>
+                        </true>
+                        <false>
+                            <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                        </false>
+                    </check>
                     <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
                     <td>{{@hrac.Zapasy}}</td>
                     <td>{{@hrac.Goly}}</td>
@@ -89,7 +112,7 @@
             <thead>
             <tr>
                 <th><strong>#</strong></th>
-                <th style="width: 200px"><strong>Jméno</strong></th>
+                <th style="width: 230px"><strong>Jméno</strong></th>
                 <th><strong>Národ</strong></th>
                 <th><strong>Zápasy</strong></th>
                 <th><strong>Góly</strong></th>
@@ -100,9 +123,21 @@
             </thead>
             <tbody>
             <repeat group="{{@obranci}}" value="{{@hrac}}">
-                <tr>
+                <tr class="radek">
                     <td>{{@hrac.cislodresu}}</td>
-                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                    <check if="{{@hrac.Stav}}=='new'">
+                        <true>
+                            <td style="vertical-align: middle">
+                                <div class="vertical-center">{{@hrac.Jmeno}} {{@hrac.Prijmeni}} <img alt="new"
+                                                                                                     style="width: 32px; height: 32px"
+                                                                                                     src="/images/new.png">
+                                </div>
+                            </td>
+                        </true>
+                        <false>
+                            <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                        </false>
+                    </check>
                     <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
                     <td>{{@hrac.Zapasy}}</td>
                     <td>{{@hrac.Goly}}</td>
@@ -122,7 +157,7 @@
             <thead>
             <tr>
                 <th><strong>#</strong></th>
-                <th style="width: 200px"><strong>Jméno</strong></th>
+                <th style="width: 230px"><strong>Jméno</strong></th>
                 <th><strong>Národ</strong></th>
                 <th><strong>Zápasy</strong></th>
                 <th><strong>Góly</strong></th>
@@ -133,9 +168,21 @@
             </thead>
             <tbody>
             <repeat group="{{@zaloznici}}" value="{{@hrac}}">
-                <tr>
+                <tr class="radek">
                     <td>{{@hrac.cislodresu}}</td>
-                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                    <check if="{{@hrac.Stav}}=='new'">
+                        <true>
+                            <td>
+                                <div class="vertical-center">{{@hrac.Jmeno}} {{@hrac.Prijmeni}} <img alt="new"
+                                                                                                     style="width: 32px; height: 32px"
+                                                                                                     src="/images/new.png">
+                                </div>
+                            </td>
+                        </true>
+                        <false>
+                            <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                        </false>
+                    </check>
                     <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
                     <td>{{@hrac.Zapasy}}</td>
                     <td>{{@hrac.Goly}}</td>
@@ -155,7 +202,7 @@
             <thead>
             <tr>
                 <th><strong>#</strong></th>
-                <th style="width: 200px"><strong>Jméno</strong></th>
+                <th style="width: 230px"><strong>Jméno</strong></th>
                 <th><strong>Národ</strong></th>
                 <th><strong>Zápasy</strong></th>
                 <th><strong>Góly</strong></th>
@@ -166,9 +213,21 @@
             </thead>
             <tbody>
             <repeat group="{{@utocnici}}" value="{{@hrac}}">
-                <tr>
+                <tr class="radek">
                     <td>{{@hrac.cislodresu}}</td>
-                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                    <check if="{{@hrac.Stav}}=='new'">
+                        <true>
+                            <td style="vertical-align: middle">
+                                <div class="vertical-center">{{@hrac.Jmeno}} {{@hrac.Prijmeni}} <img alt="new"
+                                                                                                     style="width: 32px; height: 32px"
+                                                                                                     src="/images/new.png">
+                                </div>
+                            </td>
+                        </true>
+                        <false>
+                            <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                        </false>
+                    </check>
                     <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
                     <td>{{@hrac.Zapasy}}</td>
                     <td>{{@hrac.Goly}}</td>
@@ -183,7 +242,7 @@
     </div>
     <div class="pravo">
         <h1 align="center">ZÁPASY</h1>
-        <a id="Btn" style="margin-left: 2%"><img alt="settings" style="width: 50px;height: 50px"
+        <a id="Btn" style="margin-left: 2%"><img alt="settings" class="img"
                                                  src="/images/add.png"></a>
         <div id="DIV">
             <br>
@@ -192,6 +251,17 @@
                 <div class="modal-content" align="center">
                     <h2 align="center">PŘIDAT ZÁPAS</h2>
                     <form method="POST">
+                        <select name="SOUTEZ">
+                            <optgroup label="DEFAULT">
+                                <option value="default">Soutěž</option>
+                            </optgroup>
+                            <optgroup label="OPTIONS">
+                                <option value="Fortuna">Fortuna Liga</option>
+                                <option value="MolCup">Mol Cup</option>
+                                <option value="ChampLeag">Liga Mistrů</option>
+                                <option value="EuroLeag">Evropská Liga</option>
+                            </optgroup>
+                        </select>
                         <label for="host">HOST</label>
                         <input id="host" checked type="radio" value="0" name="WIN">
                         <label for="away">AWAY</label>
@@ -219,16 +289,18 @@
                             </optgroup>
                         </select>  
                         <input type="text" required name="GHOST" placeholder="Host Goals" size="10">  
-                        <input type="text" required name="GAWAY" placeholder="Away Goals" size="10">  
+                        <input type="text" required name="GAWAY" placeholder="Away Goals" size="10">  <br><br>
                         <input type="date" required name="DATUM" placeholder="Datum" size="10">  
+                        <input type="text" required name="DIVACI" placeholder="Divaci" size="5">  
+                        <input type="text" required name="STADION" placeholder="Stadion" size="10">  
                         <br>
                         <h2>Situace</h2>
                         <div class="container1 block">
                             <div class="vertical-center"><input type="text" style="font-size: 16px" required
                                                                 name="GOLY[]" size="25"> 
                                 <a href="#" style="user-select: none;" class="add_form_field"><img alt="add"
-                                                                    src="/images/plus.png"
-                                                                    style="width: 20px; height: 20px"></a>
+                                                                                                   src="/images/plus.png"
+                                                                                                   style="width: 20px; height: 20px"></a>
                             </div>
                         </div>
                         <br><br>
@@ -239,41 +311,37 @@
         </div>
         <div style="font-size: 30px">
             <repeat group="{{@zapasy}}" value="{{@zapas}}">
-                <div class="panel">
-                    <td>{{@zapas.DATUM}}</td>
-                    <br>
+                <div class="panel" style="padding:30px">
+                    <div style="display:inline-block">
+                        <div style="float:left;color:gray;font-size:18px;padding-right: 30px">{{@zapas.DATUM}}</div>
+                        <div style="float:right;color:gray;font-size:18px"> {{@zapas.STADION}} ({{@zapas.DIVACI}})
+                        </div>
+                    </div>
                     <check if="{{@zapas.GHOST}}>{{@zapas.GAWAY}}">
                         <true>
-                            <td><img alt="settings" style="width: 50px;height: 50px"
-                                     src="/images/clubs/{{@zapas.OHOST}}"><b> {{@zapas.HOST}}</b></td>
-                            -
-                            <td>{{@zapas.AWAY}} <img alt="settings" style="width: 50px;height: 50px"
-                                                     src="/images/clubs/{{@zapas.OAWAY}}"></td>
+                            <div class="vertical-center" style="padding-bottom: 0px">
+                                <img alt="settings" style="width: 50px;height: 50px"
+                                     src="/images/clubs/{{@zapas.OHOST}}">  <b>{{@zapas.HOST}}</b> - {{@zapas.AWAY}} 
+                                <img alt="settings" style="width: 50px;height: 50px"
+                                     src="/images/clubs/{{@zapas.OAWAY}}">
+                            </div>
                         </true>
                         <false>
                             <check if="{{@zapas.GHOST}}<{{@zapas.GAWAY}}">
                                 <true>
-                                    <td style="vertical-align:middle"><img alt="settings"
-                                                                           style="width: 50px;height: 50px"
-                                                                           src="/images/clubs/{{@zapas.OHOST}}">{{@zapas.HOST}}
-                                    </td>
-                                    -
-                                    <td><b>{{@zapas.AWAY}}</b><img alt="settings" style="width: 50px;height: 50px"
-                                                                   src="/images/clubs/{{@zapas.OAWAY}}"></td>
+                                    <img alt="settings"
+                                         style="width: 50px;height: 50px"
+                                         src="/images/clubs/{{@zapas.OHOST}}">  {{@zapas.HOST}} - <b>{{@zapas.AWAY}}</b> 
+                                    <img alt="settings" style="width: 50px;height: 50px"
+                                         src="/images/clubs/{{@zapas.OAWAY}}">
                                 </true>
                                 <false>
-                                    <td>{{@zapas.HOST}}</td>
-                                    -
-                                    <td>{{@zapas.AWAY}}</td>
+                                    <div>{{@zapas.HOST}} - {{@zapas.AWAY}}</div>
                                 </false>
                             </check>
                         </false>
                     </check>
-                    <br>
-                    <td>{{@zapas.GHOST}}</td>
-                    :
-                    <td>{{@zapas.GAWAY}}</td>
-                    <br>
+                    <div>{{@zapas.GHOST}} : {{@zapas.GAWAY}}</div>
                     <a style="user-select:none" id="flip" onclick="zobrazakci('{{@zapas.id}}')"><img
                             id="image{{@zapas.id}}" alt="ArDown" src="/images/ArDown.png"></a>
                     <div id="{{@zapas.id}}" class="ahoj{{@zapas.id}}" style="display: none">
@@ -285,6 +353,7 @@
         </div>
     </div>
 </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -339,7 +408,6 @@
     }
 
     $(document).ready(function () {
-        var i = 0;
         var max_fields = 10;
         var wrapper = $(".container1");
         var add_button = $(".add_form_field");
@@ -347,7 +415,6 @@
         var x = 1;
         $(add_button).click(function (e) {
             e.preventDefault();
-            i++;
             if (x < max_fields) {
                 x++;
                 $(wrapper).append('<div class="vertical-center" ><input type="text" style="font-size: 16px" size="25" name="GOLY[]"/> <a href="#" style="user-select: none;" class="delete ikona"><img alt="add" class="ikona" style="width: 20px; height: 20px" src="/images/minus.png"></a></div>'); //add input box
@@ -357,7 +424,6 @@
         $(wrapper).on("click", ".delete", function (e) {
             e.preventDefault();
             $(this).parent('div').remove();
-            i--;
             x--;
         })
     });
