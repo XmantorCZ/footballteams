@@ -1,0 +1,61 @@
+<div style="padding: 5px; text-align:center;font-size:30px">
+<p>Uprava hráče</p>
+</div>
+<form style="font-size: 20px; padding: 10px; text-align:center" method="post">
+
+    <input type="hidden" name="id" value="{{@hrac.id}}">
+    <span style="font-size:25px"><strong>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</strong> -></span> 
+    <label for="cislodresu">#</label>
+    <input id="cislodresu" type="text" name="cislo dresu" size="5" value="{{@hrac.cislodresu}}"> 
+    <label>STAV</label>
+    <select name="Stav">
+
+        <check if="{{@hrac.Stav}}=='host'">
+            <true>
+                <option selected value="host">Hostování</option>
+                <option value="new">Nový</option>
+                <option value="transfer">Přestup</option>
+                <option value="existing">Stávající</option>
+            </true>
+            <false>
+
+                <check if="{{@hrac.Stav}}=='new'">
+                    <true>
+                        <option value="host">Hostování</option>
+                        <option selected value="new">Nový</option>
+                        <option value="transfer">Přestup</option>
+                        <option value="existing">Stávající</option>
+                    </true>
+                    <false>
+                        <check if="{{@hrac.Stav}}=='transfer'">
+                            <true>
+                                <option value="host">Hostování</option>
+                                <option value="new">Nový</option>
+                                <option selected value="transfer">Přestup</option>
+                                <option value="existing">Stávající</option>
+                            </true>
+                            <false>
+                                <check if="{{@hrac.Stav}}=='existing'">
+                                    <true>
+                                        <option value="host">Hostování</option>
+                                        <option value="new">Nový</option>
+                                        <option value="transfer">Přestup</option>
+                                        <option selected value="existing">Stávající</option>
+                                    </true>
+                                    <false>
+                                        <option value="">Error</option>
+                                        <option value="host">Hostování</option>
+                                        <option value="new">Nový</option>
+                                        <option value="transfer">Přestup</option>
+                                        <option value="existing">Stávající</option>
+                                    </false>
+                                </check>
+                            </false>
+                        </check>
+                    </false>
+                </check>
+            </false>
+        </check>
+    </select> 
+    <button style="background-color: white; font-size: 20px" type="submit">UPRAVIT</button>
+</form>

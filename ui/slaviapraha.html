@@ -74,11 +74,12 @@
                 <th><strong>Asist</strong></th>
                 <th><strong>ŽK</strong></th>
                 <th><strong>ČK</strong></th>
+                <th><strong>Akce</strong></th>
             </tr>
             </thead>
             <tbody>
             <repeat group="{{@brankari}}" value="{{@hrac}}">
-                <tr class="radek">
+                <tr class="radek" data-name="{{@hrac.id}}">
                     <td>{{@hrac.cislodresu}}</td>
                     <check if="{{@hrac.Stav}}=='new'">
                         <true>
@@ -90,7 +91,21 @@
                             </td>
                         </true>
                         <false>
-                            <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                            <check if="{{@hrac.Stav}}=='host'">
+                                <true>
+                                    <td style="vertical-align: middle">
+                                        <div class="vertical-center">{{@hrac.Jmeno}} {{@hrac.Prijmeni}} <img
+                                                alt="handshake"
+                                                style="width: 32px; height: 32px"
+                                                src="/images/handshake.png">
+                                        </div>
+                                    </td>
+                                </true>
+                                <false>
+
+                                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                                </false>
+                            </check>
                         </false>
                     </check>
                     <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
@@ -99,6 +114,9 @@
                     <td>{{@hrac.Asistence}}</td>
                     <td>{{@hrac.ZK}}</td>
                     <td>{{@hrac.CK}}</td>
+                    <td>
+                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit" style="width: 32px;height:32px" src="/images/edit.png" title="Upravit"></a>
+                    </td>
                 </tr>
             </repeat>
             </tbody>
@@ -119,11 +137,12 @@
                 <th><strong>Asist</strong></th>
                 <th><strong>ŽK</strong></th>
                 <th><strong>ČK</strong></th>
+                <th><strong>AKCE</strong></th>
             </tr>
             </thead>
             <tbody>
             <repeat group="{{@obranci}}" value="{{@hrac}}">
-                <tr class="radek">
+                <tr class="radek" data-name="{{@hrac.id}}">
                     <td>{{@hrac.cislodresu}}</td>
                     <check if="{{@hrac.Stav}}=='new'">
                         <true>
@@ -135,7 +154,21 @@
                             </td>
                         </true>
                         <false>
-                            <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                            <check if="{{@hrac.Stav}}=='host'">
+                                <true>
+                                    <td style="vertical-align: middle">
+                                        <div class="vertical-center">{{@hrac.Jmeno}} {{@hrac.Prijmeni}} <img
+                                                alt="handshake"
+                                                style="width: 32px; height: 32px"
+                                                src="/images/handshake.png">
+                                        </div>
+                                    </td>
+                                </true>
+                                <false>
+
+                                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                                </false>
+                            </check>
                         </false>
                     </check>
                     <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
@@ -144,6 +177,9 @@
                     <td>{{@hrac.Asistence}}</td>
                     <td>{{@hrac.ZK}}</td>
                     <td>{{@hrac.CK}}</td>
+                    <td>
+                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit" style="width: 32px;height:32px" src="/images/edit.png" title="Upravit"></a>
+                    </td>
                 </tr>
             </repeat>
             </tbody>
@@ -164,11 +200,12 @@
                 <th><strong>Asist</strong></th>
                 <th><strong>ŽK</strong></th>
                 <th><strong>ČK</strong></th>
+                <th><strong>AKCE</strong></th>
             </tr>
             </thead>
             <tbody>
             <repeat group="{{@zaloznici}}" value="{{@hrac}}">
-                <tr class="radek">
+                <tr class="radek" data-name="{{@hrac.id}}">
                     <td>{{@hrac.cislodresu}}</td>
                     <check if="{{@hrac.Stav}}=='new'">
                         <true>
@@ -180,7 +217,21 @@
                             </td>
                         </true>
                         <false>
-                            <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                            <check if="{{@hrac.Stav}}=='host'">
+                                <true>
+                                    <td style="vertical-align: middle">
+                                        <div class="vertical-center">{{@hrac.Jmeno}} {{@hrac.Prijmeni}} <img
+                                                alt="handshake"
+                                                style="width: 32px; height: 32px"
+                                                src="/images/handshake.png">
+                                        </div>
+                                    </td>
+                                </true>
+                                <false>
+
+                                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                                </false>
+                            </check>
                         </false>
                     </check>
                     <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
@@ -189,6 +240,9 @@
                     <td>{{@hrac.Asistence}}</td>
                     <td>{{@hrac.ZK}}</td>
                     <td>{{@hrac.CK}}</td>
+                    <td>
+                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit" style="width: 32px;height:32px" src="/images/edit.png" title="Upravit"></a>
+                    </td>
                 </tr>
             </repeat>
             </tbody>
@@ -209,11 +263,12 @@
                 <th><strong>Asist</strong></th>
                 <th><strong>ŽK</strong></th>
                 <th><strong>ČK</strong></th>
+                <th><strong>AKCE</strong></th>
             </tr>
             </thead>
             <tbody>
             <repeat group="{{@utocnici}}" value="{{@hrac}}">
-                <tr class="radek">
+                <tr class="radek" data-name="{{@hrac.id}}">
                     <td>{{@hrac.cislodresu}}</td>
                     <check if="{{@hrac.Stav}}=='new'">
                         <true>
@@ -225,7 +280,21 @@
                             </td>
                         </true>
                         <false>
-                            <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                            <check if="{{@hrac.Stav}}=='host'">
+                                <true>
+                                    <td style="vertical-align: middle">
+                                        <div class="vertical-center">{{@hrac.Jmeno}} {{@hrac.Prijmeni}} <img
+                                                alt="handshake"
+                                                style="width: 32px; height: 32px"
+                                                src="/images/handshake.png">
+                                        </div>
+                                    </td>
+                                </true>
+                                <false>
+
+                                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                                </false>
+                            </check>
                         </false>
                     </check>
                     <td><img style="width: 40px;height: 25px" src="/images/flags/{{@hrac.Narod}}"></td>
@@ -234,6 +303,9 @@
                     <td>{{@hrac.Asistence}}</td>
                     <td>{{@hrac.ZK}}</td>
                     <td>{{@hrac.CK}}</td>
+                    <td>
+                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit" style="width: 32px;height:32px" src="/images/edit.png" title="Upravit"></a>
+                    </td>
                 </tr>
             </repeat>
             </tbody>
@@ -288,8 +360,7 @@
                                 <option value="Zlín">Zlín</option>
                             </optgroup>
                         </select>  
-                        <input type="text" required name="GHOST" placeholder="Host Goals" size="10">  
-                        <input type="text" required name="GAWAY" placeholder="Away Goals" size="10">  <br><br>
+                        <br><br>
                         <input type="date" required name="DATUM" placeholder="Datum" size="10">  
                         <input type="text" required name="DIVACI" placeholder="Divaci" size="5">  
                         <input type="text" required name="STADION" placeholder="Stadion" size="10">  
@@ -312,16 +383,19 @@
         <div style="font-size: 30px">
             <repeat group="{{@zapasy}}" value="{{@zapas}}">
                 <div class="panel" style="padding:30px">
-                    <div style="display:inline-block">
-                        <div style="float:left;color:gray;font-size:18px;padding-right: 30px">{{@zapas.DATUM}}</div>
-                        <div style="float:right;color:gray;font-size:18px"> {{@zapas.STADION}} ({{@zapas.DIVACI}})
+                    <div style="text-align: center;display:flex">
+                        <div style="width:40%;text-align: left;color:gray;font-size:18px;padding-right: 30px">
+                            {{@zapas.DATUM}}
+                        </div>
+                        <div style="width:60%;text-align:right;color:gray;font-size:18px"> {{@zapas.STADION}}
+                            ({{@zapas.DIVACI}})
                         </div>
                     </div>
                     <check if="{{@zapas.GHOST}}>{{@zapas.GAWAY}}">
                         <true>
-                            <div class="vertical-center" style="padding-bottom: 0px">
+                            <div class="vertical-center">
                                 <img alt="settings" style="width: 50px;height: 50px"
-                                     src="/images/clubs/{{@zapas.OHOST}}">  <b>{{@zapas.HOST}}</b> - {{@zapas.AWAY}} 
+                                     src="/images/clubs/{{@zapas.OHOST}}"> <b>{{@zapas.HOST}}</b> - {{@zapas.AWAY}} 
                                 <img alt="settings" style="width: 50px;height: 50px"
                                      src="/images/clubs/{{@zapas.OAWAY}}">
                             </div>
@@ -329,11 +403,14 @@
                         <false>
                             <check if="{{@zapas.GHOST}}<{{@zapas.GAWAY}}">
                                 <true>
-                                    <img alt="settings"
-                                         style="width: 50px;height: 50px"
-                                         src="/images/clubs/{{@zapas.OHOST}}">  {{@zapas.HOST}} - <b>{{@zapas.AWAY}}</b> 
-                                    <img alt="settings" style="width: 50px;height: 50px"
-                                         src="/images/clubs/{{@zapas.OAWAY}}">
+                                    <div class="vertical-center">
+                                        <img alt="settings"
+                                             style="width: 50px;height: 50px"
+                                             src="/images/clubs/{{@zapas.OHOST}}"> {{@zapas.HOST}}
+                                        - <b>{{@zapas.AWAY}}</b> 
+                                        <img alt="settings" style="width: 50px;height: 50px"
+                                             src="/images/clubs/{{@zapas.OAWAY}}">
+                                    </div>
                                 </true>
                                 <false>
                                     <div>{{@zapas.HOST}} - {{@zapas.AWAY}}</div>
@@ -341,11 +418,42 @@
                             </check>
                         </false>
                     </check>
+                    <check if="{{@zapas.SOUTEZ}}=='Fortuna'">
+                        <true>
+                            <div style="font-size: 18px">Fortuna Liga</div>
+                        </true>
+                        <false>
+                            <check if="{{@zapas.SOUTEZ}}=='MolCup'">
+                                <true>
+                                    <div style="font-size: 18px">Mol Cup</div>
+                                </true>
+                                <false>
+                                    <check if="{{@zapas.SOUTEZ}}=='ChampLeag'">
+                                        <true>
+                                            <div style="font-size: 18px">Liga Mistrů</div>
+                                        </true>
+                                        <false>
+                                            <check if="{{@zapas.SOUTEZ}}=='EuroLeag'">
+                                                <true>
+                                                    <div style="font-size: 18px">Evropská Liga</div>
+                                                </true>
+                                                <false>
+                                                    <div style="font-size: 18px; color: #ff0000">ERROR</div>
+                                                </false>
+                                            </check>
+                                        </false>
+                                    </check>
+                                </false>
+                            </check>
+                        </false>
+
+                    </check>
                     <div>{{@zapas.GHOST}} : {{@zapas.GAWAY}}</div>
                     <a style="user-select:none" id="flip" onclick="zobrazakci('{{@zapas.id}}')"><img
                             id="image{{@zapas.id}}" alt="ArDown" src="/images/ArDown.png"></a>
                     <div id="{{@zapas.id}}" class="ahoj{{@zapas.id}}" style="display: none">
-                        <span style="font-size: 20px">{{@zapas.GOLY}}</span>
+                        <div><span style="font-size: 20px">{{@zapas.GOLY}}</span>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -357,6 +465,16 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    $(".upravit").click(function(){
+        var id =  $(this).parent().parent().attr('data-name');
+        window.location.href=window.location.origin + "/slaviapraha/" + id + "/upravithrace";
+        }
+    )
+</script>
+
 <script>
 
     function sleep(ms) {
@@ -365,19 +483,6 @@
 
     var dan = true;
 
-    var modal = document.getElementById("myModal");
-    var btn = document.getElementById("myBtn");
-
-    var modale = document.getElementById("Modal");
-    var btne = document.getElementById("Btn");
-
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-
-    btne.onclick = function () {
-        modale.style.display = "block";
-    }
 
     async function wait() {
 
@@ -428,6 +533,19 @@
         })
     });
 
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+
+    var modale = document.getElementById("Modal");
+    var btne = document.getElementById("Btn");
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    btne.onclick = function () {
+        modale.style.display = "block";
+    }
 
     window.onclick = function (event) {
         if (event.target === modale) {

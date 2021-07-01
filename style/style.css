@@ -51,7 +51,7 @@ table{
     padding: 5px;
     text-align: center;
     margin-left: 5%;
-    width:75%;
+    width:90%;
     font-size: 25px;
     font-family: Calibri, Calibri, sans-serif;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -93,8 +93,8 @@ body {
 
 .panel {
     text-align: center;
-    margin-left: 72%;
-    margin-right: 7%;
+    margin-left: 71%;
+    margin-right: 5%;
     padding: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -123,6 +123,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 2px;
+    word-spacing: 2px;
 }
 
 .block{
