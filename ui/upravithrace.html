@@ -1,53 +1,144 @@
 <div style="padding: 5px; text-align:center;font-size:30px">
-<p>Uprava hráče</p>
+    <p>Uprava hráče</p>
 </div>
 <form style="font-size: 20px; padding: 10px; text-align:center" method="post">
 
     <input type="hidden" name="id" value="{{@hrac.id}}">
-    <span style="font-size:25px"><strong>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</strong> -></span> 
+    <span style="font-size:25px"><strong>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</strong></span><br><br>
     <label for="cislodresu">#</label>
-    <input id="cislodresu" type="text" name="cislo dresu" size="5" value="{{@hrac.cislodresu}}"> 
-    <label>STAV</label>
+    <input id="cislodresu" type="text" name="cislodresu" size="5" value="{{@hrac.cislodresu}}"> 
+    <label for="Hodnota">Hodnota</label>
+    <input id="Hodnota" type="text" name="Hodnota" size="10" value="{{@hrac.Hodnota}}"> 
+    <check if="{{@hrac.Zranen}}=='1'">
+        <true>
+            <label for="Zranen">Zraněn</label>
+            <input checked type="checkbox" id="Zranen" name="Zranen"> 
+        </true>
+        <false>
+            <label for="Zranen">Zraněn</label>
+            <input type="checkbox" id="Zranen" name="Zranen"> 
+        </false>
+
+
+    </check>
+    <label>Stav</label>
     <select name="Stav">
 
-        <check if="{{@hrac.Stav}}=='host'">
+        <check if="{{@hrac.Stav}}=='stayed'">
             <true>
-                <option selected value="host">Hostování</option>
-                <option value="new">Nový</option>
-                <option value="transfer">Přestup</option>
-                <option value="existing">Stávající</option>
+                <optgroup label="DEFAULT">
+                    <option selected value="stayed">Stávající</option>
+                </optgroup>
+                <optgroup label="PŘÍCHOD">
+                    <option value="hostarrival">Hostování</option>
+                    <option value="navhostarrival">Návrat z hostování</option>
+                    <option value="arrival">Přestup</option>
+                </optgroup>
+                <optgroup label="ODCHOD">
+                    <option value="hostdeparture">Hostování</option>
+                    <option value="departure">Přestup</option>
+                </optgroup>
             </true>
             <false>
 
-                <check if="{{@hrac.Stav}}=='new'">
+                <check if="{{@hrac.Stav}}=='hostarrival'">
                     <true>
-                        <option value="host">Hostování</option>
-                        <option selected value="new">Nový</option>
-                        <option value="transfer">Přestup</option>
-                        <option value="existing">Stávající</option>
+                        <optgroup label="DEFAULT">
+                            <option value="stayed">Stávající</option>
+                        </optgroup>
+                        <optgroup label="PŘÍCHOD">
+                            <option selected value="hostarrival">Hostování</option>
+                            <option value="navhostarrival">Návrat z hostování</option>
+                            <option value="arrival">Přestup</option>
+                        </optgroup>
+                        <optgroup label="ODCHOD">
+                            <option value="hostdeparture">Hostování</option>
+                            <option value="departure">Přestup</option>
+                        </optgroup>
                     </true>
                     <false>
-                        <check if="{{@hrac.Stav}}=='transfer'">
+                        <check if="{{@hrac.Stav}}=='arrival'">
                             <true>
-                                <option value="host">Hostování</option>
-                                <option value="new">Nový</option>
-                                <option selected value="transfer">Přestup</option>
-                                <option value="existing">Stávající</option>
+                                <optgroup label="DEFAULT">
+                                    <option value="stayed">Stávající</option>
+                                </optgroup>
+                                <optgroup label="PŘÍCHOD">
+                                    <option value="hostarrival">Hostování</option>
+                                    <option value="navhostarrival">Návrat z hostování</option>
+                                    <option selected value="arrival">Přestup</option>
+                                </optgroup>
+                                <optgroup label="ODCHOD">
+                                    <option value="hostdeparture">Hostování</option>
+                                    <option value="departure">Přestup</option>
+                                </optgroup>
                             </true>
                             <false>
-                                <check if="{{@hrac.Stav}}=='existing'">
+                                <check if="{{@hrac.Stav}}=='hostdeparture'">
                                     <true>
-                                        <option value="host">Hostování</option>
-                                        <option value="new">Nový</option>
-                                        <option value="transfer">Přestup</option>
-                                        <option selected value="existing">Stávající</option>
+                                        <optgroup label="DEFAULT">
+                                            <option value="stayed">Stávající</option>
+                                        </optgroup>
+                                        <optgroup label="PŘÍCHOD">
+                                            <option value="hostarrival">Hostování</option>
+                                            <option value="navhostarrival">Návrat z hostování</option>
+                                            <option value="arrival">Přestup</option>
+                                        </optgroup>
+                                        <optgroup label="ODCHOD">
+                                            <option selected value="hostdeparture">Hostování</option>
+                                            <option value="departure">Přestup</option>
+                                        </optgroup>
                                     </true>
                                     <false>
-                                        <option value="">Error</option>
-                                        <option value="host">Hostování</option>
-                                        <option value="new">Nový</option>
-                                        <option value="transfer">Přestup</option>
-                                        <option value="existing">Stávající</option>
+                                        <check if="{{@hrac.Stav}}=='departure'">
+                                            <true>
+                                                <optgroup label="DEFAULT">
+                                                    <option value="stayed">Stávající</option>
+                                                </optgroup>
+                                                <optgroup label="PŘÍCHOD">
+                                                    <option value="hostarrival">Hostování</option>
+                                                    <option value="navhostarrival">Návrat z hostování</option>
+                                                    <option value="arrival">Přestup</option>
+                                                </optgroup>
+                                                <optgroup label="ODCHOD">
+                                                    <option value="hostdeparture">Hostování</option>
+                                                    <option selected value="departure">Přestup</option>
+                                                </optgroup>
+                                            </true>
+                                            <false>
+                                                <check if="{{@hrac.Stav}}=='navhostarrival'">
+                                                    <true>
+                                                        <optgroup label="DEFAULT">
+                                                            <option value="stayed">Stávající</option>
+                                                        </optgroup>
+                                                        <optgroup label="PŘÍCHOD">
+                                                            <option value="hostarrival">Hostování</option>
+                                                            <option selected value="navhostarrival">Návrat z hostování
+                                                            </option>
+                                                            <option value="arrival">Přestup</option>
+                                                        </optgroup>
+                                                        <optgroup label="ODCHOD">
+                                                            <option value="hostdeparture">Hostování</option>
+                                                            <option value="departure">Přestup</option>
+                                                        </optgroup>
+                                                    </true>
+                                                    <false>
+                                                        <optgroup label="DEFAULT">
+                                                            <option selected value="error">ERROR</option>
+                                                            <option value="stayed">Stávající</option>
+                                                        </optgroup>
+                                                        <optgroup label="PŘÍCHOD">
+                                                            <option value="hostarrival">Hostování</option>
+                                                            <option value="navhostarrival">Návrat z hostování</option>
+                                                            <option value="arrival">Přestup</option>
+                                                        </optgroup>
+                                                        <optgroup label="ODCHOD">
+                                                            <option value="hostdeparture">Hostování</option>
+                                                            <option value="departure">Přestup</option>
+                                                        </optgroup>
+                                                    </false>
+                                                </check>
+                                            </false>
+                                        </check>
                                     </false>
                                 </check>
                             </false>
@@ -57,5 +148,19 @@
             </false>
         </check>
     </select> 
+    <br><br>
+
+    <label for="Zapasy">Zápasy</label>
+    <input type="number" id="Zapasy" style="font-size: 20px" name="Zapasy" value="{{@hrac.Zapasy}}"> 
+    <label for="Goly">Góly</label>
+    <input type="number" id="Goly" name="Goly" value="{{@hrac.Goly}}"> 
+    <label for="Asistence">Asistence</label>
+    <input type="number" id="Asistence" name="Asistence" value="{{@hrac.Asistence}}"> 
+    <label for="ZK">ŽK</label>
+    <input type="number" id="ZK" name="ZK" value="{{@hrac.ZK}}"> 
+    <label for="CK">ČK</label>
+    <input type="number" id="CK" name="CK" value="{{@hrac.CK}}"> 
+
+    <br><br>
     <button style="background-color: white; font-size: 20px" type="submit">UPRAVIT</button>
 </form>

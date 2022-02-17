@@ -34,6 +34,10 @@ class SlaviaPraha extends \DB\Cortex
             'type' => 'VARCHAR256',
             'nullable' => false
         ],
+        'Hodnota' => [
+            'type' => 'VARCHAR256',
+            'nullable' => false
+        ],
         'Zapasy' => [
             'type' => 'VARCHAR256',
             'nullable' => false
@@ -53,7 +57,8 @@ class SlaviaPraha extends \DB\Cortex
         'CK' => [
             'type' => 'VARCHAR256',
             'nullable' => false
-        ]
+        ],
+
 
     ];
 

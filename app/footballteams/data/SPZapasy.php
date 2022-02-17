@@ -16,6 +16,10 @@ class SPZapasy extends \DB\Cortex
             'type' => 'TEXT',
             'nullable' => false
         ],
+        'ODEHRANE' => [
+            'type' => 'TEXT',
+            'nullable' => false
+        ],
         'OHOST' => [
             'type' => 'TEXT',
             'nullable' => false
@@ -25,10 +29,12 @@ class SPZapasy extends \DB\Cortex
             'nullable' => false
         ],
         'HOST' => [
+            //'belongs-to-one' => '\footballteams\data\Nations',
             'type' => 'TEXT',
             'nullable' => false
         ],
         'AWAY' => [
+            //'belongs-to-one' => '\footballteams\data\Nations',
             'type' => 'TEXT',
             'nullable' => false
         ],
@@ -55,6 +61,14 @@ class SPZapasy extends \DB\Cortex
         'STADION' => [
             'type' => 'TEXT',
             'nullable' => false,
+        ],
+        'VIDEOLINK' => [
+            'type' => 'TEXT',
+            'nullable' => true,
+        ],
+        'PLAYERSLINK' => [
+            'type' => 'TEXT',
+            'nullable' => true,
         ]
 
     ];

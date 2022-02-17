@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -122,8 +124,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2px;
-    word-spacing: 2px;
+    word-spacing: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
 .block{
@@ -135,4 +138,62 @@ body {
 
     background-color: #e5e5e5;
 
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.numberCircle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 2px solid #aa0000;
+    color: #000000;
+    text-align: center;
+    font-size: 32px;
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #e8e5e5;
+    color: #000000;
+    text-align: center;
+    border-radius: 6px;
+    padding: 4px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #e8e5e5 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

@@ -1,0 +1,431 @@
+<div class="pravo">
+    <h1 align="center">ZÁPASY</h1>
+    <a id="Btn" style="margin-left: 2%"><img title="Přidat zápas" alt="settings" class="img"
+                                             src="/images/add.png"></a>
+    <div id="DIV">
+        <br>
+        <div id="Modal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content" align="center">
+                <h2 align="center">PŘIDAT ZÁPAS</h2>
+                <form method="POST">
+                    <select name="SOUTEZ">
+                        <optgroup label="DEFAULT">
+                            <option value="default">Soutěž</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <option value="Fortuna">Fortuna Liga</option>
+                            <option value="MolCup">Mol Cup</option>
+                            <option value="ChampLeag">Liga Mistrů</option>
+                            <option value="EuroLeag">Evropská Liga</option>
+                            <option value="KonferLeag">Konfereční liga</option>
+                        </optgroup>
+                    </select>
+                    <label for="host">HOST</label>
+                    <input id="host" checked type="radio" value="0" name="WIN">
+                    <label for="away">AWAY</label>
+                    <input id="away" type="radio" value="1" name="WIN">
+                    <select name="AWAY">
+                        <optgroup label="DEFAULT">
+                            <option value="default">Klub</option>
+                        </optgroup>
+                        <optgroup label="Fortuna liga">
+                            <option value="Bohemians">Bohemians</option>
+                            <option value="Boleslav">Boleslav</option>
+                            <option value="Budějovice">Budějovice</option>
+                            <option value="Hradec">Hradec</option>
+                            <option value="Jablonec">Jablonec</option>
+                            <option value="Karviná">Karviná</option>
+                            <option value="Liberec">Liberec</option>
+                            <option value="Olomouc">Olomouc</option>
+                            <option value="Ostrava">Ostrava</option>
+                            <option value="Pardubice">Pardubice</option>
+                            <option value="Plzeň">Plzeň</option>
+                            <option value="Slovácko">Slovácko</option>
+                            <option value="Sparta">Sparta</option>
+                            <option value="Teplice">Teplice</option>
+                            <option value="Zlín">Zlín</option>
+                        </optgroup>
+                        <optgroup label="Mol Cup">
+                            <option value="Velvary">Velvary</option>
+                        </optgroup>
+                        <optgroup label="Liga Mistrů">
+                            <option value="Ferencváros">Ferencváros</option>
+                        </optgroup>
+                        <optgroup label="Evropská liga">
+                            <option value="Legia">Legia Varšava</option>
+                        </optgroup>
+                        <optgroup label="Konferenční liga">
+                            <option value="Feyenoord">Feyenoord</option>
+                            <option value="Haifa">M. Haifa</option>
+                            <option value="Union">Union Berlín</option>
+                            <option value="Fenerbahce">Fenerbahce</option>
+                        </optgroup>
+                    </select>  
+                    <label for="ODEHRANO">Odehrané</label>
+                    <input id="ODEHRANO" type="checkbox" name="ODEHRANE"><br>
+                    <br><br>
+                    <input type="date" required name="DATUM" placeholder="Datum" size="10">  
+                    <input type="text" required name="DIVACI" placeholder="Divaci" size="5">  
+                    <input type="text" required name="STADION" placeholder="Stadion" size="10">  
+                    <br><br>
+                    <input type="text" required name="VIDEOLINK" placeholder="Link na video" size="40">  
+                    <br><br>
+                    <input type="text" required name="PLAYERSLINK" placeholder="Link na sestavu" size="40">  
+                    <br>
+                    <h2>Situace</h2>
+                    <div class="container1 block">
+                        <div class="vertical-center"><input type="text" style="font-size: 16px" required
+                                                            name="GOLY[]" size="25"> 
+                            <a href="#" style="user-select: none;" class="add_form_field"><img alt="add"
+                                                                                               src="/images/plus.png"
+                                                                                               style="width: 20px; height: 20px"></a>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>SESTAVA</p>
+                    <br>
+                    <br>
+                    <select name="BRANKAR">
+                        <optgroup label="DEFAULT">
+                            <option value="default">BRANKÁŘ</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@brankariselect}}" value="{{@brankari}}">
+                                <option value="{{@brankari.Prijmeni}}">{{@brankari.Jmeno}} {{@brankari.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <br><br><br>
+                    <select name="OBRANCE1">
+                        <optgroup label="DEFAULT">
+                            <option value="default">LEVÝ BEK</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@obranciselect}}" value="{{@obrance}}">
+                                <option value="{{@obrance.Prijmeni}}">{{@obrance.Jmeno}} {{@obrance.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <select name="OBRANCE2">
+                        <optgroup label="DEFAULT">
+                            <option value="default">STŘEDNÍ BEK</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@obranciselect}}" value="{{@obrance}}">
+                                <option value="{{@obrance.Prijmeni}}">{{@obrance.Jmeno}} {{@obrance.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <select name="OBRANCE3">
+                        <optgroup label="DEFAULT">
+                            <option value="default">STŘEDNÍ BEK</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@obranciselect}}" value="{{@obrance}}">
+                                <option value="{{@obrance.Prijmeni}}">{{@obrance.Jmeno}} {{@obrance.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <select name="OBRANCE4">
+                        <optgroup label="DEFAULT">
+                            <option value="default">PRAVÝ BEK</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@obranciselect}}" value="{{@obrance}}">
+                                <option value="{{@obrance.Prijmeni}}">{{@obrance.Jmeno}} {{@obrance.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <br><br><br>
+                    <select name="ZALOZNIK1">
+                        <optgroup label="DEFAULT">
+                            <option value="default">ZÁLOŽNÍK</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@zalozniciselect}}" value="{{@zaloznik}}">
+                                <option value="{{@zaloznik.Prijmeni}}">{{@zaloznik.Jmeno}} {{@zaloznik.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <select name="ZALOZNIK2">
+                        <optgroup label="DEFAULT">
+                            <option value="default">ZÁLOŽNÍK</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@zalozniciselect}}" value="{{@zaloznik}}">
+                                <option value="{{@zaloznik.Prijmeni}}">{{@zaloznik.Jmeno}} {{@zaloznik.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <select name="ZALOZNIK3">
+                        <optgroup label="DEFAULT">
+                            <option value="default">ZÁLOŽNÍK</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@zalozniciselect}}" value="{{@zaloznik}}">
+                                <option value="{{@zaloznik.Prijmeni}}">{{@zaloznik.Jmeno}} {{@zaloznik.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <br><br><br>
+                    <select name="UTOCNIK1">
+                        <optgroup label="DEFAULT">
+                            <option value="default">ÚTOČNÍK</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                                <option value="{{@utocnici.Prijmeni}}">{{@utocnici.Jmeno}} {{@utocnici.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <select name="UTOCNIK2">
+                        <optgroup label="DEFAULT">
+                            <option value="default">ÚTOČNÍK</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                                <option value="{{@utocnici.Prijmeni}}">{{@utocnici.Jmeno}} {{@utocnici.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <select name="UTOCNIK3">
+                        <optgroup label="DEFAULT">
+                            <option value="default">ÚTOČNÍK</option>
+                        </optgroup>
+                        <optgroup label="OPTIONS">
+                            <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                                <option value="{{@utocnici.Prijmeni}}">{{@utocnici.Jmeno}} {{@utocnici.Prijmeni}}</option>
+                            </repeat>
+                        </optgroup>
+                    </select>
+                    <br><br><br>
+                    <br><br>
+                    <button style="width: 150px" type="submit"><strong>PŘIDAT</strong></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="font-size: 30px">
+        <repeat group="{{@zapasy}}" value="{{@zapas}}">
+            <check if="{{@zapas.ODEHRANE}}=='1'">
+                <true>
+                    <div class="panel" style="padding:30px" data-name="{{@zapas.id}}">
+                        <a style="cursor: pointer" class="upravitzapas"><img alt="edit" style="width: 25px; height:25px"
+                                                                             src="/images/edit.png"></a>
+                        <a href="{{@zapas.VIDEOLINK}}" target="_blank"><img alt="ISport" style="width: 25px; height:25px" src="/images/Video.png"></a>
+                        <a href="{{@zapas.PLAYERSLINK}}" target="_blank"><img alt="Squad" style="width: 25px; height:25px" src="/images/Dress.png"></a>
+
+                        <div style="text-align: center;display:flex">
+                            <div style="width:30%;text-align: left;color:gray;font-size:18px;padding-right: 30px">
+                                {{@zapas.DATUM}}
+                            </div>
+                            <div style="width:70%;text-align:right;color:gray;font-size:18px"> {{@zapas.STADION}}
+                                ({{@zapas.DIVACI}})
+                            </div>
+                        </div>
+                        <check if="{{@zapas.GHOST}}>{{@zapas.GAWAY}}">
+                            <true>
+                                <div class="vertical-center">
+                                    <img alt="settings" style="width: 50px;height: 50px"
+                                         src="/images/clubs/{{@zapas.OHOST}}"> <b>{{@zapas.HOST}}</b> - {{@zapas.AWAY}} 
+                                    <img alt="settings" style="width: 50px;height: 50px"
+                                         src="/images/clubs/{{@zapas.OAWAY}}">
+                                </div>
+                            </true>
+                            <false>
+                                <check if="{{@zapas.GHOST}}<{{@zapas.GAWAY}}">
+                                    <true>
+                                        <div class="vertical-center">
+                                            <img alt="settings"
+                                                 style="width: 50px;height: 50px"
+                                                 src="/images/clubs/{{@zapas.OHOST}}"> {{@zapas.HOST}}
+                                            - <b>{{@zapas.AWAY}}</b> 
+                                            <img alt="settings" style="width: 50px;height: 50px"
+                                                 src="/images/clubs/{{@zapas.OAWAY}}">
+                                        </div>
+                                    </true>
+                                    <false>
+                                        <div class="vertical-center">
+                                            <img alt="settings"
+                                                 style="width: 50px;height: 50px"
+                                                 src="/images/clubs/{{@zapas.OHOST}}"> {{@zapas.HOST}}
+                                            - {{@zapas.AWAY}} 
+                                            <img alt="settings" style="width: 50px;height: 50px"
+                                                 src="/images/clubs/{{@zapas.OAWAY}}">
+                                        </div>
+                                    </false>
+                                </check>
+                            </false>
+                        </check>
+                        <check if="{{@zapas.SOUTEZ}}=='Fortuna'">
+                            <true>
+                                <div class="vertical-center"
+                                     style="font-size: 18px;background-color: #fd0; margin-left: 15%; margin-right: 15%; margin-top: 2%; padding: 1px; font-family: 'Open Sans', sans-serif;">
+                                    FORTUNA LIGA
+                                </div>
+                            </true>
+                            <false>
+                                <check if="{{@zapas.SOUTEZ}}=='MolCup'">
+                                    <true>
+                                        <div class="vertical-center"
+                                             style="font-size: 18px;background-color: #ff0000;color: white; margin-left: 15%; margin-right: 15%; margin-top: 2%; padding: 1px; font-family: 'Open Sans', sans-serif;">
+                                            MOL CUP
+                                        </div>
+                                    </true>
+                                    <false>
+                                        <check if="{{@zapas.SOUTEZ}}=='ChampLeag'">
+                                            <true>
+                                                <div class="vertical-center"
+                                                     style="font-size: 18px;background-color: #162E58; color: white; margin-left: 15%; margin-right: 15%; margin-top: 2%; padding: 1px; font-family: 'Open Sans', sans-serif;">
+                                                    CHAMPIONS LEAGUE
+                                                </div>
+                                            </true>
+                                            <false>
+                                                <check if="{{@zapas.SOUTEZ}}=='EuroLeag'">
+                                                    <true>
+                                                        <div class="vertical-center"
+                                                             style="font-size: 18px;background-color: #ffae19; margin-left: 15%; margin-right: 15%; margin-top: 2%; padding: 1px; font-family: 'Open Sans', sans-serif;">
+                                                            EUROPEAN LEAGUE
+                                                        </div>
+                                                    </true>
+                                                    <false>
+                                                        <check if="{{@zapas.SOUTEZ}}=='KonferLeag'">
+                                                            <true>
+                                                                <div class="vertical-center"
+                                                                     style="font-size: 18px;background-color: #6aa84f; color: white; margin-left: 15%; margin-right: 15%; margin-top: 2%; padding: 1px; font-family: 'Open Sans', sans-serif;">
+                                                                    CONFERENCE LEAGUE
+                                                                </div>
+                                                            </true>
+                                                            <false>
+                                                                <div style="font-size: 18px; color: #ff0000">ERROR</div>
+                                                            </false>
+                                                        </check>
+                                                    </false>
+                                                </check>
+                                            </false>
+                                        </check>
+                                    </false>
+                                </check>
+                            </false>
+
+                        </check>
+                        <div>{{@zapas.GHOST}} : {{@zapas.GAWAY}}</div>
+                        <a style="user-select:none" id="flip" onclick="zobrazakci('{{@zapas.id}}')"><img
+                                id="image{{@zapas.id}}" alt="ArDown" src="/images/ArDown.png"></a>
+                        <div id="{{@zapas.id}}" class="ahoj{{@zapas.id}}" style="display: none; padding-left: 30px; padding-right: 30px">
+                            <div><span style="font-size: 20px">{{@zapas.GOLY}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </true>
+                <false>
+                    <div class="panel" style="padding:30px" data-name="{{@zapas.id}}">
+                        <a style="cursor: pointer" class="upravitzapas"><img alt="edit" style="width: 24px; height:24px"
+                                                                             src="/images/edit.png"></a>
+                        <div style="text-align: center;display:flex">
+                            <div style="width:40%;text-align: left;color:gray;font-size:18px;padding-right: 30px">
+                                {{@zapas.DATUM}}
+                            </div>
+                            <div style="width:60%;text-align:right;color:gray;font-size:18px"> {{@zapas.STADION}}
+                            </div>
+                        </div>
+                        <check if="{{@zapas.GHOST}}>{{@zapas.GAWAY}}">
+                            <true>
+                                <div class="vertical-center">
+                                    <img alt="settings" style="width: 50px;height: 50px"
+                                         src="/images/clubs/{{@zapas.OHOST}}"> <b>{{@zapas.HOST}}</b> - {{@zapas.AWAY}} 
+                                    <img alt="settings" style="width: 50px;height: 50px"
+                                         src="/images/clubs/{{@zapas.OAWAY}}">
+                                </div>
+                            </true>
+                            <false>
+                                <check if="{{@zapas.GHOST}}<{{@zapas.GAWAY}}">
+                                    <true>
+                                        <div class="vertical-center">
+                                            <img alt="settings"
+                                                 style="width: 50px;height: 50px"
+                                                 src="/images/clubs/{{@zapas.OHOST}}"> {{@zapas.HOST}}
+                                            - <b>{{@zapas.AWAY}}</b> 
+                                            <img alt="settings" style="width: 50px;height: 50px"
+                                                 src="/images/clubs/{{@zapas.OAWAY}}">
+                                        </div>
+                                    </true>
+                                    <false>
+                                        <div class="vertical-center">
+                                            <img alt="settings"
+                                                 style="width: 50px;height: 50px"
+                                                 src="/images/clubs/{{@zapas.OHOST}}"> {{@zapas.HOST}}
+                                            - {{@zapas.AWAY}} 
+                                            <img alt="settings" style="width: 50px;height: 50px"
+                                                 src="/images/clubs/{{@zapas.OAWAY}}">
+                                        </div>
+                                    </false>
+                                </check>
+                            </false>
+                        </check>
+                        <check if="{{@zapas.SOUTEZ}}=='Fortuna'">
+                            <true>
+                                <div class="vertical-center"
+                                     style="font-size: 18px;background-color: #fd0; margin-left: 15%; margin-right: 15%; margin-top: 2%; padding: 1px; font-family: 'Open Sans', sans-serif;">
+                                    FORTUNA LIGA
+                                </div>
+                            </true>
+                            <false>
+                                <check if="{{@zapas.SOUTEZ}}=='MolCup'">
+                                    <true>
+                                        <div class="vertical-center"
+                                             style="font-size: 18px;background-color: #ff0000;color: white; margin-left: 15%; margin-right: 15%; margin-top: 2%; padding: 1px; font-family: 'Open Sans', sans-serif;">
+                                            MOL CUP
+                                        </div>
+                                    </true>
+                                    <false>
+                                        <check if="{{@zapas.SOUTEZ}}=='ChampLeag'">
+                                            <true>
+                                                <div class="vertical-center"
+                                                     style="font-size: 18px;background-color: #162E58; color: white; margin-left: 15%; margin-right: 15%; margin-top: 2%; padding: 1px; font-family: 'Open Sans', sans-serif;">
+                                                    CHAMPIONS LEAGUE
+                                                </div>
+                                            </true>
+                                            <false>
+                                                <check if="{{@zapas.SOUTEZ}}=='EuroLeag'">
+                                                    <true>
+                                                        <div class="vertical-center"
+                                                             style="font-size: 18px;background-color: #ffae19; margin-left: 15%; margin-right: 15%; margin-top: 2%; padding: 1px; font-family: 'Open Sans', sans-serif;">
+                                                            EUROPEAN LEAGUE
+                                                        </div>
+                                                    </true>
+                                                    <false>
+                                                        <check if="{{@zapas.SOUTEZ}}=='KonferLeag'">
+                                                            <true>
+                                                                <div class="vertical-center"
+                                                                     style="font-size: 18px;background-color: #6aa84f; color: white; margin-left: 15%; margin-right: 15%; margin-top: 2%; padding: 1px; font-family: 'Open Sans', sans-serif;">
+                                                                    CONFERENCE LEAGUE
+                                                                </div>
+                                                            </true>
+                                                            <false>
+                                                                <div style="font-size: 18px; color: #ff0000">ERROR</div>
+                                                            </false>
+                                                        </check>
+                                                    </false>
+                                                </check>
+                                            </false>
+                                        </check>
+                                    </false>
+                                </check>
+                            </false>
+
+                        </check>
+                        <div>- : -</div>
+                        <p></p>
+                    </div>
+                    <br>
+                </false>
+            </check>
+        </repeat>
+    </div>
+</div>
+</div>
