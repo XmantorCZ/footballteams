@@ -227,7 +227,7 @@ class Index
 
         $zapasy = new data\SPZapasy();
 
-        $zapas = $zapasy->find("", ['limit' => 8, 'order' => 'DATUM DESC']);
+        $zapas = $zapasy->find("", ['limit' => 15, 'order' => 'DATUM DESC']);
 
 
         if ($zapas != "") {
