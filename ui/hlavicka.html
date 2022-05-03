@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>{{@title}}</title>
+    <check if="{{isset(@logo)}}">
+        <true>
     <link rel="icon" href=
             "/images/icons/{{@logo}}.png"
           type="image/x-icon">
-
+        </true>
+    </check>
 </head>
 <body>
 <div style="padding:10px;margin:-10px;border:1px solid rgba(0, 0, 0, 0.2);box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">

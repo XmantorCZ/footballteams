@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300;400&display=swap');
 
 /* The Modal (background) */
 .modal {
@@ -55,7 +55,7 @@ table{
     margin-left: 5%;
     width:90%;
     font-size: 25px;
-    font-family: Calibri, Calibri, sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -72,6 +72,7 @@ th,td{
 body {
 
     overflow-x: hidden;
+    font-family: 'Radio Canada', sans-serif;
 
 }
 
