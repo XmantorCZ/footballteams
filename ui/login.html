@@ -1,0 +1,31 @@
+<br><br>
+<div style="margin:0 auto;">
+    <h2>{{@moznost}}</h2>
+    <br>
+    <form action="" method="POST">
+        <div>
+            <label for="nickname">Nickname</label>
+            <div class="col-md-6">
+                <input type="text" id="nickname" name="nickname" required autofocus>
+            </div>
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <div>
+                <input type="password" id="password" name="password" required>
+            </div>
+        </div>
+        <br>
+        <div>
+            <button type="submit">
+                <span style="font-size: 15px">ODESLAT</span>
+            </button>
+
+        </div>
+    </form>
+
+
+    <div>{{@error}}</div>
+
+</div>
