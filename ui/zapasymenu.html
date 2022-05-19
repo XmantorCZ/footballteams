@@ -1,5 +1,8 @@
 <div class="pravo">
     <h1 align="center">ZÁPASY</h1>
+
+    <check if="{{@SESSION.role}}=='2'">
+    <true>
     <a id="Btn" style="margin-left: 2%"><img title="Přidat zápas" alt="settings" class="img"
                                              src="/images/add.png"></a>
     <div id="DIV">
@@ -206,6 +209,12 @@
             </div>
         </div>
     </div>
+    </true>
+    </check>
+
+    <br>
+    <br>
+    <br>
 
 
     <div style="font-size: 30px">
@@ -213,11 +222,14 @@
             <check if="{{@zapas.ODEHRANE}}=='1'">
                 <true>
                     <div class="panel" style="padding:30px" data-name="{{@zapas.id}}">
+                        <check if="{{@SESSION.role}}=='2'">
+                            <true>
                         <a style="cursor: pointer" class="upravitzapas"><img alt="edit" style="width: 25px; height:25px"
                                                                              src="/images/edit.png"></a>
                         <a href="{{@zapas.VIDEOLINK}}" target="_blank"><img alt="ISport" style="width: 25px; height:25px" src="/images/Video.png"></a>
                         <a href="{{@zapas.PLAYERSLINK}}" target="_blank"><img alt="Squad" style="width: 25px; height:25px" src="/images/Dress.png"></a>
-
+                            </true>
+                        </check>
                         <div style="text-align: center;display:flex">
                             <div style="width:30%;text-align: left;color:gray;font-size:18px;padding-right: 30px">
                                 {{@zapas.DATUM}}
@@ -324,8 +336,12 @@
                 </true>
                 <false>
                     <div class="panel" style="padding:30px" data-name="{{@zapas.id}}">
-                        <a style="cursor: pointer" class="upravitzapas"><img alt="edit" style="width: 24px; height:24px"
-                                                                             src="/images/edit.png"></a>
+                        <check if="{{@SESSION.role}}=='2'">
+                            <true>
+                                <a style="cursor: pointer" class="upravitzapas"><img alt="edit" style="width: 25px; height:25px"
+                                                                                     src="/images/edit.png"></a>
+                            </true>
+                        </check>
                         <div style="text-align: center;display:flex">
                             <div style="width:40%;text-align: left;color:gray;font-size:18px;padding-right: 30px">
                                 {{@zapas.DATUM}}

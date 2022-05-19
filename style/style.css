@@ -130,6 +130,18 @@ body {
     padding-right: 1px;
 }
 
+.vertical-text{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.vertical-text2{
+    vertical-align: middle;
+    line-height: 45px;
+
+}
+
 .block{
     display: block;
 

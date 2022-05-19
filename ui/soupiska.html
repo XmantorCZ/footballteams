@@ -1,6 +1,8 @@
 <div class="stranka">
     <div class="vlevo">
         <h1 align="center">SOUPISKA</h1>
+        <check if="{{@SESSION.role}}=='2'">
+            <true>
         <a id="myBtn" style="margin-left: 5%"><img alt="settings" class="img"
                                                    title="Přidat hráče"
                                                    src="/images/AddPlayer.png"></a>
@@ -66,6 +68,8 @@
                 </form>
             </div>
         </div>
+            </true>
+        </check>
 
         <br><br><br>
 
@@ -82,10 +86,17 @@
                 <th><img alt="Matches" style="width:30px;height:30px" title="Zápasy" src="/images/Dress.png"></th>
                 <th><img alt="Goals" style="width:30px;height:30px" title="Góly" src="/images/Ball.png"></th>
                 <th><img alt="Asists" style="width:30px;height:30px" title="Asistence" src="/images/Asist.png"></th>
-                <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png"></th>
-                <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png"></th>
+                <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png">
+                </th>
+                <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png">
+                </th>
                 <th><img alt="Reds" style="width:30px;height:30px" title="Hodnota v €" src="/images/money.png"></th>
-                <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení" src="/images/settings.png"></th>
+                <check if="{{@SESSION.role}}=='2'">
+                    <true>
+                <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení" src="/images/settings.png">
+                </th>
+                    </true>
+                </check>
             </tr>
             </thead>
             <tbody>
@@ -142,7 +153,8 @@
                             <td style="width: 24px;height: 24px"></td>
                         </false>
                     </check>
-                    <td><img style="width: 40px;height: 25px" title="{{@hrac.Narod}}" src="/images/flags/{{@hrac.Narod}}"></td>
+                    <td><img style="width: 40px;height: 25px" title="{{@hrac.Narod}}"
+                             src="/images/flags/{{@hrac.Narod}}"></td>
                     <check if="{{@hrac.Zapasy}}=='0'">
                         <true>
                             <td style="color: gray">{{@hrac.Zapasy}}</td>
@@ -184,12 +196,16 @@
                         </false>
                     </check>
                     <td>{{@hrac.Hodnota}}</td>
-                    <td>
-                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
-                                                                                         style="width: 28px;height:28px"
-                                                                                         src="/images/edit.png"
-                                                                                         title="Upravit"></a>
-                    </td>
+                    <check if="{{@SESSION.role}}=='2'">
+                        <true>
+                            <td>
+                                <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
+                                                                                                 style="width: 28px;height:28px"
+                                                                                                 src="/images/edit.png"
+                                                                                                 title="Upravit"></a>
+                            </td>
+                        </true>
+                    </check>
                 </tr>
             </repeat>
             </tbody>
@@ -209,10 +225,17 @@
                 <th><img alt="Matches" style="width:30px;height:30px" title="Zápasy" src="/images/Dress.png"></th>
                 <th><img alt="Goals" style="width:30px;height:30px" title="Góly" src="/images/Ball.png"></th>
                 <th><img alt="Asists" style="width:30px;height:30px" title="Asistence" src="/images/Asist.png"></th>
-                <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png"></th>
-                <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png"></th>
+                <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png">
+                </th>
+                <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png">
+                </th>
                 <th><img alt="Reds" style="width:30px;height:30px" title="Hodnota v €" src="/images/money.png"></th>
-                <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení" src="/images/settings.png"></th>
+                <check if="{{@SESSION.role}}=='2'">
+                    <true>
+                        <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení" src="/images/settings.png">
+                        </th>
+                    </true>
+                </check>
             </tr>
             </thead>
             <tbody>
@@ -270,7 +293,8 @@
                             <td style="width: 24px;height: 24px"></td>
                         </false>
                     </check>
-                    <td><img style="width: 40px;height: 25px" title="{{@hrac.Narod}}" src="/images/flags/{{@hrac.Narod}}"></td>
+                    <td><img style="width: 40px;height: 25px" title="{{@hrac.Narod}}"
+                             src="/images/flags/{{@hrac.Narod}}"></td>
                     <check if="{{@hrac.Zapasy}}=='0'">
                         <true>
                             <td style="color: gray">{{@hrac.Zapasy}}</td>
@@ -312,12 +336,16 @@
                         </false>
                     </check>
                     <td>{{@hrac.Hodnota}}</td>
-                    <td>
-                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
-                                                                                         style="width: 28px;height:28px"
-                                                                                         src="/images/edit.png"
-                                                                                         title="Upravit"></a>
-                    </td>
+                    <check if="{{@SESSION.role}}=='2'">
+                        <true>
+                            <td>
+                                <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
+                                                                                                 style="width: 28px;height:28px"
+                                                                                                 src="/images/edit.png"
+                                                                                                 title="Upravit"></a>
+                            </td>
+                        </true>
+                    </check>
                 </tr>
             </repeat>
             </tbody>
@@ -337,10 +365,17 @@
                 <th><img alt="Matches" style="width:30px;height:30px" title="Zápasy" src="/images/Dress.png"></th>
                 <th><img alt="Goals" style="width:30px;height:30px" title="Góly" src="/images/Ball.png"></th>
                 <th><img alt="Asists" style="width:30px;height:30px" title="Asistence" src="/images/Asist.png"></th>
-                <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png"></th>
-                <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png"></th>
+                <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png">
+                </th>
+                <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png">
+                </th>
                 <th><img alt="Reds" style="width:30px;height:30px" title="Hodnota v €" src="/images/money.png"></th>
-                <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení" src="/images/settings.png"></th>
+                <check if="{{@SESSION.role}}=='2'">
+                    <true>
+                        <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení" src="/images/settings.png">
+                        </th>
+                    </true>
+                </check>
             </tr>
             </thead>
             <tbody>
@@ -398,7 +433,8 @@
                             <td style="width: 24px;height: 24px"></td>
                         </false>
                     </check>
-                    <td><img style="width: 40px;height: 25px" title="{{@hrac.Narod}}" src="/images/flags/{{@hrac.Narod}}"></td>
+                    <td><img style="width: 40px;height: 25px" title="{{@hrac.Narod}}"
+                             src="/images/flags/{{@hrac.Narod}}"></td>
                     <check if="{{@hrac.Zapasy}}=='0'">
                         <true>
                             <td style="color: gray">{{@hrac.Zapasy}}</td>
@@ -440,12 +476,16 @@
                         </false>
                     </check>
                     <td>{{@hrac.Hodnota}}</td>
-                    <td>
-                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
-                                                                                         style="width: 28px;height:28px"
-                                                                                         src="/images/edit.png"
-                                                                                         title="Upravit"></a>
-                    </td>
+                    <check if="{{@SESSION.role}}=='2'">
+                        <true>
+                            <td>
+                                <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
+                                                                                                 style="width: 28px;height:28px"
+                                                                                                 src="/images/edit.png"
+                                                                                                 title="Upravit"></a>
+                            </td>
+                        </true>
+                    </check>
                 </tr>
             </repeat>
             </tbody>
@@ -465,10 +505,17 @@
                 <th><img alt="Matches" style="width:30px;height:30px" title="Zápasy" src="/images/Dress.png"></th>
                 <th><img alt="Goals" style="width:30px;height:30px" title="Góly" src="/images/Ball.png"></th>
                 <th><img alt="Asists" style="width:30px;height:30px" title="Asistence" src="/images/Asist.png"></th>
-                <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png"></th>
-                <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png"></th>
+                <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png">
+                </th>
+                <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png">
+                </th>
                 <th><img alt="Reds" style="width:30px;height:30px" title="Hodnota v €" src="/images/money.png"></th>
-                <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení" src="/images/settings.png"></th>
+                <check if="{{@SESSION.role}}=='2'">
+                    <true>
+                        <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení"
+                                 src="/images/settings.png"></th>
+                    </true>
+                </check>
             </tr>
             </thead>
             <tbody>
@@ -526,7 +573,8 @@
                             <td style="width: 24px;height: 24px"></td>
                         </false>
                     </check>
-                    <td><img style="width: 40px;height: 25px" title="{{@hrac.Narod}}" src="/images/flags/{{@hrac.Narod}}"></td>
+                    <td><img style="width: 40px;height: 25px" title="{{@hrac.Narod}}"
+                             src="/images/flags/{{@hrac.Narod}}"></td>
                     <check if="{{@hrac.Zapasy}}=='0'">
                         <true>
                             <td style="color: gray">{{@hrac.Zapasy}}</td>
@@ -568,12 +616,16 @@
                         </false>
                     </check>
                     <td>{{@hrac.Hodnota}}</td>
-                    <td>
-                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
-                                                                                         style="width: 28px;height:28px"
-                                                                                         src="/images/edit.png"
-                                                                                         title="Upravit"></a>
-                    </td>
+                    <check if="{{@SESSION.role}}=='2'">
+                        <true>
+                            <td>
+                                <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
+                                                                                                 style="width: 28px;height:28px"
+                                                                                                 src="/images/edit.png"
+                                                                                                 title="Upravit"></a>
+                            </td>
+                        </true>
+                    </check>
                 </tr>
             </repeat>
             </tbody>
@@ -592,10 +644,17 @@
                 <th><img alt="Matches" style="width:30px;height:30px" title="Zápasy" src="/images/Dress.png"></th>
                 <th><img alt="Goals" style="width:30px;height:30px" title="Góly" src="/images/Ball.png"></th>
                 <th><img alt="Asists" style="width:30px;height:30px" title="Asistence" src="/images/Asist.png"></th>
-                <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png"></th>
-                <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png"></th>
+                <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png">
+                </th>
+                <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png">
+                </th>
                 <th><img alt="Reds" style="width:30px;height:30px" title="Hodnota v €" src="/images/money.png"></th>
-                <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení" src="/images/settings.png"></th>
+                <check if="{{@SESSION.role}}=='2'">
+                    <true>
+                        <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení" src="/images/settings.png">
+                        </th>
+                    </true>
+                </check>
             </tr>
             </thead>
             <tbody>
@@ -625,10 +684,10 @@
                                     </td>
                                 </true>
 
-                                        <false>
-                                            <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
-                                        </false>
-                                    </check>
+                                <false>
+                                    <td>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</td>
+                                </false>
+                            </check>
                         </false>
                     </check>
                     <check if="{{@hrac.Zranen}}=='1'">
@@ -639,7 +698,8 @@
                             <td style="width: 24px;height: 24px"></td>
                         </false>
                     </check>
-                    <td><img style="width: 40px;height: 25px" title="{{@hrac.Narod}}" src="/images/flags/{{@hrac.Narod}}"></td>
+                    <td><img style="width: 40px;height: 25px" title="{{@hrac.Narod}}"
+                             src="/images/flags/{{@hrac.Narod}}"></td>
                     <check if="{{@hrac.Zapasy}}=='0'">
                         <true>
                             <td style="color: gray">{{@hrac.Zapasy}}</td>
@@ -681,12 +741,16 @@
                         </false>
                     </check>
                     <td>{{@hrac.Hodnota}}</td>
-                    <td>
-                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"q
-                                                                                         style="width: 28px;height:28px"
-                                                                                         src="/images/edit.png"
-                                                                                         title="Upravit"></a>
-                    </td>
+                    <check if="{{@SESSION.role}}=='2'">
+                        <true>
+                            <td>
+                                <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
+                                                                                                 style="width: 28px;height:28px"
+                                                                                                 src="/images/edit.png"
+                                                                                                 title="Upravit"></a>
+                            </td>
+                        </true>
+                    </check>
                 </tr>
             </repeat>
             </tbody>
