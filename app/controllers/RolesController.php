@@ -1,6 +1,6 @@
 <?php
 
-namespace footballteams;
+namespace controllers;
 
 class RolesController
 {

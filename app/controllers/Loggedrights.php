@@ -1,6 +1,6 @@
 <?php
 
-namespace footballteams;
+namespace controllers;
 
 class Loggedrights extends LoginController
 {
@@ -17,21 +17,21 @@ class Loggedrights extends LoginController
 
         if ($base->get('POST.SlaviaPraha') == true) {
 
-            \footballteams\data\SlaviaPraha::setdown();
-            \footballteams\data\SlaviaPraha::setup();
+            \models\SlaviaPraha::setdown();
+            \models\SlaviaPraha::setup();
 
         }
         if ($base->get('POST.SPZapasy') == true) {
 
-            \footballteams\data\SPZapasy::setdown();
-            \footballteams\data\SPZapasy::setup();
+            \models\SPZapasy::setdown();
+            \models\SPZapasy::setup();
 
         }
         if ($base->get('POST.Uzivatele') == true) {
 
 
-            \footballteams\data\Uzivatele::setdown();
-            \footballteams\data\Uzivatele::setup();
+            \models\Uzivatele::setdown();
+            \models\Uzivatele::setup();
 
             /*
                         $slavia = new data\SlaviaPraha();

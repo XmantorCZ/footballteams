@@ -1,7 +1,7 @@
 <?php
 
 
-namespace footballteams;
+namespace controllers;
 
 
 use DateTime;
@@ -20,7 +20,7 @@ class Index extends RolesController
     public function get_registrace(\Base $base)
     {
         $base->set("error", "");
-        $uzivatele = new data\Uzivatele();
+        $uzivatele = new \models\Uzivatele();
         $jmeno = $base->get('POST["nickname"]');
         $uz = $uzivatele->findone(array("nickname=?", $jmeno));
         $base->set("content", "login.html");
@@ -36,7 +36,7 @@ class Index extends RolesController
     {
 
         $base->set("error", "");
-        $uzivatele = new data\Uzivatele();
+        $uzivatele = new \models\Uzivatele();
         $uzivatele->copyfrom($base->get('POST'));
         $uz = $uzivatele->findone(array("nickname=?", $uzivatele->nickname));
         if ($uz == NULL) {
@@ -69,7 +69,7 @@ class Index extends RolesController
     public function post_login(\Base $base)
     {
 
-        $uzivatele = new data\Uzivatele();
+        $uzivatele = new \models\Uzivatele();
         $jmeno = $base->get('POST["nickname"]');
         $uz = $uzivatele->findone(array("nickname=?", $jmeno));
         if ($uz == NULL) {
@@ -103,7 +103,7 @@ class Index extends RolesController
     public function get_slaviapraha(\Base $base)
     {
         //['limit'=>x,'order'=>'xxx ASC'];
-        $slavia = new data\SlaviaPraha();
+        $slavia = new \models\SlaviaPraha();
         $base->set("logo", "Slavia");
         //$base->set("brankari", $slavia->find());
 
@@ -264,7 +264,7 @@ class Index extends RolesController
         }
         $base->set("utocnici", $utocnici);
 
-        $zapasy = new data\SPZapasy();
+        $zapasy = new \models\SPZapasy();
 
         $zapas = $zapasy->find("", ['limit' => 15, 'order' => 'DATUM DESC']);
 

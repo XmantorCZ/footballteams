@@ -3,4 +3,4 @@ composer.phar
 composer.lock
 vendor/*
 tmp/*
-config/db.ini
+app/config/db.ini

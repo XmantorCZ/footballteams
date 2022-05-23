@@ -1,5 +1,5 @@
 <?php
-namespace footballteams\data;
+namespace models;
 
 
 class SlaviaPraha extends \DB\Cortex

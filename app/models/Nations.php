@@ -1,7 +1,7 @@
 <?php
 
 
-namespace footballteams\data;
+namespace models;
 
 
 class Nations extends \DB\Cortex

@@ -1,6 +1,6 @@
 <?php
 
-namespace footballteams\data;
+namespace models;
 
 class Uzivatele extends \DB\Cortex
 {
