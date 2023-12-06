@@ -12,7 +12,7 @@ class LoginController
 
         } else {
             $base->reroute("/");
-
+            $base->set("SESSION.regdate","unknown");
         }
 
     }

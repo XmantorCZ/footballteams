@@ -13,21 +13,7 @@
 
     <link rel="stylesheet" href="/public/style/style.css">
 
-
 </head>
-
-<style>
-    .ulol {
-
-        list-style-type: none;
-    }
-
-    .lol {
-
-        display: inline;
-    }
-
-</style>
 
 <body>
 
@@ -35,15 +21,20 @@
 <ul style="padding:20px;margin:-10px;border:1px solid rgba(0, 0, 0, 0.2);box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <li class="lol"><a style="font-size: 35px;color: black;text-decoration: none" href="/">FOOTBALLTEAMS</a></li>
     <li class="lol vertical-text2" style="float: right">
-        <check if="{{@SESSION.name}}">
+        <check if="{{isset(@SESSION.name)}}">
             <true>
                 <span class="vertical-text">
-                    <span style="font-size: 15px; color: grey; padding-right: 8px">Účet od: {{@SESSION.regdate}}</span>
-                   <img src="/images/icons/user.png" alt="user"
-                        style="height: 20px; width: 20px"><a
-                        style="font-size: 20px;color: black;text-decoration: none"
-                        href="/"> {{@SESSION.name}}</a><span
-                        style="font-size: 28px;padding-left: 10px;padding-right: 10px">|</span><a
+                    <span class="dropdown">
+                    <a class="dropbtn"
+                            style="font-size: 20px;color: black;text-decoration: none"><img src="/images/icons/user.png" alt="user"
+                                                                                            style="height: 20px; width: 20px"> {{@SESSION.name}}</a>
+                    <div class="dropdown-content">
+                        <a href="/profil/{{@SESSION.id}}"><span><img alt="setting" style="width: 15px;height: 15px" src="/images/settingsicon.png"></span><span>Nastavení</span>
+                    </a>
+                    </div>
+                        </span>
+                    <span
+                            style="font-size: 28px;padding-left: 10px;padding-right: 10px">|</span><a
                         style="font-size: 20px;color: black;text-decoration: none" href="/logout">  LOGOUT</a>
                 </span>
             </true>
@@ -58,6 +49,3 @@
     </li>
 
 </ul>
-
-<p>{{@SESSION.name}}</p>
-<p>{{@SESSION.role}}</p>

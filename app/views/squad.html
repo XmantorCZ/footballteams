@@ -1,0 +1,566 @@
+<div style="font-size: 150px; text-align: center; margin-top: 3%">{{@teamname}}</div>
+
+<div class="text" >
+    <div style="padding: 10px">
+        <span class="a">{{@matches}}</span>
+    </div>
+    <div style="padding: 10px">
+        <span class="a">{{@goals}}</span>
+    </div>
+    <div style="padding: 10px">
+        <span class="a">{{@assists}}</span>
+    </div>
+    <div style="padding: 10px">
+        <span class="a">{{@yellows}}</span>
+    </div>
+    <div style="padding: 10px">
+        <span class="a">{{@reds}}</span>
+    </div>
+
+</div>
+
+
+<div style="margin-top: 5%;margin-left: 15%; margin-right: 15%">
+<h1 style="margin-left: 5%">BRANKÁŘI</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th><strong>#</strong></th>
+        <th><strong></strong></th>
+        <th><strong>Age</strong></th>
+        <th style="width: 300px"><strong>Name</strong></th>
+        <th><img alt="Matches" style="width:30px;height:30px" title="Zápasy" src="/images/Dress.png"></th>
+        <th><img alt="Goals" style="width:30px;height:30px" title="Góly" src="/images/Ball.png"></th>
+        <th><img alt="Asists" style="width:30px;height:30px" title="Asistence" src="/images/Asist.png"></th>
+        <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png">
+        </th>
+        <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png">
+        </th>
+        <th><img alt="Reds" style="width:30px;height:30px" title="Hodnota v €" src="/images/money.png"></th>
+        <check if="{{@SESSION.role}}=='2'">
+            <true>
+                <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení"
+                         src="/images/settings.png"></th>
+            </true>
+        </check>
+    </tr>
+    </thead>
+    <tbody>
+    <repeat group="{{@brankari}}" value="{{@hrac}}">
+        <tr class="radek" data-name="{{@hrac.id}}">
+            <td>{{@hrac.numberdress}}</td>
+            <td><img style="width: 40px;height: 25px" title="{{@hrac.nation}}"
+                     src="/images/flags/{{@hrac.nation}}.png"></td>
+            <td>{{@hrac.age}}</td>
+            <check if="{{@hrac.state}}=='arrival'">
+                <true>
+                    <td style="vertical-align: middle">
+                        <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img alt="new"
+                                                                                           style="width: 32px; height: 32px"
+                                                                                           title="Nový hráč"
+                                                                                           src="/images/new.png">
+                        </div>
+                    </td>
+                </true>
+                <false>
+                    <check if="{{@hrac.state}}=='hostarrival'">
+                        <true>
+                            <td style="vertical-align: middle">
+                                <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img
+                                        alt="handshake"
+                                        title="Hostování"
+                                        style="width: 32px; height: 32px"
+                                        src="/images/handshake.png">
+                                </div>
+                            </td>
+                        </true>
+                        <false>
+
+                            <check if="{{@hrac.state}}=='navhostarrival'">
+                                <true>
+                                    <td style="vertical-align: middle">
+                                        <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img
+                                                alt="handshake"
+                                                title="Návrat z hostování"
+                                                style="width: 32px; height: 32px"
+                                                src="/images/navhost.png">
+                                        </div>
+                                    </td>
+                                </true>
+                                <false>
+                                    <td>{{@hrac.name}} {{@hrac.surname}}</td>
+                                </false>
+                            </check>
+                        </false>
+                    </check>
+                </false>
+            </check>
+            <check if="{{@hrac.matches}}=='0'">
+                <true>
+                    <td style="color: gray">{{@hrac.matches}}</td>
+                </true>
+                <false>
+                    <td>{{@hrac.matches}}</td>
+                </false>
+            </check>
+            <check if="{{@hrac.goals}}=='0'">
+                <true>
+                    <td style="color: gray">{{@hrac.goals}}</td>
+                </true>
+                <false>
+                    <td><b>{{@hrac.goals}}</b></td>
+                </false>
+            </check>
+            <check if="{{@hrac.assists}}=='0'">
+                <true>
+                    <td style="color: gray">{{@hrac.assists}}</td>
+                </true>
+                <false>
+                    <td>{{@hrac.assists}}</td>
+                </false>
+            </check>
+            <check if="{{@hrac.yellows}}=='0'">
+                <true>
+                    <td style="color: gray">{{@hrac.yellows}}</td>
+                </true>
+                <false>
+                    <td>{{@hrac.yellows}}</td>
+                </false>
+            </check>
+            <check if="{{@hrac.reds}}=='0'">
+                <true>
+                    <td style="color: gray">{{@hrac.reds}}</td>
+                </true>
+                <false>
+                    <td>{{@hrac.reds}}</td>
+                </false>
+            </check>
+            <td>{{@hrac.value}}</td>
+            <check if="{{@SESSION.role}}=='2'">
+                <true>
+                    <td>
+                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
+                                                                                         style="width: 28px;height:28px"
+                                                                                         src="/images/edit.png"
+                                                                                         title="Upravit"></a>
+                    </td>
+                </true>
+            </check>
+        </tr>
+    </repeat>
+    </tbody>
+</table>
+<br><br><br>
+
+
+    <h1 style="margin-left: 5%">OBRÁNCI</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th><strong>#</strong></th>
+            <th><strong></strong></th>
+            <th><strong>Age</strong></th>
+            <th style="width: 300px"><strong>Name</strong></th>
+            <th><img alt="Matches" style="width:30px;height:30px" title="Zápasy" src="/images/Dress.png"></th>
+            <th><img alt="Goals" style="width:30px;height:30px" title="Góly" src="/images/Ball.png"></th>
+            <th><img alt="Asists" style="width:30px;height:30px" title="Asistence" src="/images/Asist.png"></th>
+            <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png">
+            </th>
+            <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png">
+            </th>
+            <th><img alt="Reds" style="width:30px;height:30px" title="Hodnota v €" src="/images/money.png"></th>
+            <check if="{{@SESSION.role}}=='2'">
+                <true>
+                    <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení"
+                             src="/images/settings.png"></th>
+                </true>
+            </check>
+        </tr>
+        </thead>
+        <tbody>
+        <repeat group="{{@obranci}}" value="{{@hrac}}">
+            <tr class="radek" data-name="{{@hrac.id}}">
+                <td>{{@hrac.numberdress}}</td>
+                <td><img style="width: 40px;height: 25px" title="{{@hrac.nation}}"
+                         src="/images/flags/{{@hrac.nation}}.png"></td>
+                <td>{{@hrac.age}}</td>
+                <check if="{{@hrac.state}}=='arrival'">
+                    <true>
+                        <td style="vertical-align: middle">
+                            <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img alt="new"
+                                                                                               style="width: 32px; height: 32px"
+                                                                                               title="Nový hráč"
+                                                                                               src="/images/new.png">
+                            </div>
+                        </td>
+                    </true>
+                    <false>
+                        <check if="{{@hrac.state}}=='hostarrival'">
+                            <true>
+                                <td style="vertical-align: middle">
+                                    <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img
+                                            alt="handshake"
+                                            title="Hostování"
+                                            style="width: 32px; height: 32px"
+                                            src="/images/handshake.png">
+                                    </div>
+                                </td>
+                            </true>
+                            <false>
+
+                                <check if="{{@hrac.state}}=='navhostarrival'">
+                                    <true>
+                                        <td style="vertical-align: middle">
+                                            <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img
+                                                    alt="handshake"
+                                                    title="Návrat z hostování"
+                                                    style="width: 32px; height: 32px"
+                                                    src="/images/navhost.png">
+                                            </div>
+                                        </td>
+                                    </true>
+                                    <false>
+                                        <td>{{@hrac.name}} {{@hrac.surname}}</td>
+                                    </false>
+                                </check>
+                            </false>
+                        </check>
+                    </false>
+                </check>
+                <check if="{{@hrac.matches}}=='0'">
+                    <true>
+                        <td style="color: gray">{{@hrac.matches}}</td>
+                    </true>
+                    <false>
+                        <td>{{@hrac.matches}}</td>
+                    </false>
+                </check>
+                <check if="{{@hrac.goals}}=='0'">
+                    <true>
+                        <td style="color: gray">{{@hrac.goals}}</td>
+                    </true>
+                    <false>
+                        <td><b>{{@hrac.goals}}</b></td>
+                    </false>
+                </check>
+                <check if="{{@hrac.assists}}=='0'">
+                    <true>
+                        <td style="color: gray">{{@hrac.assists}}</td>
+                    </true>
+                    <false>
+                        <td>{{@hrac.assists}}</td>
+                    </false>
+                </check>
+                <check if="{{@hrac.yellows}}=='0'">
+                    <true>
+                        <td style="color: gray">{{@hrac.yellows}}</td>
+                    </true>
+                    <false>
+                        <td>{{@hrac.yellows}}</td>
+                    </false>
+                </check>
+                <check if="{{@hrac.reds}}=='0'">
+                    <true>
+                        <td style="color: gray">{{@hrac.reds}}</td>
+                    </true>
+                    <false>
+                        <td>{{@hrac.reds}}</td>
+                    </false>
+                </check>
+                <td>{{@hrac.value}}</td>
+                <check if="{{@SESSION.role}}=='2'">
+                    <true>
+                        <td>
+                            <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
+                                                                                             style="width: 28px;height:28px"
+                                                                                             src="/images/edit.png"
+                                                                                             title="Upravit"></a>
+                        </td>
+                    </true>
+                </check>
+            </tr>
+        </repeat>
+        </tbody>
+    </table>
+<br><br><br>
+
+
+    <h1 style="margin-left: 5%">ZÁLOŽNÍCI</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th><strong>#</strong></th>
+            <th><strong></strong></th>
+            <th><strong>Age</strong></th>
+            <th style="width: 300px"><strong>Name</strong></th>
+            <th><img alt="Matches" style="width:30px;height:30px" title="Zápasy" src="/images/Dress.png"></th>
+            <th><img alt="Goals" style="width:30px;height:30px" title="Góly" src="/images/Ball.png"></th>
+            <th><img alt="Asists" style="width:30px;height:30px" title="Asistence" src="/images/Asist.png"></th>
+            <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png">
+            </th>
+            <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png">
+            </th>
+            <th><img alt="Reds" style="width:30px;height:30px" title="Hodnota v €" src="/images/money.png"></th>
+            <check if="{{@SESSION.role}}=='2'">
+                <true>
+                    <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení"
+                             src="/images/settings.png"></th>
+                </true>
+            </check>
+        </tr>
+        </thead>
+        <tbody>
+        <repeat group="{{@zaloznici}}" value="{{@hrac}}">
+            <tr class="radek" data-name="{{@hrac.id}}">
+                <td>{{@hrac.numberdress}}</td>
+                <td><img style="width: 40px;height: 25px" title="{{@hrac.nation}}"
+                         src="/images/flags/{{@hrac.nation}}.png"></td>
+                <td>{{@hrac.age}}</td>
+                <check if="{{@hrac.state}}=='arrival'">
+                    <true>
+                        <td style="vertical-align: middle">
+                            <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img alt="new"
+                                                                                               style="width: 32px; height: 32px"
+                                                                                               title="Nový hráč"
+                                                                                               src="/images/new.png">
+                            </div>
+                        </td>
+                    </true>
+                    <false>
+                        <check if="{{@hrac.state}}=='hostarrival'">
+                            <true>
+                                <td style="vertical-align: middle">
+                                    <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img
+                                            alt="handshake"
+                                            title="Hostování"
+                                            style="width: 32px; height: 32px"
+                                            src="/images/handshake.png">
+                                    </div>
+                                </td>
+                            </true>
+                            <false>
+
+                                <check if="{{@hrac.state}}=='navhostarrival'">
+                                    <true>
+                                        <td style="vertical-align: middle">
+                                            <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img
+                                                    alt="handshake"
+                                                    title="Návrat z hostování"
+                                                    style="width: 32px; height: 32px"
+                                                    src="/images/navhost.png">
+                                            </div>
+                                        </td>
+                                    </true>
+                                    <false>
+                                        <td>{{@hrac.name}} {{@hrac.surname}}</td>
+                                    </false>
+                                </check>
+                            </false>
+                        </check>
+                    </false>
+                </check>
+                <check if="{{@hrac.matches}}=='0'">
+                    <true>
+                        <td style="color: gray">{{@hrac.matches}}</td>
+                    </true>
+                    <false>
+                        <td>{{@hrac.matches}}</td>
+                    </false>
+                </check>
+                <check if="{{@hrac.goals}}=='0'">
+                    <true>
+                        <td style="color: gray">{{@hrac.goals}}</td>
+                    </true>
+                    <false>
+                        <td><b>{{@hrac.goals}}</b></td>
+                    </false>
+                </check>
+                <check if="{{@hrac.assists}}=='0'">
+                    <true>
+                        <td style="color: gray">{{@hrac.assists}}</td>
+                    </true>
+                    <false>
+                        <td>{{@hrac.assists}}</td>
+                    </false>
+                </check>
+                <check if="{{@hrac.yellows}}=='0'">
+                    <true>
+                        <td style="color: gray">{{@hrac.yellows}}</td>
+                    </true>
+                    <false>
+                        <td>{{@hrac.yellows}}</td>
+                    </false>
+                </check>
+                <check if="{{@hrac.reds}}=='0'">
+                    <true>
+                        <td style="color: gray">{{@hrac.reds}}</td>
+                    </true>
+                    <false>
+                        <td>{{@hrac.reds}}</td>
+                    </false>
+                </check>
+                <td>{{@hrac.value}}</td>
+                <check if="{{@SESSION.role}}=='2'">
+                    <true>
+                        <td>
+                            <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
+                                                                                             style="width: 28px;height:28px"
+                                                                                             src="/images/edit.png"
+                                                                                             title="Upravit"></a>
+                        </td>
+                    </true>
+                </check>
+            </tr>
+        </repeat>
+        </tbody>
+    </table>
+<br><br><br>
+
+
+<h1 style="margin-left: 5%">ÚTOČNÍCI</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th><strong>#</strong></th>
+        <th><strong></strong></th>
+        <th><strong>Age</strong></th>
+        <th style="width: 300px"><strong>Name</strong></th>
+        <th><img alt="Matches" style="width:30px;height:30px" title="Zápasy" src="/images/Dress.png"></th>
+        <th><img alt="Goals" style="width:30px;height:30px" title="Góly" src="/images/Ball.png"></th>
+        <th><img alt="Asists" style="width:30px;height:30px" title="Asistence" src="/images/Asist.png"></th>
+        <th><img alt="Yellows" style="width:28px;height:28px" title="Žluté karty" src="/images/yellow-card.png">
+        </th>
+        <th><img alt="Reds" style="width:28px;height:28px" title="Červené Karty" src="/images/red-card.png">
+        </th>
+        <th><img alt="Reds" style="width:30px;height:30px" title="Hodnota v €" src="/images/money.png"></th>
+        <check if="{{@SESSION.role}}=='2'">
+            <true>
+                <th><img alt="Settings" style="width:30px;height:30px" title="Nastavení"
+                         src="/images/settings.png"></th>
+            </true>
+        </check>
+    </tr>
+    </thead>
+    <tbody>
+    <repeat group="{{@utocnici}}" value="{{@hrac}}">
+        <tr class="radek" data-name="{{@hrac.id}}">
+            <td>{{@hrac.numberdress}}</td>
+            <td><img style="width: 40px;height: 25px" title="{{@hrac.nation}}"
+                     src="/images/flags/{{@hrac.nation}}.png"></td>
+            <td>{{@hrac.age}}</td>
+            <check if="{{@hrac.state}}=='arrival'">
+                <true>
+                    <td style="vertical-align: middle">
+                        <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img alt="new"
+                                                                                           style="width: 32px; height: 32px"
+                                                                                           title="Nový hráč"
+                                                                                           src="/images/new.png">
+                        </div>
+                    </td>
+                </true>
+                <false>
+                    <check if="{{@hrac.state}}=='hostarrival'">
+                        <true>
+                            <td style="vertical-align: middle">
+                                <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img
+                                        alt="handshake"
+                                        title="Hostování"
+                                        style="width: 32px; height: 32px"
+                                        src="/images/handshake.png">
+                                </div>
+                            </td>
+                        </true>
+                        <false>
+
+                            <check if="{{@hrac.state}}=='navhostarrival'">
+                                <true>
+                                    <td style="vertical-align: middle">
+                                        <div class="vertical-center">{{@hrac.name}} {{@hrac.surname}} <img
+                                                alt="handshake"
+                                                title="Návrat z hostování"
+                                                style="width: 32px; height: 32px"
+                                                src="/images/navhost.png">
+                                        </div>
+                                    </td>
+                                </true>
+                                <false>
+                                    <td>{{@hrac.name}} {{@hrac.surname}}</td>
+                                </false>
+                            </check>
+                        </false>
+                    </check>
+                </false>
+            </check>
+            <check if="{{@hrac.matches}}=='0'">
+                <true>
+                    <td style="color: gray">{{@hrac.matches}}</td>
+                </true>
+                <false>
+                    <td>{{@hrac.matches}}</td>
+                </false>
+            </check>
+            <check if="{{@hrac.goals}}=='0'">
+                <true>
+                    <td style="color: gray">{{@hrac.goals}}</td>
+                </true>
+                <false>
+                    <td><b>{{@hrac.goals}}</b></td>
+                </false>
+            </check>
+            <check if="{{@hrac.assists}}=='0'">
+                <true>
+                    <td style="color: gray">{{@hrac.assists}}</td>
+                </true>
+                <false>
+                    <td>{{@hrac.assists}}</td>
+                </false>
+            </check>
+            <check if="{{@hrac.yellows}}=='0'">
+                <true>
+                    <td style="color: gray">{{@hrac.yellows}}</td>
+                </true>
+                <false>
+                    <td>{{@hrac.yellows}}</td>
+                </false>
+            </check>
+            <check if="{{@hrac.reds}}=='0'">
+                <true>
+                    <td style="color: gray">{{@hrac.reds}}</td>
+                </true>
+                <false>
+                    <td>{{@hrac.reds}}</td>
+                </false>
+            </check>
+            <td>{{@hrac.value}}</td>
+            <check if="{{@SESSION.role}}=='2'">
+                <true>
+                    <td>
+                        <a style="user-select: all; cursor:pointer" class="upravit"><img alt="edit"
+                                                                                         style="width: 28px;height:28px"
+                                                                                         src="/images/edit.png"
+                                                                                         title="Upravit"></a>
+                    </td>
+                </true>
+            </check>
+        </tr>
+    </repeat>
+    </tbody>
+</table>
+<br><br><br>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    $(".upravit").click(function () {
+            var id = $(this).parent().parent().attr('data-name');
+            window.location.href = window.location.origin + "/squad/slaviapraha/" + id + "/";
+        }
+    )
+</script>

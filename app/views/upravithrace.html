@@ -4,11 +4,11 @@
 <form style="font-size: 20px; padding: 10px; text-align:center" method="post">
 
     <input type="hidden" name="id" value="{{@hrac.id}}">
-    <span style="font-size:25px"><strong>{{@hrac.Jmeno}} {{@hrac.Prijmeni}}</strong></span><br><br>
+    <span style="font-size:25px"><strong>{{@hrac.name}} {{@hrac.surname}}</strong></span><br><br>
     <label for="cislodresu">#</label>
-    <input id="cislodresu" type="text" name="cislodresu" size="5" value="{{@hrac.cislodresu}}"> 
+    <input id="cislodresu" type="text" name="numberdress" size="5" value="{{@hrac.numberdress}}"> 
     <label for="Hodnota">Hodnota</label>
-    <input id="Hodnota" type="text" name="Hodnota" size="10" value="{{@hrac.Hodnota}}"> 
+    <input id="Hodnota" type="text" name="value" size="10" value="{{@hrac.value}}"> 
     <check if="{{@hrac.Zranen}}=='1'">
         <true>
             <label for="Zranen">Zraněn</label>
@@ -22,12 +22,12 @@
 
     </check>
     <label>Stav</label>
-    <select name="Stav">
+    <select name="state">
 
-        <check if="{{@hrac.Stav}}=='stayed'">
+        <check if="{{@hrac.state}}=='Standing'">
             <true>
                 <optgroup label="DEFAULT">
-                    <option selected value="stayed">Stávající</option>
+                    <option selected value="Standing">Stávající</option>
                 </optgroup>
                 <optgroup label="PŘÍCHOD">
                     <option value="hostarrival">Hostování</option>
@@ -41,7 +41,7 @@
             </true>
             <false>
 
-                <check if="{{@hrac.Stav}}=='hostarrival'">
+                <check if="{{@hrac.state}}=='hostarrival'">
                     <true>
                         <optgroup label="DEFAULT">
                             <option value="stayed">Stávající</option>
@@ -57,7 +57,7 @@
                         </optgroup>
                     </true>
                     <false>
-                        <check if="{{@hrac.Stav}}=='arrival'">
+                        <check if="{{@hrac.state}}=='arrival'">
                             <true>
                                 <optgroup label="DEFAULT">
                                     <option value="stayed">Stávající</option>
@@ -73,7 +73,7 @@
                                 </optgroup>
                             </true>
                             <false>
-                                <check if="{{@hrac.Stav}}=='hostdeparture'">
+                                <check if="{{@hrac.state}}=='hostdeparture'">
                                     <true>
                                         <optgroup label="DEFAULT">
                                             <option value="stayed">Stávající</option>
@@ -89,7 +89,7 @@
                                         </optgroup>
                                     </true>
                                     <false>
-                                        <check if="{{@hrac.Stav}}=='departure'">
+                                        <check if="{{@hrac.state}}=='departure'">
                                             <true>
                                                 <optgroup label="DEFAULT">
                                                     <option value="stayed">Stávající</option>
@@ -105,7 +105,7 @@
                                                 </optgroup>
                                             </true>
                                             <false>
-                                                <check if="{{@hrac.Stav}}=='navhostarrival'">
+                                                <check if="{{@hrac.state}}=='navhostarrival'">
                                                     <true>
                                                         <optgroup label="DEFAULT">
                                                             <option value="stayed">Stávající</option>
@@ -151,15 +151,15 @@
     <br><br>
 
     <label for="Zapasy">Zápasy</label>
-    <input type="number" id="Zapasy" style="font-size: 20px" name="Zapasy" value="{{@hrac.Zapasy}}"> 
+    <input type="number" id="Zapasy" style="font-size: 20px" name="matches" value="{{@hrac.matches}}"> 
     <label for="Goly">Góly</label>
-    <input type="number" id="Goly" name="Goly" value="{{@hrac.Goly}}"> 
+    <input type="number" id="Goly" name="Goly" value="{{@hrac.goals}}"> 
     <label for="Asistence">Asistence</label>
-    <input type="number" id="Asistence" name="Asistence" value="{{@hrac.Asistence}}"> 
+    <input type="number" id="Asistence" name="assists" value="{{@hrac.assists}}"> 
     <label for="ZK">ŽK</label>
-    <input type="number" id="ZK" name="ZK" value="{{@hrac.ZK}}"> 
+    <input type="number" id="ZK" name="yellows" value="{{@hrac.yellows}}"> 
     <label for="CK">ČK</label>
-    <input type="number" id="CK" name="CK" value="{{@hrac.CK}}"> 
+    <input type="number" id="CK" name="reds" value="{{@hrac.reds}}"> 
 
     <br><br>
     <button style="background-color: white; font-size: 20px" type="submit">UPRAVIT</button>

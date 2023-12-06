@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Čtv 21. dub 2022, 19:15
+-- Vytvořeno: Pon 10. říj 2022, 14:49
 -- Verze serveru: 10.4.18-MariaDB
 -- Verze PHP: 7.4.16
 
@@ -20,6 +20,98 @@ SET time_zone = "+00:00";
 --
 -- Databáze: `footballteams`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `matches`
+--
+
+CREATE TABLE `matches` (
+  `id` int(11) NOT NULL,
+  `competition` text COLLATE utf8_unicode_ci NOT NULL,
+  `played` text COLLATE utf8_unicode_ci NOT NULL,
+  `host` text COLLATE utf8_unicode_ci NOT NULL,
+  `away` text COLLATE utf8_unicode_ci NOT NULL,
+  `ghost` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `gaway` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `goals` text COLLATE utf8_unicode_ci NOT NULL,
+  `squad` text COLLATE utf8_unicode_ci NOT NULL,
+  `date` date NOT NULL,
+  `viewers` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `stadium` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Vypisuji data pro tabulku `matches`
+--
+
+INSERT INTO `matches` (`id`, `competition`, `played`, `host`, `away`, `ghost`, `gaway`, `goals`, `squad`, `date`, `viewers`, `stadium`) VALUES
+(1, 'Fortuna liga', '0', 'Slavia', 'Sparta', '3', '0', '', '', '2022-08-19', '18500', 'Eden'),
+(2, '', '', '', '', '', '', '', 'Usor', '0000-00-00', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `players`
+--
+
+CREATE TABLE `players` (
+  `id` int(11) NOT NULL,
+  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `surname` text COLLATE utf8_unicode_ci NOT NULL,
+  `nation` text COLLATE utf8_unicode_ci NOT NULL,
+  `league` text COLLATE utf8_unicode_ci NOT NULL,
+  `team` text COLLATE utf8_unicode_ci NOT NULL,
+  `age` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `position` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `numberdress` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `matches` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `goals` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `assists` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `yellows` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `reds` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `state` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Vypisuji data pro tabulku `players`
+--
+
+INSERT INTO `players` (`id`, `name`, `surname`, `nation`, `league`, `team`, `age`, `position`, `numberdress`, `matches`, `goals`, `assists`, `yellows`, `reds`, `state`, `value`) VALUES
+(1, 'Cristiano', 'Ronaldo', 'Portugal', 'Premier League', 'Manchester United', '37', 'UT', '7', '30', '18', '10', '12', '0', 'Standing', '30.00'),
+(2, 'Eduardo', 'Santos', 'Brasil', 'Fortuna Liga', 'Slavia', '24', 'OB', '33', '0', '0', '0', '0', '0', 'arrival', '00.80'),
+(3, 'Ondřej', 'Kolář', 'Czech', 'Fortuna Liga', 'Slavia', '27', 'BR', '1', '0', '0', '0', '0', '0', 'Standing', '02.50'),
+(4, 'Aleš', 'Mandous', 'Czech', 'Fortuna Liga', 'Slavia', '30', 'BR', '28', '0', '0', '0', '0', '0', 'Standing', '02.50'),
+(5, 'Přemysl', 'Kovář', 'Czech', 'Fortuna Liga', 'Slavia', '36', 'BR', '31', '0', '0', '0', '0', '0', 'Standing', '00.25'),
+(6, 'Aiham', 'Ousou', 'Sweden', 'Fortuna Liga', 'Slavia', '22', 'OB', '4', '0', '0', '0', '0', '0', 'Standing', '01.50'),
+(7, 'Taras', 'Kacharaba', 'Ukraine', 'Fortuna Liga', 'Slavia', '27', 'OB', '30', '0', '0', '0', '0', '0', 'Standing', '01.50'),
+(8, 'Maksym', 'Taloverov', 'Ukraine', 'Fortuna Liga', 'Slavia', '22', 'OB', '6', '0', '0', '0', '0', '0', 'Standing', '00.75'),
+(9, 'David', 'Hovorka', 'Czech', 'Fortuna Liga', 'Slavia', '28', 'OB', '2', '0', '0', '0', '0', '0', 'Standing', '00.50'),
+(10, 'Oscar', 'Dorley', 'Liberia', 'Fortuna Liga', 'Slavia', '23', 'OB', '19', '0', '0', '0', '0', '0', 'Standing', '03.50'),
+(11, 'David', 'Jurásek', 'Czech', 'Fortuna Liga', 'Slavia', '21', 'OB', '33', '0', '0', '0', '0', '0', 'Standing', '01.00'),
+(12, 'Jan', 'Bořil', 'Czech', 'Fortuna Liga', 'Slavia', '31', 'OB', '18', '0', '0', '0', '0', '0', 'Standing', '00.90'),
+(13, 'Tomáš', 'Holeš', 'Czech', 'Fortuna Liga', 'Slavia', '29', 'ZA', '3', '0', '0', '0', '0', '0', 'Standing', '07.00'),
+(14, 'Daniel', 'Samek', 'Czech', 'Fortuna Liga', 'Slavia', '18', 'ZA', '13', '0', '0', '0', '0', '0', 'Standing', '02.00'),
+(15, 'Petr', 'Ševčík', 'Czech', 'Fortuna Liga', 'Slavia', '28', 'ZA', '23', '0', '0', '0', '0', '0', 'Standing', '03.00'),
+(16, 'Jakub', 'Hromada', 'Slovak', 'Fortuna Liga', 'Slavia', '26', 'ZA', '25', '0', '0', '0', '0', '0', 'Standing', '01.50'),
+(17, 'Ibrahim', 'Traore', 'IvoryCoast', 'Fortuna Liga', 'Slavia', '33', 'ZA', '27', '0', '0', '0', '0', '0', 'Standing', '01.00'),
+(18, 'Lukáš', 'Masopust', 'Czech', 'Fortuna Liga', 'Slavia', '29', 'ZA', '8', '0', '0', '0', '0', '0', 'Standing', '03.50'),
+(19, 'David', 'Douděra', 'Czech', 'Fortuna Liga', 'Slavia', '24', 'ZA', '22', '0', '0', '0', '0', '0', 'arrival', '00.75'),
+(20, 'Ondřej', 'Lingr', 'Czech', 'Fortuna Liga', 'Slavia', '23', 'ZA', '32', '0', '0', '0', '0', '0', 'Standing', '03.50'),
+(21, 'Matěj', 'Valenta', 'Czech', 'Fortuna Liga', 'Slavia', '22', 'ZA', '29', '0', '0', '0', '0', '0', 'arrival', '00.40'),
+(22, 'Peter', 'Olayinka', 'Niggeria', 'Fortuna Liga', 'Slavia', '26', 'UT', '9', '0', '0', '0', '0', '0', 'Standing', '06.50'),
+(23, 'Lukáš', 'Provod', 'Czech', 'Fortuna Liga', 'Slavia', '25', 'ZA', '17', '0', '0', '0', '0', '0', 'Standing', '04.50'),
+(24, 'Srdjan', 'Plavšič', 'Serbia', 'Fortuna Liga', 'Slavia', '26', 'ZA', '10', '0', '0', '0', '0', '0', 'Standing', '01.20'),
+(25, 'Da Silva', 'Ewerton', 'Brasil', 'Fortuna Liga', 'Slavia', '25', 'UT', '12', '0', '0', '0', '0', '0', 'arrival', '01.00'),
+(26, 'Yira', 'Sor', 'Niggeria', 'Fortuna Liga', 'Slavia', '21', 'UT', '20', '0', '0', '0', '0', '0', 'Standing', '02.20'),
+(27, 'Ivan', 'Schranz', 'Czech', 'Fortuna Liga', 'Slavia', '28', 'UT', '26', '0', '0', '0', '0', '0', 'Standing', '02.00'),
+(28, 'Václav', 'Jurečka', 'Czech', 'Fortuna Liga', 'Slavia', '28', 'UT', '15', '0', '0', '0', '0', '0', 'arrival', '01.00'),
+(29, 'Daniel', 'Fila', 'Czech', 'Fortuna Liga', 'Slavia', '19', 'UT', '14', '0', '0', '0', '0', '0', 'Standing', '00.70'),
+(30, 'Stanislav', 'Tecl', 'Czech', 'Fortuna Liga', 'Slavia', '31', 'UT', '11', '0', '0', '0', '0', '0', 'Standing', '00.40'),
+(31, 'Moses', 'Usor', 'Niggeria', 'Fortuna Liga', 'Slavia', '20', 'UT', '16', '0', '0', '0', '0', '0', 'arrival', '00.10'),
+(32, 'Christ', 'Tiéhi', 'IvoryCoast', 'Fortuna Liga', 'Slavia', '24', 'ZA', '5', '0', '0', '0', '0', '0', 'arrival', '00.45');
 
 -- --------------------------------------------------------
 
@@ -49,42 +141,42 @@ CREATE TABLE `slaviapraha` (
 --
 
 INSERT INTO `slaviapraha` (`id`, `cislodresu`, `Jmeno`, `Prijmeni`, `Zranen`, `Narod`, `Pozice`, `Stav`, `Hodnota`, `Zapasy`, `Goly`, `Asistence`, `ZK`, `CK`) VALUES
-(1, '0', 'Slavia', 'Praha', 0, 'default', 'default', 'stayed', '?', 48, 108, 73, 109, 10),
+(1, '0', 'Slavia', 'Praha', 0, 'default', 'default', 'stayed', '?', 53, 117, 79, 121, 11),
 (2, '1', 'Ondřej', 'Kolář', 0, 'Czech.png', 'BR', 'stayed', '06.00', 20, 0, 0, 1, 0),
-(3, '28', 'Aleš', 'Mandous', 1, 'Czech.png', 'BR', 'arrival', '02.00', 28, 0, 0, 4, 0),
+(3, '28', 'Aleš', 'Mandous', 1, 'Czech.png', 'BR', 'arrival', '02.00', 30, 0, 0, 4, 0),
 (4, '-', 'Martin', 'Otáhal', 0, 'Czech.png', 'BR', 'hostdeparture', '00.15', 0, 0, 0, 0, 0),
 (5, '31', 'Přemysl', 'Kovář', 0, 'Czech.png', 'BR', 'stayed', '00.05', 1, 0, 0, 0, 0),
 (6, '6', 'David', 'Zima', 0, 'Czech.png', 'OB', 'departure', '07.50', 7, 0, 0, 1, 0),
-(7, '15', 'Ondřej', 'Kúdela', 0, 'Czech.png', 'OB', 'stayed', '01.00', 12, 1, 0, 3, 0),
-(8, '2', 'David', 'Hovorka', 0, 'Czech.png', 'OB', 'stayed', '00.50', 5, 0, 0, 0, 0),
+(7, '15', 'Ondřej', 'Kúdela', 0, 'Czech.png', 'OB', 'stayed', '01.00', 14, 3, 0, 3, 0),
+(8, '2', 'David', 'Hovorka', 0, 'Czech.png', 'OB', 'stayed', '00.50', 6, 0, 1, 3, 0),
 (9, '-', 'Ondřej', 'Karafiát', 0, 'Czech.png', 'OB', 'hostdeparture', '00.70', 0, 0, 0, 0, 0),
 (10, '-', 'Mohamed', 'Tijani', 0, 'IvoryCoast.png', 'OB', 'hostdeparture', '00.30', 0, 0, 1, 0, 0),
 (11, '18', 'Jan', 'Bořil', 1, 'Czech.png', 'OB', 'stayed', '01.80', 6, 0, 1, 2, 0),
 (12, '-', 'Daniel', 'Kosek', 0, 'Czech.png', 'OB', 'hostdeparture', '00.10', 0, 0, 0, 0, 0),
-(13, '5', 'Alexander', 'Bah', 0, 'Denmark.png', 'OB', 'stayed', '06.00', 40, 6, 12, 7, 0),
-(14, '3', 'Tomáš', 'Holeš', 0, 'Czech.png', 'ZA', 'stayed', '07.00', 37, 3, 3, 2, 1),
-(15, '25', 'Jakub', 'Hromada', 0, 'Slovak.png', 'ZA', 'stayed', '01.50', 23, 1, 0, 4, 1),
+(13, '5', 'Alexander', 'Bah', 0, 'Denmark.png', 'OB', 'stayed', '06.00', 41, 6, 12, 7, 0),
+(14, '3', 'Tomáš', 'Holeš', 0, 'Czech.png', 'ZA', 'stayed', '07.00', 39, 3, 3, 3, 1),
+(15, '25', 'Jakub', 'Hromada', 0, 'Slovak.png', 'ZA', 'stayed', '01.50', 25, 1, 0, 5, 1),
 (16, '24', 'Laco', 'Takács', 0, 'Czech.png', 'OB', 'hostdeparture', '00.75', 3, 0, 0, 0, 0),
-(17, '23', 'Petr', 'Ševčík', 1, 'Czech.png', 'ZA', 'stayed', '03.50', 21, 0, 2, 3, 0),
-(18, '27', 'Ibrahim', 'Traoré', 0, 'IvoryCoast.png', 'ZA', 'stayed', '01.00', 43, 8, 1, 10, 0),
+(17, '23', 'Petr', 'Ševčík', 1, 'Czech.png', 'ZA', 'stayed', '03.50', 22, 1, 3, 3, 0),
+(18, '27', 'Ibrahim', 'Traoré', 0, 'IvoryCoast.png', 'ZA', 'stayed', '01.00', 45, 9, 2, 12, 0),
 (19, '21', 'Mads', 'Madsen', 0, 'Denmark.png', 'ZA', 'arrival', '00.60', 17, 1, 4, 0, 0),
 (20, '8', 'Lukáš', 'Masopust', 0, 'Czech.png', 'ZA', 'stayed', '03.50', 30, 2, 7, 3, 0),
-(21, '19', 'Oscar', 'Dorley', 0, 'Liberia.png', 'OB', 'stayed', '03.50', 34, 2, 4, 8, 1),
+(21, '19', 'Oscar', 'Dorley', 0, 'Liberia.png', 'OB', 'stayed', '03.50', 36, 2, 4, 8, 1),
 (22, '7', 'Nicolae', 'Stanciu', 0, 'Romania.png', 'ZA', 'departure', '07.00', 27, 6, 8, 2, 0),
-(23, '32', 'Ondřej', 'Lingr', 0, 'Czech.png', 'ZA', 'stayed', '02.00', 43, 14, 1, 3, 0),
-(24, '9', 'Peter', 'Olayinka', 0, 'Niggeria.png', 'UT', 'stayed', '07.00', 38, 11, 3, 3, 0),
-(25, '17', 'Lukáš', 'Provod', 0, 'Czech.png', 'ZA', 'stayed', '05.00', 4, 3, 0, 1, 0),
+(23, '32', 'Ondřej', 'Lingr', 0, 'Czech.png', 'ZA', 'stayed', '02.00', 45, 15, 1, 4, 0),
+(24, '9', 'Peter', 'Olayinka', 0, 'Niggeria.png', 'UT', 'stayed', '07.00', 39, 11, 4, 3, 0),
+(25, '17', 'Lukáš', 'Provod', 0, 'Czech.png', 'ZA', 'stayed', '05.00', 5, 3, 0, 2, 0),
 (26, '12', 'Abdallah', 'Sima', 0, 'Senegal.png', 'UT', 'departure', '11.00', 6, 0, 1, 0, 0),
-(27, '10', 'Srdjan', 'Plavšič', 0, 'Serbia.png', 'ZA', 'arrival', '01.20', 34, 0, 2, 3, 1),
+(27, '10', 'Srdjan', 'Plavšič', 0, 'Serbia.png', 'ZA', 'arrival', '01.20', 35, 1, 3, 3, 2),
 (28, '14', 'Mick van', 'Buren', 0, 'Netherlands.png', 'UT', 'departure', '00.40', 2, 0, 0, 0, 0),
 (29, '20', 'Ubong', 'Ekpai', 0, 'Niggeria.png', 'UT', 'hostdeparture', '00.60', 22, 3, 1, 4, 0),
 (30, '16', 'Jan', 'Kuchta', 0, 'Czech.png', 'UT', 'departure', '05.00', 25, 12, 2, 5, 1),
-(31, '26', 'Ivan', 'Schranz', 0, 'Slovak.png', 'UT', 'arrival', '02.00', 41, 13, 4, 7, 0),
-(32, '11', 'Stanislav', 'Tecl', 0, 'Czech.png', 'UT', 'stayed', '00.50', 29, 6, 2, 1, 0),
+(31, '26', 'Ivan', 'Schranz', 0, 'Slovak.png', 'UT', 'arrival', '02.00', 43, 13, 5, 7, 0),
+(32, '11', 'Stanislav', 'Tecl', 0, 'Czech.png', 'UT', 'stayed', '00.50', 31, 6, 2, 1, 0),
 (33, '29', 'Yusuf', 'Hilál', 0, 'Bahrain.png', 'UT', 'hostdeparture', '00.40', 0, 0, 0, 0, 0),
 (34, '33', 'Petar', 'Musa', 0, 'Croatia.png', 'UT', 'hostdeparture', '02.00', 4, 0, 0, 0, 0),
 (35, '13', 'Daniel', 'Samek', 0, 'Czech.png', 'ZA', 'stayed', '02.20', 26, 3, 3, 3, 0),
-(36, '-', 'Lukáš', 'Pokorný', 0, 'Czech.png', 'OB', 'departure', '00.15', 0, 0, 0, 0, 0),
+(36, '-', 'Lukáš', 'Pokorný', 0, 'Czech.png', 'OB', 'departure', '00.15', 0, 0, 0, 1, 0),
 (37, '-', 'Jakub', 'Markovič', 0, 'Czech.png', 'BR', 'hostdeparture', '00.20', 0, 0, 0, 0, 0),
 (38, '-', 'Lukáš', 'Červ', 0, 'Czech.png', 'ZA', 'hostdeparture', '00.20', 0, 0, 0, 0, 0),
 (39, '-', 'Martin', 'Vantruba', 0, 'Slovak.png', 'BR', 'departure', '00.20', 0, 0, 0, 0, 0),
@@ -95,13 +187,13 @@ INSERT INTO `slaviapraha` (`id`, `cislodresu`, `Jmeno`, `Prijmeni`, `Zranen`, `N
 (44, '-', 'Jakub', 'Jugas', 0, 'Czech.png', 'OB', 'departure', '00.65', 0, 0, 0, 0, 0),
 (45, '-', 'Jaroslav', 'Zelený', 0, 'Czech.png', 'OB', 'departure', '00.90', 0, 0, 0, 0, 0),
 (46, '22', 'Michael', 'Krmenčík', 0, 'Czech.png', 'UT', 'hostarrival', '02.50', 21, 4, 5, 3, 0),
-(47, '4', 'Aiham', 'Ousou', 0, 'Sweden.png', 'OB', 'arrival', '01.20', 39, 1, 0, 9, 2),
-(48, '30', 'Taras', 'Kacharaba', 0, 'Ukraine.png', 'OB', 'arrival', '01.50', 31, 1, 0, 8, 2),
+(47, '4', 'Aiham', 'Ousou', 0, 'Sweden.png', 'OB', 'arrival', '01.20', 40, 1, 0, 9, 2),
+(48, '30', 'Taras', 'Kacharaba', 0, 'Ukraine.png', 'OB', 'arrival', '01.50', 32, 1, 0, 8, 2),
 (49, '-', 'Simon', 'Deli', 0, 'IvoryCoast.png', 'OB', 'departure', '04.30', 0, 0, 0, 0, 0),
 (50, '30', 'Antonín', 'Kinský', 0, 'Czech.png', 'BR', 'hostdeparture', '00.10', 1, 0, 0, 0, 0),
 (51, '14', 'Filip', 'Horský', 0, 'Czech.png', 'UT', 'hostdeparture', '?', 3, 1, 0, 0, 0),
-(52, '6', 'Maksym', 'Taloverov', 0, 'Ukraine.png', 'OB', 'arrival', '00.75', 12, 0, 1, 3, 1),
-(53, '20', 'Yira', 'Sor', 0, 'Niggeria.png', 'ZA', 'arrival', '00.50', 13, 6, 3, 1, 0),
+(52, '6', 'Maksym', 'Taloverov', 0, 'Ukraine.png', 'OB', 'arrival', '00.75', 13, 0, 1, 5, 1),
+(53, '20', 'Yira', 'Sor', 0, 'Niggeria.png', 'ZA', 'arrival', '00.50', 15, 7, 3, 1, 0),
 (54, '-', 'Michal', 'Šmíd', 0, 'Czech.png', 'OB', 'arrival', '?', 0, 0, 0, 0, 0),
 (55, '23', 'Filip', 'Blecha', 0, 'Czech.png', 'ZA', 'arrival', '00.35', 0, 0, 0, 0, 0),
 (56, '14', 'Erik', 'Biegon', 0, 'Czech.png', 'UT', 'arrival', '?', 1, 0, 0, 0, 0),
@@ -110,8 +202,8 @@ INSERT INTO `slaviapraha` (`id`, `cislodresu`, `Jmeno`, `Prijmeni`, `Zranen`, `N
 (59, '29', 'Christián', 'Fülöp', 0, 'Czech.png', 'BR', 'arrival', '?', 0, 0, 0, 0, 0),
 (60, '34', 'Jan', 'Sirotník', 0, 'Czech.png', 'BR', 'arrival', '?', 0, 0, 0, 0, 0),
 (61, '14', 'Denis', 'Alijagič', 0, 'Czech.png', 'UT', 'hostdeparture', '?', 0, 0, 0, 0, 0),
-(62, '33', 'David', 'Jurásek', 0, 'Czech.png', 'OB', 'arrival', '00.40', 7, 0, 1, 2, 0),
-(63, '14', 'Daniel', 'Fila', 0, 'Czech.png', 'UT', 'arrival', '00.50', 8, 0, 1, 1, 0),
+(62, '33', 'David', 'Jurásek', 0, 'Czech.png', 'OB', 'arrival', '00.40', 9, 1, 1, 2, 0),
+(63, '14', 'Daniel', 'Fila', 0, 'Czech.png', 'UT', 'arrival', '00.50', 9, 1, 1, 1, 0),
 (64, '11', 'Daniel', 'Smiga', 0, 'Czech.png', 'UT', 'hostarrival', '?', 1, 0, 0, 0, 0),
 (65, '33', 'Adam', 'Pudil', 0, 'Czech.png', 'ZA', 'arrival', '?', 1, 0, 0, 0, 0);
 
@@ -197,11 +289,75 @@ INSERT INTO `spzapasy` (`id`, `SOUTEZ`, `ODEHRANE`, `OHOST`, `OAWAY`, `HOST`, `A
 (49, 'Fortuna', '1', 'Slavia.png', 'Pardubice.png', 'Slavia', 'Pardubice', '4', '0', '<span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>22\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Provod</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>41\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Penalty\" width=\"16px\" height=\"16px\" src=\"/images/penalty.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Provod</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>54\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Provod</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Fila)</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Patrák</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>57\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>62\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Schranz</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Plavšič)</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>81\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Ousou</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>84\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Traore</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Tecl)</span></span><br>', '2022-04-10', '10 386', 'Sinobo Stadium', '-', '-', ''),
 (50, 'KonferLeag', '1', 'Feyenoord.png', 'Slavia.png', 'Feyenoord', 'Slavia', '3', '1', '<span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>02\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Dessers</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Traore</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>14\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>40\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Kokcu</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>59\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Dessers</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>78\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Sinisterra</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Hendrix)</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Traore</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>80\'</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Kacharaba</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"RedCard\" width=\"16px\" height=\"16px\" src=\"/images/red-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+4\'</span></span><br>', '2022-04-14', '19 370', 'Sinobo Stadium', '-', '-', ''),
 (51, 'Fortuna', '1', 'Jablonec.png', 'Slavia.png', 'Jablonec', 'Slavia', '1', '2', '<span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>10\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Černák</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>28\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Pilař</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Schranz</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>31\'</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Fila</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>43\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>67\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Silný</span> </span><br><span class=\'vertical-center\' style=\'float: right\'><span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Taloverov)</span> <span class=\'vertical-center\' style=\'font-size:85%\'>Tecl</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>84\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>87\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Krob</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Martinec)</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+3\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Martinec</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Schranz</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+3\'</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Tecl</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+3\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+4\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Krob</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Kolář</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+6\'</span></span><br>', '2022-04-17', '4 056', 'Stadion Střelnice', '-', '-', ''),
-(52, 'Fortuna', '1', 'Slavia.png', 'Zlín.png', 'Slavia', 'Zlín', '3', '0', '<span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Chanturishvili</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>28\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>32\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Tecl</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Bah)</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>36\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Provod</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Bah)</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>64\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Olayinka</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Schranz)</span></span><br>', '2022-04-20', '9 251', 'Sinobo Stadium', '-', '-', '');
+(52, 'Fortuna', '1', 'Slavia.png', 'Zlín.png', 'Slavia', 'Zlín', '3', '0', '<span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Chanturishvili</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>28\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>32\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Tecl</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Bah)</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>36\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Provod</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Bah)</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>64\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Olayinka</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Schranz)</span></span><br>', '2022-04-20', '9 251', 'Sinobo Stadium', '-', '-', ''),
+(53, 'Fortuna', '1', 'Hradec.png', 'Slavia.png', 'Hradec', 'Slavia', '4', '3', '<span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Hovorka</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>12\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>13\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Penalty\" width=\"16px\" height=\"16px\" src=\"/images/penalty.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Vašulín</span> </span><br><span class=\'vertical-center\' style=\'float: right\'><span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Olayinka)</span> <span class=\'vertical-center\' style=\'font-size:85%\'>Jurásek</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>19\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>34\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Kubala</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Klíma)</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>35\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Kučera</span> </span><br><span class=\'vertical-center\' style=\'float: right\'><span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Schranz)</span> <span class=\'vertical-center\' style=\'font-size:85%\'>Fila</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>40\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>47\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Kučera</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>58\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Vlkanova</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Kubala)</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Kúdela</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>73\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+6\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Leibl</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Taloverov</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+6\'</span></span><br>', '2022-04-24', '2 907', 'Lokotrans Aréna', '-', '-', ''),
+(54, 'Fortuna', '1', 'Slavia.png', 'Slovácko.png', 'Slavia', 'Slovácko', '3', '0', '<span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>29\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Plavšič</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>75\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Traore</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Ševčík)</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>81\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Traore</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>84\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Lingr</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Plavšič)</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>85\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Lingr</span> </span><br>', '2022-05-08', '13 119', 'Sinobo Stadium', '-', '-', ''),
+(55, 'Fortuna', '1', 'Slavia.png', 'Plzeň.png', 'Slavia', 'Plzeň', '1', '1', '<span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Havel</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>14\'</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Kopic</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>64\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+1\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Penalty\" width=\"16px\" height=\"16px\" src=\"/images/penalty.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Kúdela</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+2\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Provod</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+4\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Hovorka</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Beauguel</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"RedCard\" width=\"16px\" height=\"16px\" src=\"/images/red-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+5\'</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Staněk</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90\'</span></span><br>', '2022-05-01', '18 732', 'Sinobo Stadium', '-', '-', ''),
+(56, 'Fortuna', '1', 'Ostrava.png', 'Slavia.png', 'Ostrava', 'Slavia', '1', '1', '<span class=\'vertical-center\' style=\'float: right\'><span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Traore)</span> <span class=\'vertical-center\' style=\'font-size:85%\'>Sor</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>05\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>32\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Buchta</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Hromada</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>40\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>40\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Kaloč</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Pokorný</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>44\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>60\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Almási</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>62\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Ndefe</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>69\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"RedCard\" width=\"16px\" height=\"16px\" src=\"/images/red-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Lischka</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Holeš</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>77\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>85\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Laštůvka</span> </span><br>', '2022-05-11', '8 728', 'Ostrava', '-', '-', '');
+INSERT INTO `spzapasy` (`id`, `SOUTEZ`, `ODEHRANE`, `OHOST`, `OAWAY`, `HOST`, `AWAY`, `GHOST`, `GAWAY`, `GOLY`, `DATUM`, `DIVACI`, `STADION`, `VIDEOLINK`, `PLAYERSLINK`, `SESTAVA`) VALUES
+(57, 'Fortuna', '1', 'Slavia.png', 'Sparta.png', 'Slavia', 'Sparta', '1', '2', '<span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Pešek</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>13\'</span></span><br><span class=\'vertical-center\' style=\'float: right\'><span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Hancko)</span> <span class=\'vertical-center\' style=\'font-size:85%\'>Čvančara</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>20\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>32\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Traore</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>39\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Ševčík</span> <span class=\'vertical-center\' style=\'color: gray;font-size:85%\'>(Hovorka)</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>45+1\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Hovorka</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Votík</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>49\'</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Wiesner</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>59\'</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Wiesner</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"RedCard\" width=\"16px\" height=\"16px\" src=\"/images/red-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>78\'</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Hložek</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"Goal\" width=\"16px\" height=\"16px\" src=\"/images/Goal2.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>83\'</span></span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Haraslín</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+1\'</span></span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+1\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Taloverov</span> </span><br><span class=\'vertical-center\' style=\'float: left\'><span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90+1\'</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"RedCard\" width=\"16px\" height=\"16px\" src=\"/images/red-card.png\"></span> <span class=\'vertical-center\' style=\'font-size:85%\'>Plavšič</span> </span><br><span class=\'vertical-center\' style=\'float: right\'> <span class=\'vertical-center\' style=\'font-size:85%\'>Usor</span> <span style=\"padding-left: 3px; padding-right: 3px\"><img alt=\"YellowCard\" width=\"16px\" height=\"16px\" src=\"/images/yellow-card.png\"></span> <span class=\'vertical-center\' style=\'font-size: 75%; color: gray\'>90\'</span></span><br>', '2022-05-15', '18 131', 'Sinobo Stadium', '-', '-', '');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `teams`
+--
+
+CREATE TABLE `teams` (
+  `id` int(11) NOT NULL,
+  `fullname` text COLLATE utf8_unicode_ci NOT NULL,
+  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `league` text COLLATE utf8_unicode_ci NOT NULL,
+  `matches` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `goals` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `assists` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `yellows` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `reds` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Vypisuji data pro tabulku `teams`
+--
+
+INSERT INTO `teams` (`id`, `fullname`, `name`, `league`, `matches`, `goals`, `assists`, `yellows`, `reds`) VALUES
+(1, 'SK Slavia Praha', 'Slavia', 'Fortuna liga', '0', '0', '0', '0', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `uzivatele`
+--
+
+CREATE TABLE `uzivatele` (
+  `id` int(11) NOT NULL,
+  `nickname` text COLLATE utf8_unicode_ci NOT NULL,
+  `password` text COLLATE utf8_unicode_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '1',
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Vypisuji data pro tabulku `uzivatele`
+--
+
+INSERT INTO `uzivatele` (`id`, `nickname`, `password`, `role`, `date`) VALUES
+(1, 'admin', '$2y$10$HcDmE5lIsc/Gro6GvAWOjuicNn6hFGuW3YY9WE2blicB8mVtqO.7e', '2', '2022-06-10');
 
 --
 -- Indexy pro exportované tabulky
 --
+
+--
+-- Indexy pro tabulku `matches`
+--
+ALTER TABLE `matches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pro tabulku `players`
+--
+ALTER TABLE `players`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexy pro tabulku `slaviapraha`
@@ -216,8 +372,33 @@ ALTER TABLE `spzapasy`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexy pro tabulku `teams`
+--
+ALTER TABLE `teams`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pro tabulku `uzivatele`
+--
+ALTER TABLE `uzivatele`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uzivatele___nickname` (`nickname`(20));
+
+--
 -- AUTO_INCREMENT pro tabulky
 --
+
+--
+-- AUTO_INCREMENT pro tabulku `matches`
+--
+ALTER TABLE `matches`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pro tabulku `players`
+--
+ALTER TABLE `players`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT pro tabulku `slaviapraha`
@@ -229,7 +410,19 @@ ALTER TABLE `slaviapraha`
 -- AUTO_INCREMENT pro tabulku `spzapasy`
 --
 ALTER TABLE `spzapasy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT pro tabulku `teams`
+--
+ALTER TABLE `teams`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pro tabulku `uzivatele`
+--
+ALTER TABLE `uzivatele`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

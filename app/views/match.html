@@ -1,0 +1,13 @@
+<div style="font-size: 150px; text-align: center; margin-top: 3%; margin-bottom: 3%">{{@teamname}}</div>
+
+<repeat group="{{@matches}}" value="{{@match}}">
+    <div data-name="{{@match.id}}" style="margin-left: 35%;margin-right: 35%; border: 1px darkgrey groove; padding: 8px">
+            <div style="display: inline-block;">{{@match.date}}</div>
+            <div style="display: inline-block;">{{@match.competition}}</div>
+            <div  style="display: inline-block;">{{@match.host}}</div>
+            <div  style="display: inline-block;">{{@match.away}}</div>
+        <div style="display: inline-block; text-align: right"><a href="/match/slaviapraha/{{@match.id}}/addsquad">Squad</a></div>
+        <div style="display: inline-block; text-align:right"><a href="/match/slaviapraha/{{@match.id}}/addgoals">Goals</a></div>
+    </div>
+        <br>
+</repeat>

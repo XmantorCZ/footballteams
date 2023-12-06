@@ -1,0 +1,175 @@
+
+<style>
+    .ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .li {
+        float: left;
+        border-right:1px solid #f1f1f1;
+    }
+
+    .li:last-child {
+        border-right: none;
+    }
+
+    .li:hover {
+        background-color: #ff7373;
+    }
+
+    .li .a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+</style>
+
+<br>
+
+<ul class="ul">
+    <li class="active li">
+        <a class="a" href="/">TEAMS</a>
+    </li>
+    <li class="li">
+        <a class="a" href="#">LEAGUES</a>
+    </li>
+
+    <li class="li">
+        <a class="a" href="/admin">ADMIN</a>
+    </li>
+</ul>
+<br>
+<ul>
+
+    <h2>TEAMS</h2>
+    <li style="padding: 5px"><a id="myBtn" style="color: #ff7373; text-decoration: none; font-size: 20px" href="#"><b>ADD</b></a></li>
+    <li style="padding: 5px"><a style="color: #0e2f44; text-decoration: none; font-size: 20px" href="/teamslist"><b>LIST</b></a></li>
+
+    <h2>Players</h2>
+    <li style="padding: 5px"><a id="Playerbtn" style="color: #ff7373; text-decoration: none; font-size: 20px" href="#"><b>ADD</b></a></li>
+    <li style="padding: 5px"><a style="color: #0e2f44; text-decoration: none; font-size: 20px" href="/playerslist"><b>LIST</b></a></li>
+
+    <h2>Match</h2>
+    <li style="padding: 5px"><a id="Matchbtn" style="color: #ff7373; text-decoration: none; font-size: 20px" href="#"><b>ADD</b></a></li>
+    <li style="padding: 5px"><a style="color: #0e2f44; text-decoration: none; font-size: 20px" href="/matcheslist"><b>LIST</b></a></li>
+
+    <h2>SETTINGS</h2>
+    <li style="padding: 5px"><a style="color: #065535; text-decoration: none; font-size: 20px" href="/install"><b>INSTALL</b></a></li>
+
+</ul>
+
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content" align="center">
+        <h2 align="center">ADD TEAM</h2>
+        <form method="POST">
+            <input type="text" required name="fullname" placeholder="Fullname" size="25">
+            <br><br>
+            <input type="text" required name="teamid" placeholder="TeamId" size="25">
+            <br><br>
+            <input type="text" required name="teamcolor" placeholder="Team Color" size="25">
+            <br><br>
+            <input type="text" required name="name" placeholder="Name" size="25">
+            <br><br>
+            <input type="text" required name="league" placeholder="League" size="25">
+            <br><br>
+            <br><br><br>
+            <button style="width: 150px" type="submit"><strong>ADD</strong></button>
+        </form>
+    </div>
+</div>
+
+<div id="Player" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content" align="center">
+        <h2 align="center">ADD Players</h2>
+        <form method="POST">
+            <input type="text" required name="name" placeholder="Name" size="25">  
+            <input type="text" required name="surname" placeholder="Surname" size="25">  
+            <input type="text" required name="nation" placeholder="Nation" size="15">  
+            <br><br>
+            <input type="text" required name="league" placeholder="League" size="25">  
+            <input type="text" required name="team" placeholder="team" size="25">  
+            <br><br>
+            <input type="text" required name="position" placeholder="Position" size="15">  
+            <input type="text" required name="numberdress" placeholder="Dress Num" size="10">  
+            <input type="text" required name="age" placeholder="Age" size="10">  
+            <br><br>
+
+            <br><br><br>
+            <button style="width: 150px" type="submit"><strong>ADD</strong></button>
+        </form>
+    </div>
+</div>
+
+<div id="Match" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content" align="center">
+        <h2 align="center">ADD Match</h2>
+        <form method="POST">
+            <input type="text" required name="host" placeholder="Host" size="25">  
+            <input type="text" required name="away" placeholder="Away" size="25">  
+            <input type="date" required name="date" placeholder="Date" size="15">  
+            <br><br>
+            <input type="text" required name="competition" placeholder="Competition" size="25">  
+            <input type="text" required name="played" placeholder="Played" size="8">  
+            <input type="text" required name="ghost" placeholder="GHost" size="8">  
+            <input type="text" required name="gaway" placeholder="GAway" size="8">  
+            <br><br>
+            <input type="text" name="viewers" placeholder="Viewers" size="10">  
+            <input type="text" name="stadium" placeholder="Stadium" size="15">  
+
+            <br><br>
+
+            <br><br><br>
+            <button style="width: 150px" type="submit"><strong>ADD</strong></button>
+        </form>
+    </div>
+</div>
+
+
+<script>
+
+
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+
+    var player = document.getElementById("Player");
+    var playerbtn = document.getElementById("Playerbtn");
+
+    var match = document.getElementById("Match");
+    var matchbtn = document.getElementById("Matchbtn");
+
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    playerbtn.onclick = function () {
+        player.style.display = "block";
+    }
+
+    matchbtn.onclick = function () {
+        match.style.display = "block";
+    }
+
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+        if (event.target === player) {
+            player.style.display = "none";
+        }
+        if (event.target === match) {
+            match.style.display = "none";
+        }
+    }
+
+</script>

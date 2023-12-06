@@ -1,3 +1,36 @@
+<style>
+    .ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .li {
+        float: left;
+        border-right:1px solid #f1f1f1;
+    }
+
+    .li:last-child {
+        border-right: none;
+    }
+
+    .li:hover {
+        background-color: #ff7373;
+    }
+
+    .li .a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+</style>
+
+
 <br>
 <h1 style="text-align: center">STATS</h1>
 <div class="center">
@@ -30,7 +63,7 @@
 <br>
 <div class="center">
     <div>
-        <table>
+        <table class="table">
             <thead>
             <tr>
                 <th style="background-color:red">Střelci</th>
@@ -40,7 +73,7 @@
             <tbody>
             <repeat group="{{@strelci}}" value="{{@strelec}}">
                 <tr>
-                    <td style="width: 250px">{{@strelec.Jmeno}} {{@strelec.Prijmeni}}</td>
+                    <td style="width: 250px">{{@strelec.name}} {{@strelec.surname}}</td>
                     <td>{{@strelec.Goly}}</td>
                 </tr>
             </repeat>
@@ -48,7 +81,7 @@
         </table>
     </div>
     <div>
-        <table>
+        <table class="table">
             <thead>
             <tr>
                 <th style="background-color:red">Nahravači</th>
@@ -58,7 +91,7 @@
             <tbody>
             <repeat group="{{@asistence}}" value="{{@asistent}}">
                 <tr>
-                    <td style="width: 250px">{{@asistent.Jmeno}} {{@asistent.Prijmeni}}</td>
+                    <td style="width: 250px">{{@asistent.name}} {{@asistent.surname}}</td>
                     <td>{{@asistent.Asistence}}</td>
                 </tr>
             </repeat>
@@ -66,7 +99,7 @@
         </table>
     </div>
     <div>
-        <table>
+        <table class="table">
             <thead>
             <tr>
                 <th style="background-color:red">Trestanci</th>
@@ -76,7 +109,7 @@
             <tbody>
             <repeat group="{{@zlutekarty}}" value="{{@zlutekarta}}">
                 <tr>
-                    <td style="width: 250px">{{@zlutekarta.Jmeno}} {{@zlutekarta.Prijmeni}}</td>
+                    <td style="width: 250px">{{@zlutekarta.name}} {{@zlutekarta.surname}}</td>
                     <td>{{@zlutekarta.ZK}}</td>
                 </tr>
             </repeat>
@@ -87,6 +120,14 @@
 <br>
 <br>
 
+<ul class="ul">
+    <li class="li"><a class="a" href="/squad/{{ @teamid }}">Sestava</a></li>
+    <li class="li"><a class="a" href="/match/slaviapraha">Zápas</a></li>
+    <li class="li"><a class="a" href="/settings/slaviapraha">Nastavení</a></li>
+</ul>
+
+<br>
+<br>
 <include href="soupiska.html"/>
 <include href="zapasymenu.html"/>
 

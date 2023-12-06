@@ -2,7 +2,7 @@
 
 namespace controllers;
 
-class Loggedrights extends LoginController
+class Loggedrights extends Rightsprotect
 {
     public function get_install(\Base $base)
     {
@@ -10,6 +10,44 @@ class Loggedrights extends LoginController
         $base->set('content', 'install.html');
         $base->set("title", "INSTALL");
         echo \Template::instance()->render("index.html");
+    }
+
+    public function get_admin(\Base $base)
+    {
+
+        $base->set("content", "admin.html");
+        $base->set("title", "ADMIN");
+        $base->set("logo", "Menu");
+        echo \Template::instance()->render("index.html");
+
+    }
+
+    public function post_admin(\Base $base)
+    {
+        if ($base->get('POST["surname"]') != "") {
+            $addplayer = new \models\Players();
+            $addplayer->copyfrom($base->get('POST'));
+
+
+            $addplayer->save();
+            $base->reroute('/admin');
+        }
+        if ($base->get('POST["fullname"]') != "") {
+            $slavia = new \models\Teams();
+            $slavia->copyfrom($base->get('POST'));
+
+            $slavia->save();
+
+            $base->reroute('/admin');
+        }
+        if ($base->get('POST["host"]') != "") {
+            $slavia = new \models\Matches();
+            $slavia->copyfrom($base->get('POST'));
+
+            $slavia->save();
+
+            $base->reroute('/admin');
+        }
     }
 
     public function post_install(\Base $base)
@@ -33,8 +71,16 @@ class Loggedrights extends LoginController
             \models\Uzivatele::setdown();
             \models\Uzivatele::setup();
 
-            /*
-                        $slavia = new data\SlaviaPraha();
+        }
+        if ($base->get('POST.Teams') == true) {
+
+            \models\Teams::setdown();
+            \models\Teams::setup();
+
+        }
+        if ($base->get('POST.Players') == true) {
+
+                        $slavia = new \models\SlaviaPraha();
 
                         $players = $slavia->find(array(""));
 
@@ -48,8 +94,14 @@ class Loggedrights extends LoginController
 
                             $player->save();
                         }
-                    }
-            */
+
+
+        }
+        if ($base->get('POST.Matches') == true) {
+
+            \models\Matches::setdown();
+            \models\Matches::setup();
+
         }
         $base->reroute('/');
     }
@@ -58,11 +110,11 @@ class Loggedrights extends LoginController
     {
 
         $id = $base->get('PARAMS.id');
-        $slavia = new data\SlaviaPraha();
+        $slavia = new \models\Players();
         $player = $slavia->findone(array('id=?', $id));
         $base->set('hrac', $slavia->findone(array('id=?', $id)));
         $base->set("content", "upravithrace.html");
-        $base->set('title', $player->Jmeno . " " . $player->Prijmeni);
+        $base->set('title', $player->name . " " . $player->surname);
         echo \Template::instance()->render("index.html");
 
     }
@@ -70,15 +122,10 @@ class Loggedrights extends LoginController
     public function post_upravithrace(\Base $base)
     {
         $id = $base->get('POST.id');
-        $slavia = new data\SlaviaPraha();
+        $slavia = new \models\Players();
         $slavia->load(array("id=?", $id));
         $slavia->copyfrom($base->get('POST'));
 
-        if ($base->get('POST.Zranen') == true) {
-            $slavia->Zranen = 1;
-        } else {
-            $slavia->Zranen = 0;
-        }
 
         $slavia->save();
 
@@ -86,11 +133,46 @@ class Loggedrights extends LoginController
 
     }
 
+    public function get_addsquad(\Base $base){
+
+        $id = $base->get('PARAMS.matchid');
+        $zapasy = new \models\SPZapasy();
+        $slavia = new \models\Players();
+        $base->set('addsq', $zapasy->findone(array('id=?', $id)));
+        $base->set('logo', 'settings');
+        $base->set('content', 'addsquad.html');
+        $base->set("title", "ADDSQUAD");
+        $base->set("brankariselect", $slavia->find("position='BR'", ['order' => 'matches DESC']));
+        $base->set("zalozniciselect", $slavia->find("position='ZA'", ['order' => 'matches DESC']));
+        $base->set("obranciselect", $slavia->find("position='OB'", ['order' => 'matches DESC']));
+        $base->set("utocniciselect", $slavia->find("position='UT'", ['order' => 'matches DESC']));
+        echo \Template::instance()->render("index.html");
+
+
+    }
+
+    public function post_addsquad(\Base $base){
+
+        $id = $base->get('PARAMS.matchid');
+        $zapasy = new \models\Matches();
+        $zapasy->load(array("id=?", $id));
+       $pole = $zapasy->copyfrom($base->get('POST.squad'));
+
+        $zapasy->squad = $pole;
+
+        $zapasy->save();
+
+        $base->reroute('/slaviapraha');
+
+
+
+    }
+
     public function get_upravitzapas(\Base $base)
     {
 
         $id = $base->get('PARAMS.id');
-        $zapasy = new data\SPZapasy();
+        $zapasy = new \models\SPZapasy();
         $match = $zapasy->findone(array('id=?', $id));
         $base->set('zapas', $zapasy->findone(array('id=?', $id)));
         $base->set("content", "upravitzapas.html");
@@ -103,7 +185,7 @@ class Loggedrights extends LoginController
     public function post_upravitzapas(\Base $base)
     {
         $id = $base->get('POST.id');
-        $zapasy = new data\SPZapasy();
+        $zapasy = new \models\SPZapasy();
         $zapasy->load(array("id=?", $id));
         $zapasy->copyfrom($base->get('POST'));
 
@@ -116,22 +198,21 @@ class Loggedrights extends LoginController
 
     public function post_slaviapraha(\Base $base)
     {
-        if ($base->get('POST["Jmeno"]') != "") {
-            $slavia = new data\SlaviaPraha();
+        if ($base->get('POST["name"]') != "") {
+            $slavia = new \models\Players();
             $slavia->copyfrom($base->get('POST'));
-            $slavia->Narod = $base->get('POST["Narod"]') . ".png";
-            $slavia->Zapasy = 0;
-            $slavia->Goly = 0;
-            $slavia->Asistence = 0;
-            $slavia->ZK = 0;
-            $slavia->CK = 0;
+            $slavia->matches = 0;
+            $slavia->goals = 0;
+            $slavia->assists = 0;
+            $slavia->yellows = 0;
+            $slavia->reds = 0;
             $slavia->save();
             $base->reroute('/slaviapraha');
         }
         if ($base->get('POST["DIVACI"]') != "") {
-            $zapasy = new data\SPZapasy();
-            $slavia = new data\SlaviaPraha();
-            $nations = new data\SlaviaPraha();
+            $zapasy = new \models\SPZapasy();
+            $slavia = new \models\SlaviaPraha();
+            $nations = new \models\SlaviaPraha();
             $zapasy->copyfrom($base->get('POST'), function ($val) {
                 // the 'POST' array is passed to our callback function
                 return array_intersect_key($val, array_flip(array('SOUTEZ', 'OHOST', 'OAWAY', 'HOST', 'AWAY', 'DATUM', 'DIVACI', 'STADION', 'VIDEOLINK', 'PLAYERSLINK')));
@@ -146,7 +227,7 @@ class Loggedrights extends LoginController
             $asi = "";
             $spoj = "";
 
-            $slaviapraha = $slavia->findone(array('Jmeno=?', "Slavia"));
+            $slaviapraha = $slavia->findone(array('name=?', "Slavia"));
 
             if ($base->get('POST["WIN"]') == "0") {
 

@@ -1,15 +1,53 @@
+
+<style>
+    .ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .li {
+        float: left;
+        border-right:1px solid #f1f1f1;
+    }
+
+    .li:last-child {
+        border-right: none;
+    }
+
+    .li:hover {
+        background-color: #ff7373;
+    }
+
+    .li .a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+</style>
+
 <br>
+
+    <ul class="ul">
+        <li class="active li">
+            <a class="a" href="/">TEAMS</a>
+        </li>
+        <li class="li">
+            <a class="a" href="#">LEAGUES</a>
+        </li>
+
+        <li class="li">
+            <a class="a" href="/admin">ADMIN</a>
+        </li>
+    </ul>
+<br>
+<repeat group="{{@teams}}" value="{{@team}}">
 <ul>
-    <li style="padding: 5px"><a style="color: #e50000; text-decoration: none; font-size: 20px" href="/slaviapraha"><b>SLAVIA
-        PRAHA</b></a></li>
-    <check if="{{isset(@SESSION.name)}}">
-        <true>
-            <check if="{{@SESSION.role}}=='2'">
-                <true>
-                    <li style="padding: 5px"><a style="color: #3d4c70; text-decoration: none; font-size: 20px"
-                                                href="/install">INSTALL</a></li>
-                </true>
-            </check>
-        </true>
-    </check>
+    <li style="padding: 5px"><a style="color: #2A324B; text-decoration: none; font-size: 20px" href="/{{ @team.teamid }}"><b>{{ @team.name }}</b></a></li>
 </ul>
+</repeat>
