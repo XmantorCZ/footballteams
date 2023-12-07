@@ -4,3 +4,4 @@ composer.lock
 vendor/*
 tmp/*
 app/config/db.ini
+footballteams.sql

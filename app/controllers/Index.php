@@ -36,19 +36,25 @@ class Index extends RolesController
 
     public function get_match(\Base $base)
     {
-        $base->set("content", "match.html");
-        $base->set("title", "MATCH");
-        $base->set("logo", "Menu");
+        $team = $base->get("PARAMS.team");
 
         $teams= new \models\Teams();
         $match= new \models\Matches();
-        $tym = $base->get("SESSION.team");
-        $team = $teams->findone(array("name=?", $tym));
-        $base->set("teamname", $team->fullname);
-
-        $matches = $match -> find("host='$tym' OR away='$tym'", ['order' => 'date DESC']);
-
+        $find_team = $teams->findone(array("teamid=?", $team));
+        $base->set("teamid", $find_team->teamid);
+        $base->set("teamname", $find_team->fullname );
+        $matches = $match -> find("host='$find_team->name' OR away='$find_team->name'", ['order' => 'date DESC']);
+        foreach($matches as $match){
+            if(!$match->is_squad==" "){
+                $match->is_squad=1;
+            }else{
+                $match->is_squad=0;
+            }
+        }
         $base->set("matches", $matches);
+        $base->set("content", "match.html");
+        $base->set("title", "MATCH");
+        $base->set("logo", "Menu");
 
 
         echo \Template::instance()->render("index.html");

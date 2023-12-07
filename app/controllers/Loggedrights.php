@@ -108,7 +108,6 @@ class Loggedrights extends Rightsprotect
 
     public function get_upravithrace(\Base $base)
     {
-
         $id = $base->get('PARAMS.id');
         $slavia = new \models\Players();
         $player = $slavia->findone(array('id=?', $id));
@@ -135,37 +134,50 @@ class Loggedrights extends Rightsprotect
 
     public function get_addsquad(\Base $base){
 
-        $id = $base->get('PARAMS.matchid');
-        $zapasy = new \models\SPZapasy();
-        $slavia = new \models\Players();
-        $base->set('addsq', $zapasy->findone(array('id=?', $id)));
+        $params_id_match = $base->get('PARAMS.idmatch');
+        $params_team = $base->get('PARAMS.team');
+        $teams = new \models\Teams();
+        $zapasy = new \models\Matches();
+        $players = new \models\Players();
+        $team = $teams->findone(array("teamid=?", $params_team));
+        $nameteam = $team->name;
+        $base->set('addsq', $zapasy->findone(array('id=?', $params_id_match)));
+        $base->set("match_id", $params_id_match);
         $base->set('logo', 'settings');
         $base->set('content', 'addsquad.html');
         $base->set("title", "ADDSQUAD");
-        $base->set("brankariselect", $slavia->find("position='BR'", ['order' => 'matches DESC']));
-        $base->set("zalozniciselect", $slavia->find("position='ZA'", ['order' => 'matches DESC']));
-        $base->set("obranciselect", $slavia->find("position='OB'", ['order' => 'matches DESC']));
-        $base->set("utocniciselect", $slavia->find("position='UT'", ['order' => 'matches DESC']));
+        $base->set("brankariselect", $players->find("team='$nameteam' AND position='BR' AND state!='departure' AND state!='hostdeparture'", ['order' => 'matches DESC']));
+        $base->set("zalozniciselect", $players->find("team='$nameteam' AND position='ZA' AND state!='departure' AND state!='hostdeparture'", ['order' => 'matches DESC']));
+        $base->set("obranciselect", $players->find("team='$nameteam' AND position='OB' AND state!='departure' AND state!='hostdeparture'", ['order' => 'matches DESC']));
+        $base->set("utocniciselect", $players->find("team='$nameteam' AND position='UT' AND state!='departure' AND state!='hostdeparture'", ['order' => 'matches DESC']));
         echo \Template::instance()->render("index.html");
 
 
     }
 
     public function post_addsquad(\Base $base){
-
-        $id = $base->get('PARAMS.matchid');
+        $temp="";
+        $params_idmatch = $base->get('PARAMS.idmatch');
+        $params_team = $base->get('PARAMS.team');
         $zapasy = new \models\Matches();
-        $zapasy->load(array("id=?", $id));
-       $pole = $zapasy->copyfrom($base->get('POST.squad'));
-
-        $zapasy->squad = $pole;
-
+        $teams = new \models\Teams();
+        $players = new \models\Players();
+        $zapasy->load(array("id=?", $params_idmatch));
+        $pole = $base->get('POST');
+        $team = $teams->findone(array('teamid=?', $params_team));
+        $team->matches += 1;
+        $team->save();
+        foreach($pole as $squad) {
+            $verify=$players->findone(array('surname=?', $squad));
+            if($verify){
+                $verify->matches += 1;
+                $verify->save();
+            }
+            $temp .= $squad . ';';
+        }
+        $zapasy->squad=$temp;
         $zapasy->save();
-
         $base->reroute('/slaviapraha');
-
-
-
     }
 
     public function get_upravitzapas(\Base $base)

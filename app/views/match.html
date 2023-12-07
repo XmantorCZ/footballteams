@@ -6,8 +6,15 @@
             <div style="display: inline-block;">{{@match.competition}}</div>
             <div  style="display: inline-block;">{{@match.host}}</div>
             <div  style="display: inline-block;">{{@match.away}}</div>
-        <div style="display: inline-block; text-align: right"><a href="/match/slaviapraha/{{@match.id}}/addsquad">Squad</a></div>
-        <div style="display: inline-block; text-align:right"><a href="/match/slaviapraha/{{@match.id}}/addgoals">Goals</a></div>
+        <check if="{{@match.is_squad}}=='true'">
+            <true>
+                <div style="display: inline-block; text-align: right"><a style="color: darkgreen" href="/match/{{@teamid}}/{{@match.id}}/addsquad">Squad</a></div>
+            </true>
+            <false>
+                <div style="display: inline-block; text-align: right"><a style="color: red" href="/match/{{@teamid}}/{{@match.id}}/addsquad">Squad</a></div>
+            </false>
+        </check>
+        <div style="display: inline-block; text-align:right"><a href="/match/{{@teamid}}/{{@match.id}}/addgoals">Goals</a></div>
     </div>
         <br>
 </repeat>
