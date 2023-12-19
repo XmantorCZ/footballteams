@@ -19,6 +19,16 @@ class Index extends RolesController
         echo \Template::instance()->render("index.html");
     }
 
+    public function get_leagues(\Base $base)
+    {
+        $leagues = new \models\Leagues();
+        $base->set("teams",$leagues->find());
+        $base->set("content", "leagues.html");
+        $base->set("title", "Leagues");
+        $base->set("logo", "Menu");
+        echo \Template::instance()->render("index.html");
+    }
+
     public function get_registrace(\Base $base)
     {
         $base->set("error", "");
@@ -44,13 +54,7 @@ class Index extends RolesController
         $base->set("teamid", $find_team->teamid);
         $base->set("teamname", $find_team->fullname );
         $matches = $match -> find("host='$find_team->name' OR away='$find_team->name'", ['order' => 'date DESC']);
-        foreach($matches as $match){
-            if(!$match->is_squad==" "){
-                $match->is_squad=1;
-            }else{
-                $match->is_squad=0;
-            }
-        }
+        $base->set("date_of_match", date("Y-m-d"));
         $base->set("matches", $matches);
         $base->set("content", "match.html");
         $base->set("title", "MATCH");
@@ -264,7 +268,7 @@ class Index extends RolesController
         $base->set("teamid", $teamname);
         $base->set("logo", "Slavia");
 
-        $findteam = $teams->findone(array("teamid=?", $teamname));
+        $findteam = $teams->findone(array("teamid='$teamname'"));
 
         $base->set("golycelkem", $findteam->goals);
         $base->set("asistcelkem", $findteam->assists);
@@ -423,20 +427,20 @@ class Index extends RolesController
         }
         $base->set("utocnici", $utocnici);
 
-        $zapasy = new \models\SPZapasy();
+        //$zapasy = new \models\SPZapasy();
 
-        $zapas = $zapasy->find("", ['limit' => 15, 'order' => 'DATUM DESC']);
+        //$zapas = $zapasy->find("", ['limit' => 15, 'order' => 'DATUM DESC']);
 
 
-        if ($zapas != "") {
-            foreach ($zapas as $value) {
+        //if ($zapas != "") {
+          //  foreach ($zapas as $value) {
 
-                $value->DATUM = date('d/m/Y', strtotime($value->DATUM));
-            }
+            //    $value->DATUM = date('d/m/Y', strtotime($value->DATUM));
+           // }
 
-        }
+        //}
 
-        $base->set("zapasy", $zapas);
+        //$base->set("zapasy", $zapas);
 
         $base->set("title", $findteam->fullname);
         $base->set("content", 'slaviapraha.html');

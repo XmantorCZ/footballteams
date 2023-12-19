@@ -74,7 +74,7 @@
             <repeat group="{{@strelci}}" value="{{@strelec}}">
                 <tr>
                     <td style="width: 250px">{{@strelec.name}} {{@strelec.surname}}</td>
-                    <td>{{@strelec.Goly}}</td>
+                    <td>{{@strelec.goals}}</td>
                 </tr>
             </repeat>
             </tbody>
@@ -92,7 +92,7 @@
             <repeat group="{{@asistence}}" value="{{@asistent}}">
                 <tr>
                     <td style="width: 250px">{{@asistent.name}} {{@asistent.surname}}</td>
-                    <td>{{@asistent.Asistence}}</td>
+                    <td>{{@asistent.assists}}</td>
                 </tr>
             </repeat>
             </tbody>
@@ -110,7 +110,7 @@
             <repeat group="{{@zlutekarty}}" value="{{@zlutekarta}}">
                 <tr>
                     <td style="width: 250px">{{@zlutekarta.name}} {{@zlutekarta.surname}}</td>
-                    <td>{{@zlutekarta.ZK}}</td>
+                    <td>{{@zlutekarta.yellows}}</td>
                 </tr>
             </repeat>
             </tbody>
@@ -129,7 +129,6 @@
 <br>
 <br>
 <include href="soupiska.html"/>
-<include href="zapasymenu.html"/>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

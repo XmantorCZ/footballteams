@@ -2,10 +2,10 @@
 
 namespace models;
 
-class Teams extends \DB\Cortex
+class Leagues extends \DB\Cortex
 {
     protected $db = 'DB';
-    protected $table = 'teams';
+    protected $table = 'leagues';
     protected $primary = 'id';
 
     protected $fieldConf = [
@@ -14,21 +14,21 @@ class Teams extends \DB\Cortex
             'type' => 'TEXT',
             'nullable' => false,
         ],
-        'teamid' => [
+        'league_id' => [
             'type' => 'VARCHAR256',
             'nullable' => false,
         ],
-        'teamcolor' => [
+        'league_color' => [
             'type' => 'TEXT',
             'nullable' => false,
         ],
-        'league' => [
+        'number_of_teams' => [
             'type' => 'TEXT',
             'nullable' => false,
         ],
-        'name' => [
+        'state' => [
             'type' => 'TEXT',
-            'nullable' => false,
+            'nullable' => false
         ],
         'matches' => [
             'type' => 'VARCHAR256',

@@ -53,16 +53,16 @@ class Loggedrights extends Rightsprotect
     public function post_install(\Base $base)
     {
 
-        if ($base->get('POST.SlaviaPraha') == true) {
+        if ($base->get('POST.Nations') == true) {
 
-            \models\SlaviaPraha::setdown();
-            \models\SlaviaPraha::setup();
+            \models\Nations::setdown();
+            \models\Nations::setup();
 
         }
-        if ($base->get('POST.SPZapasy') == true) {
+        if ($base->get('POST.Players') == true) {
 
-            \models\SPZapasy::setdown();
-            \models\SPZapasy::setup();
+            \models\Players::setdown();
+            \models\Players::setup();
 
         }
         if ($base->get('POST.Uzivatele') == true) {
@@ -78,22 +78,22 @@ class Loggedrights extends Rightsprotect
             \models\Teams::setup();
 
         }
-        if ($base->get('POST.Players') == true) {
+        if ($base->get('POST.PlayersClean') == true) {
 
-                        $slavia = new \models\SlaviaPraha();
+            $slavia = new \models\SlaviaPraha();
 
-                        $players = $slavia->find(array(""));
+            $players = $slavia->find(array(""));
 
-                        foreach ($players as $player) {
+            foreach ($players as $player) {
 
-                            $player->Zapasy = 0;
-                            $player->Goly = 0;
-                            $player->Asistence = 0;
-                            $player->ZK = 0;
-                            $player->CK = 0;
+                $player->Zapasy = 0;
+                $player->Goly = 0;
+                $player->Asistence = 0;
+                $player->ZK = 0;
+                $player->CK = 0;
 
-                            $player->save();
-                        }
+                $player->save();
+            }
 
 
         }
@@ -101,6 +101,12 @@ class Loggedrights extends Rightsprotect
 
             \models\Matches::setdown();
             \models\Matches::setup();
+
+        }
+        if ($base->get('POST.Leagues') == true) {
+
+            \models\Leagues::setdown();
+            \models\Leagues::setup();
 
         }
         $base->reroute('/');
@@ -132,7 +138,8 @@ class Loggedrights extends Rightsprotect
 
     }
 
-    public function get_addsquad(\Base $base){
+    public function get_addsquad(\Base $base)
+    {
 
         $params_id_match = $base->get('PARAMS.idmatch');
         $params_team = $base->get('PARAMS.team');
@@ -141,7 +148,8 @@ class Loggedrights extends Rightsprotect
         $players = new \models\Players();
         $team = $teams->findone(array("teamid=?", $params_team));
         $nameteam = $team->name;
-        $base->set('addsq', $zapasy->findone(array('id=?', $params_id_match)));
+        $matches = $zapasy->findone(array("id=?", $params_id_match));
+        $base->set('add_sq', $matches);
         $base->set("match_id", $params_id_match);
         $base->set('logo', 'settings');
         $base->set('content', 'addsquad.html');
@@ -155,8 +163,9 @@ class Loggedrights extends Rightsprotect
 
     }
 
-    public function post_addsquad(\Base $base){
-        $temp="";
+    public function post_addsquad(\Base $base)
+    {
+        $temp = "";
         $params_idmatch = $base->get('PARAMS.idmatch');
         $params_team = $base->get('PARAMS.team');
         $zapasy = new \models\Matches();
@@ -167,18 +176,86 @@ class Loggedrights extends Rightsprotect
         $team = $teams->findone(array('teamid=?', $params_team));
         $team->matches += 1;
         $team->save();
-        foreach($pole as $squad) {
-            $verify=$players->findone(array('surname=?', $squad));
-            if($verify){
+        foreach ($pole as $squad) {
+            $verify = $players->findone(array('surname=?', $squad));
+            if ($verify) {
                 $verify->matches += 1;
                 $verify->save();
             }
             $temp .= $squad . ';';
         }
-        $zapasy->squad=$temp;
+        $zapasy->is_squad = 1;
+        $zapasy->squad = $temp;
         $zapasy->save();
-        $base->reroute('/slaviapraha');
+        $base->reroute("/match/$params_team");
     }
+
+    public function get_add_events(\Base $base)
+    {
+
+        $base->set('logo', 'settings');
+        $base->set('content', 'addevents.html');
+        $base->set("title", "ADDEVENTS");
+        echo \Template::instance()->render("INDEX.html");
+    }
+
+    public function post_add_events(\Base $base)
+    {
+        $params_idmatch = $base->get('PARAMS.idmatch');
+        $params_team = $base->get('PARAMS.team');
+        $zapasy = new \models\Matches();
+        $teams = new \models\Teams();
+        $players = new \models\Players();
+        $zapasy->load(array("id=?", $params_idmatch));
+        $pole = $base->get('POST');
+        $out = array();
+        foreach ($pole as $rowkey => $row) {
+            foreach ($row as $colkey => $col) {
+                $out[$colkey][$rowkey] = $col;
+            }
+        }
+        $temp_2 = "";
+        foreach ($out as $value) {
+            foreach($value as $index) {
+                $temp_2 .= $index . ',';
+            }
+            $temp_2 = substr($temp_2,0,-1);
+            $temp_2 .= ";";
+        }
+        $final = explode(";", $temp_2);
+        foreach ($final as $value) {
+            if (!$value == "") {
+                $event = explode(",", $value);
+                $find_scorer = $players->findone(array("surname='$event[2]'"));
+                $find_assist = $players->findone(array("surname='$event[3]'"));
+                $team = $teams->findone(array("teamid='$params_team'"));
+                if (!$find_scorer == "") {
+                    if ($event[1] == "goal") {
+                        $find_scorer->goals += 1;
+                        $team->goals += 1;
+                        if (!$find_assist == "") {
+                            $find_assist->assists += 1;
+                            $team->assists +=1;
+                            $find_assist->save();
+                        }
+                    } elseif ($event[1] == "yellow") {
+                        $find_scorer->yellows += 1;
+                        $team->yellows += 1;
+                    } elseif ($event[1] == "red") {
+                        $find_scorer->reds += 1;
+                        $team->reds += 1;
+                    }
+                }
+                $find_scorer->save();
+                $team->save();
+            }
+        }
+        $zapasy->is_goals = 1;
+        $zapasy->goals = $temp_2;
+        $zapasy->save();
+        $base->reroute("/match/$params_team");
+    }
+
 
     public function get_upravitzapas(\Base $base)
     {

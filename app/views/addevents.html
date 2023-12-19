@@ -1,0 +1,50 @@
+<div style="margin-top:10%" class="modal-content" align="center">
+    <p>SESTAVA</p>
+    <form method="POST">
+        <div class="container1 block">
+            <div class="vertical-center">
+                <input type="number" style="font-size: 16px" required name="Minutes[]" size="10"> 
+                <input type="text" style="font-size: 16px" required name="Akce[]" size="15"> 
+                <input type="text" style="font-size: 16px" required name="Main[]" size="15"> 
+                <input type="text" style="font-size: 16px" name="Second[]" size="15"> 
+                <a href="#" style="user-select: none;" class="add_form_field"><img alt="add"
+                                                                                   src="/images/plus.png"
+                                                                                   style="width: 20px; height: 20px"></a>
+            </div>
+        </div>
+        <br><br><br>
+        <button style="width: 150px; font-size: large" type="submit"><strong>ULOŽIT</strong></button>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            var max_fields = 20;
+            var wrapper = $(".container1");
+            var add_button = $(".add_form_field");
+
+            var x = 1;
+            $(add_button).click(function (e) {
+                e.preventDefault();
+                if (x < max_fields) {
+                    x++;
+                    $(wrapper).append('<div class="vertical-center" >' +
+                        '                <input type="number" style="font-size: 16px" required name="Minutes[]" size="10"> ' +
+                        '                <input type="text" style="font-size: 16px" required name="Akce[]" size="15"> \n' +
+                        '                <input type="text" style="font-size: 16px" required name="Main[]" size="15"> \n' +
+                        '                <input type="text" style="font-size: 16px" name="Second[]" size="15"> ' +
+                        '<a href="#" style="user-select: none;" class="delete ikona">' +
+                        '<img alt="add" style="width: 20px; height: 20px" src="/images/minus.png"></a></div>'); //add input box
+                }
+            });
+
+            $(wrapper).on("click", ".delete", function (e) {
+                e.preventDefault();
+                $(this).parent('div').remove();
+                x--;
+            })
+        });
+
+    </script>

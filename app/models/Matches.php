@@ -47,12 +47,12 @@ class Matches extends \DB\Cortex
             'nullable' => false
         ],
         'is_squad' => [
-            'type' => 'BOOLEAN',
+            'type' => 'TEXT',
             'nullable' => false,
             'default' => false
         ],
         'is_goals' => [
-            'type' => 'BOOLEAN',
+            'type' => 'TEXT',
             'nullable' => false,
             'default' => false
         ],

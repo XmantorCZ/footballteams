@@ -1,12 +1,20 @@
 <div style="font-size: 150px; text-align: center; margin-top: 3%; margin-bottom: 3%">{{@teamname}}</div>
 
 <repeat group="{{@matches}}" value="{{@match}}">
-    <div data-name="{{@match.id}}" style="margin-left: 35%;margin-right: 35%; border: 1px darkgrey groove; padding: 8px">
-            <div style="display: inline-block;">{{@match.date}}</div>
-            <div style="display: inline-block;">{{@match.competition}}</div>
-            <div  style="display: inline-block;">{{@match.host}}</div>
-            <div  style="display: inline-block;">{{@match.away}}</div>
-        <check if="{{@match.is_squad}}=='true'">
+    <div data-name="{{@match.id}}" style="margin-left: 30%;margin-right: 30%; border: 1px darkgrey groove; padding: 8px">
+            <div style="display: inline-block;">{{@match.date}} |</div>
+            <div style="display: inline-block;">{{@match.competition}} |</div>
+            <div  style="display: inline-block;">{{@match.host}} vs </div>
+            <div  style="display: inline-block;">{{@match.away}} | </div>
+        <check if="{{@date_of_match}}>{{@match.date}}">
+            <true>
+                <div  style="display: inline-block;">Odehráno | </div>
+            </true>
+            <false>
+                <div  style="display: inline-block;">Neodehráno | </div>
+            </false>
+        </check>
+        <check if="{{@match.is_squad}}==1">
             <true>
                 <div style="display: inline-block; text-align: right"><a style="color: darkgreen" href="/match/{{@teamid}}/{{@match.id}}/addsquad">Squad</a></div>
             </true>
@@ -14,7 +22,14 @@
                 <div style="display: inline-block; text-align: right"><a style="color: red" href="/match/{{@teamid}}/{{@match.id}}/addsquad">Squad</a></div>
             </false>
         </check>
-        <div style="display: inline-block; text-align:right"><a href="/match/{{@teamid}}/{{@match.id}}/addgoals">Goals</a></div>
+        <check if="{{@match.is_goals}}==1">
+            <true>
+                <div style="display: inline-block; text-align: right"><a style="color: darkgreen" href="/match/{{@teamid}}/{{@match.id}}/addevents">Events</a></div>
+            </true>
+            <false>
+                <div style="display: inline-block; text-align: right"><a style="color: red" href="/match/{{@teamid}}/{{@match.id}}/addevents">Events</a></div>
+            </false>
+        </check>
     </div>
         <br>
 </repeat>

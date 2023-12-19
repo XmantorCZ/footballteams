@@ -1,122 +1,172 @@
 <div style="margin-top:10%" class="modal-content" align="center">
 <p>SESTAVA</p>
-    <h1>{{ @match_id }}</h1>
-<form method="POST">
-<select name="brankar">
-    <optgroup label="DEFAULT">
-        <option value="default">BRANKÁŘ</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@brankariselect}}" value="{{@brankari}}">
-            <option value="{{@brankari.surname}}">{{@brankari.name}} {{@brankari.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<br><br><br>
-<select name="obrance1">
-    <optgroup label="DEFAULT">
-        <option value="default">LEVÝ BEK</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@obranciselect}}" value="{{@obrance}}">
-            <option value="{{@obrance.surname}}">{{@obrance.name}} {{@obrance.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<select name="obrance2">
-    <optgroup label="DEFAULT"> 
-        <option value="default">STŘEDNÍ BEK</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@obranciselect}}" value="{{@obrance}}">
-            <option value="{{@obrance.surname}}">{{@obrance.name}} {{@obrance.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<select name="obrance3">
-    <optgroup label="DEFAULT">
-        <option value="default">STŘEDNÍ BEK</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@obranciselect}}" value="{{@obrance}}">
-            <option value="{{@obrance.surname}}">{{@obrance.name}} {{@obrance.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<select name="obrance4">
-    <optgroup label="DEFAULT">
-        <option value="default">PRAVÝ BEK</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@obranciselect}}" value="{{@obrance}}">
-            <option value="{{@obrance.surname}}">{{@obrance.name}} {{@obrance.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<br><br><br>
-<select name="zaloznik1">
-    <optgroup label="DEFAULT">
-        <option value="default">ZÁLOŽNÍK</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@zalozniciselect}}" value="{{@zaloznik}}">
-            <option value="{{@zaloznik.surname}}">{{@zaloznik.name}} {{@zaloznik.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<select name="zaloznik2">
-    <optgroup label="DEFAULT">
-        <option value="default">ZÁLOŽNÍK</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@zalozniciselect}}" value="{{@zaloznik}}">
-            <option value="{{@zaloznik.surname}}">{{@zaloznik.name}} {{@zaloznik.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<select name="zaloznik3">
-    <optgroup label="DEFAULT">
-        <option value="default">ZÁLOŽNÍK</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@zalozniciselect}}" value="{{@zaloznik}}">
-            <option value="{{@zaloznik.surname}}">{{@zaloznik.name}} {{@zaloznik.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<br><br><br>
-<select name="utocnik1">
-    <optgroup label="DEFAULT">
-        <option value="default">ÚTOČNÍK</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
-            <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<select name="utocnik2">
-    <optgroup label="DEFAULT">
-        <option value="default">ÚTOČNÍK</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
-            <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<select name="utocnik3">
-    <optgroup label="DEFAULT">
-        <option value="default">ÚTOČNÍK</option>
-    </optgroup>
-    <optgroup label="OPTIONS">
-        <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
-            <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
-        </repeat>
-    </optgroup>
-</select>
-<br><br><br>
-<br><br>
-<button style="width: 150px" type="submit"><strong>PŘIDAT</strong></button>
-</div>
-</form>
+    <h2>({{ @match_id }}) {{ @add_sq.host }} - {{ @add_sq.away }} | {{ @add_sq.date }}</h2>
+        <form method="POST">
+        <select name="brankar">
+            <optgroup label="DEFAULT">
+                <option value="default">BRANKÁŘ</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@brankariselect}}" value="{{@brankari}}">
+                    <option value="{{@brankari.surname}}">{{@brankari.name}} {{@brankari.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <br><br><br>
+        <select name="obrance1">
+            <optgroup label="DEFAULT">
+                <option value="default">LEVÝ BEK</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@obranciselect}}" value="{{@obrance}}">
+                    <option value="{{@obrance.surname}}">{{@obrance.name}} {{@obrance.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <select name="obrance2">
+            <optgroup label="DEFAULT">
+                <option value="default">STŘEDNÍ BEK</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@obranciselect}}" value="{{@obrance}}">
+                    <option value="{{@obrance.surname}}">{{@obrance.name}} {{@obrance.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <select name="obrance3">
+            <optgroup label="DEFAULT">
+                <option value="default">STŘEDNÍ BEK</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@obranciselect}}" value="{{@obrance}}">
+                    <option value="{{@obrance.surname}}">{{@obrance.name}} {{@obrance.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <select name="obrance4">
+            <optgroup label="DEFAULT">
+                <option value="default">PRAVÝ BEK</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@obranciselect}}" value="{{@obrance}}">
+                    <option value="{{@obrance.surname}}">{{@obrance.name}} {{@obrance.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <br><br><br>
+        <select name="zaloznik1">
+            <optgroup label="DEFAULT">
+                <option value="default">ZÁLOŽNÍK</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@zalozniciselect}}" value="{{@zaloznik}}">
+                    <option value="{{@zaloznik.surname}}">{{@zaloznik.name}} {{@zaloznik.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <select name="zaloznik2">
+            <optgroup label="DEFAULT">
+                <option value="default">ZÁLOŽNÍK</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@zalozniciselect}}" value="{{@zaloznik}}">
+                    <option value="{{@zaloznik.surname}}">{{@zaloznik.name}} {{@zaloznik.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <select name="zaloznik3">
+            <optgroup label="DEFAULT">
+                <option value="default">ZÁLOŽNÍK</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@zalozniciselect}}" value="{{@zaloznik}}">
+                    <option value="{{@zaloznik.surname}}">{{@zaloznik.name}} {{@zaloznik.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <br><br><br>
+        <select name="utocnik1">
+            <optgroup label="DEFAULT">
+                <option value="default">ÚTOČNÍK</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                    <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <select name="utocnik2">
+            <optgroup label="DEFAULT">
+                <option value="default">ÚTOČNÍK</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                    <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <select name="utocnik3">
+            <optgroup label="DEFAULT">
+                <option value="default">ÚTOČNÍK</option>
+            </optgroup>
+            <optgroup label="OPTIONS">
+                <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                    <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
+                </repeat>
+            </optgroup>
+        </select>
+        <br><br><br>
+            <select name="nahradnik1">
+                <optgroup label="DEFAULT">
+                    <option value="default">NÁHRADNÍK</option>
+                </optgroup>
+                <optgroup label="OPTIONS">
+                    <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                        <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
+                    </repeat>
+                </optgroup>
+            </select>
+            <select name="nahradnik2">
+                <optgroup label="DEFAULT">
+                    <option value="default">NÁHRADNÍK</option>
+                </optgroup>
+                <optgroup label="OPTIONS">
+                    <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                        <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
+                    </repeat>
+                </optgroup>
+            </select>
+            <select name="nahradnik3">
+                <optgroup label="DEFAULT">
+                    <option value="default">NÁHRADNÍK</option>
+                </optgroup>
+                <optgroup label="OPTIONS">
+                    <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                        <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
+                    </repeat>
+                </optgroup>
+            </select>
+            <select name="nahradnik4">
+                <optgroup label="DEFAULT">
+                    <option value="default">NÁHRADNÍK</option>
+                </optgroup>
+                <optgroup label="OPTIONS">
+                    <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                        <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
+                    </repeat>
+                </optgroup>
+            </select>
+            <select name="nahradnik5">
+                <optgroup label="DEFAULT">
+                    <option value="default">NÁHRADNÍK</option>
+                </optgroup>
+                <optgroup label="OPTIONS">
+                    <repeat group="{{@utocniciselect}}" value="{{@utocnici}}">
+                        <option value="{{@utocnici.surname}}">{{@utocnici.name}} {{@utocnici.surname}}</option>
+                    </repeat>
+                </optgroup>
+            </select>
+            <br><br><br>
+        <button style="width: 150px; font-size: large" type="submit"><strong>ULOŽIT</strong></button>
+        </div>
+        </form>
